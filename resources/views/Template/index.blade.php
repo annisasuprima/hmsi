@@ -17,6 +17,8 @@
     <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
     <!-- Standard iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{asset('AdminLTE/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Styles -->
     <link href="{{asset('focus/assets/css/lib/calendar2/pignose.calendar.min.css')}}" rel="stylesheet">
     <link href="{{asset('focus/assets/css/lib/chartist/chartist.min.css')}}" rel="stylesheet">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Divisi;
+use Illuminate\Support\Facades\DB;
 
 class DivisiController extends Controller
 {
@@ -13,7 +15,8 @@ class DivisiController extends Controller
      */
     public function index()
     {
-        return view('Divisi.ReadDivisi');
+        $dtDivisi = Divisi::all();
+        return view('Divisi.ReadDivisi',compact('dtDivisi'));
     }
 
     /**
@@ -34,7 +37,20 @@ class DivisiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kode_divisi = $request->kode_divisi;
+        $div = DB::table('divisi')->where('kode_divisi','=',$kode_divisi)->get();
+        $jml = count(collect($div));
+
+        if($jml > 0){
+            print("sudah ada kodenya");
+        } else {
+            Divisi::create([
+                'kode_divisi' => $request->kode_divisi,
+                'nama_divisi' => $request->nama_divisi,
+                'ket_divisi'  => $request->ket_divisi
+            ]);
+            return redirect('divisi');
+        }
     }
 
     /**

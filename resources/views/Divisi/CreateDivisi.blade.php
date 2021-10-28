@@ -9,29 +9,27 @@
 </div>
 <div class="card-body">
     <div class="basic-form">
-        <form>
+        <form action="{{route('save-divisi')}}" method="POST">
+            {{csrf_field()}}
             <div class="form-group">
                 <label>Kode Divisi</label>
                 <div class="col-sm-6 col-sm-offset-3">
-                    <input type="text" class="form-control input-focus" placeholder="Input kode divisi">
+                    <input type="text" class="form-control input-focus" name="kode_divisi" placeholder="Input kode divisi">
                 </div>
             </div>
             <div class="form-group">
                 <label>Nama Divisi</label>
                 <div class="col-sm-6 col-sm-offset-3">
-                    <input type="text" class="form-control input-focus" placeholder="Input nama divisi">
+                    <input type="text" class="form-control input-focus" name="nama_divisi" placeholder="Input nama divisi">
                 </div>
             </div>
             <div class="form-group">
                 <label>Keterangan</label>
                 <div class="col-sm-6 col-sm-offset-3">
-                    <textarea class="form-control input-focus" rows="3" placeholder="Keterangan divisi"></textarea>
+                    <textarea class="form-control input-focus" rows="3" name="ket_divisi" placeholder="Keterangan divisi"></textarea>
                 </div>
             </div>
-            <div class="row">
-
-            </div>
-            <a href="{{url('divisi')}}" class="btn btn-default btn-rounded m-b-10">< Back</a>
+            <a href="{{url('divisi')}}" class="btn btn-default btn-rounded m-b-10">Back</a>
             <button type="submit" class="btn btn-success btn-rounded m-b-10 m-l-5">Submit</button>
         </form>
     </div>

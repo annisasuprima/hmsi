@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');
-Route::get('/create-divisi', [DivisiController::class, 'create'])->name('create-kelas');
+Route::get('/create-divisi', [DivisiController::class, 'create'])->name('create-divisi');
+Route::post('/save-divisi', [DivisiController::class, 'store'])->name('save-divisi');
