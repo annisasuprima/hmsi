@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');
 Route::get('/create-divisi', [DivisiController::class, 'create'])->name('create-divisi');
 Route::post('/save-divisi', [DivisiController::class, 'store'])->name('save-divisi');
+Route::get('/delete-divisi/{id}', [DivisiController::class, 'destroy'])->name('delete-divisi');
+Route::get('/edit-divisi/{id}', [DivisiController::class, 'edit'])->name('edit-divisi');
+Route::post('/update-divisi/{id}', [DivisiController::class, 'update'])->name('update-divisi');
 
 Route::get('/rapat', [RapatController::class, 'index'])->name('rapat');
 Route::get('/create-rapat', [RapatController::class, 'create'])->name('create-rapat');

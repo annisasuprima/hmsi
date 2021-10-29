@@ -72,7 +72,8 @@ class DivisiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $divisi = Divisi::findorfail($id);
+        return view('Divisi.EditDivisi', compact('divisi'));
     }
 
     /**
@@ -84,7 +85,9 @@ class DivisiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $div = Divisi::findorfail($id);
+        $div->update($request->all());
+        return redirect('divisi');
     }
 
     /**
@@ -95,6 +98,8 @@ class DivisiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rapat = Divisi::findorfail($id);
+        $rapat->delete();
+        return back();
     }
 }
