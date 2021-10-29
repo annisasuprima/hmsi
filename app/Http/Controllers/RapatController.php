@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rapat;
+use App\Models\Divisi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RapatController extends Controller
 {
@@ -14,7 +16,14 @@ class RapatController extends Controller
      */
     public function index()
     {
-        return view('Rapat.ReadRapat');
+        $dtrapat = DB::table('rapat')
+        ->join('divisi', 'divisi.id', '=', 'rapat.id_divisi')
+        ->get([
+            'divisi.id', 'divisi.nama_divisi', 'rapat.tanggal',
+            'rapat.waktu_mulai', 'rapat.waktu_selesai', 'rapat.topik', 
+            'rapat.hasil','rapat.id  AS id_rapat'
+        ]);
+        return view('Rapat.ReadRapat', compact('dtrapat'));
     }
 
     /**
@@ -24,7 +33,9 @@ class RapatController extends Controller
      */
     public function create()
     {
-        return view('Rapat.CreateRapat');
+        $divisi = DB::table('divisi')
+        ->get(['id', 'nama_divisi']);
+        return view('Rapat.CreateRapat', compact('divisi'));
     }
 
     /**
@@ -35,7 +46,15 @@ class RapatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Rapat::create([
+            'id_divisi'     => $request->id_divisi,
+            'tanggal'       => $request->tanggal,
+            'waktu_mulai'   => $request->waktu_mulai,
+            'waktu_selesai' => $request->waktu_selesai,
+            'topik'         => $request->topik,
+            'hasil'         => $request->hasil
+        ]);
+        return redirect('rapat');
     }
 
     /**
@@ -44,9 +63,18 @@ class RapatController extends Controller
      * @param  \App\Models\Rapat  $rapat
      * @return \Illuminate\Http\Response
      */
-    public function show(Rapat $rapat)
+    public function show($id)
     {
-        //
+        $detailrapat = DB::table('rapat')
+        ->join('divisi', 'divisi.id', '=', 'rapat.id_divisi')
+        ->where('rapat.id','=',$id)
+        ->get([
+            'divisi.id','divisi.nama_divisi', 'rapat.tanggal',
+            'rapat.waktu_mulai', 'rapat.waktu_selesai', 'rapat.topik',
+            'rapat.hasil','rapat.id  AS id_rapat'
+        ]);
+        return view('Rapat.DetailRapat',compact('detailrapat'));
+
     }
 
     /**
@@ -55,9 +83,19 @@ class RapatController extends Controller
      * @param  \App\Models\Rapat  $rapat
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rapat $rapat)
+    public function edit($id)
     {
-        //
+        $rapat = DB::table('rapat')
+        ->rightJoin('divisi', 'divisi.id', '=', 'rapat.id_divisi')
+        ->where('rapat.id', '=', $id)
+        ->get([
+            'divisi.id', 'divisi.nama_divisi', 'rapat.tanggal',
+            'rapat.waktu_mulai', 'rapat.waktu_selesai', 'rapat.topik',
+            'rapat.hasil', 'rapat.id  AS id_rapat'
+        ]);
+        $divisi = DB::table('divisi')
+        ->get(['id', 'nama_divisi']);
+        return view ('Rapat.EditRapat',compact('rapat','divisi'));
     }
 
     /**
@@ -67,9 +105,11 @@ class RapatController extends Controller
      * @param  \App\Models\Rapat  $rapat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rapat $rapat)
+    public function update(Request $request, $id)
     {
-        //
+        $rapat = Rapat::findorfail($id);
+        $rapat->update($request->all());
+        return back();
     }
 
     /**
@@ -78,8 +118,10 @@ class RapatController extends Controller
      * @param  \App\Models\Rapat  $rapat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rapat $rapat)
+    public function destroy($id)
     {
-        //
+        $rapat = Rapat::findorfail($id);
+        $rapat->delete();
+        return back();
     }
 }

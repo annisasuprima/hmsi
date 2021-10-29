@@ -155,6 +155,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                     <li class="breadcrumb-item active">@yield('submenu')</li>
+                                    <li class="breadcrumb-item active">@yield('submenu2')</li>
                                 </ol>
                             </div>
                         </div>

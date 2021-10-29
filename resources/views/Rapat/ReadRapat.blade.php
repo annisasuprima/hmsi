@@ -24,27 +24,19 @@
                 </tr>
             </thead>
             <tbody>
+                <?php $no = 1; ?>
+                @foreach($dtrapat as $tampil)
                 <tr>
-                    <td>Yuri Berry</td>
-                    <td>Chief Marketing Officer (CMO)</td>
-                    <td>New York</td>
-                    <td>40</td>
-                    <td>2009/06/25</td>
+                    <td>{{$no++}}</td>
+                    <td>{{\Carbon\Carbon::createFromFormat('Y-m-d',$tampil->tanggal)->format('d-m-Y')}}</td>
+                    <td>{{$tampil->nama_divisi}}</td>
+                    <td>{{$tampil->topik}}</td>
+                    <td>
+                        <a href="{{url('detail-rapat',$tampil->id_rapat)}}" class="btn btn-warning btn-sm m-b-10 m-l-5"><i class="ti-eye"></i></a>
+                        <a href="{{url('delete-rapat',$tampil->id_rapat)}}" class="btn btn-danger btn-sm m-b-10 m-l-5" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
+                    </td>
                 </tr>
-                <tr>
-                    <td>Caesar Vance</td>
-                    <td>Pre-Sales Support</td>
-                    <td>New York</td>
-                    <td>21</td>
-                    <td>2011/12/12</td>
-                </tr>
-                <tr>
-                    <td>Doris Wilder</td>
-                    <td>Sales Assistant</td>
-                    <td>Sidney</td>
-                    <td>23</td>
-                    <td>2010/09/20</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

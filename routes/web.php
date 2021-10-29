@@ -26,3 +26,7 @@ Route::post('/save-divisi', [DivisiController::class, 'store'])->name('save-divi
 Route::get('/rapat', [RapatController::class, 'index'])->name('rapat');
 Route::get('/create-rapat', [RapatController::class, 'create'])->name('create-rapat');
 Route::post('/save-rapat', [RapatController::class, 'store'])->name('save-rapat');
+Route::get('/detail-rapat/{id}', [RapatController::class, 'show'])->name('detail-rapat');
+Route::get('/delete-rapat/{id}', [RapatController::class, 'destroy'])->name('delete-rapat');
+Route::get('/edit-rapat/{id}', [RapatController::class, 'edit'])->name('edit-rapat');
+Route::post('/update-rapat/{id}', [RapatController::class, 'update'])->name('update-rapat');
