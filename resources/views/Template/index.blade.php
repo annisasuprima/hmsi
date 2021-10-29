@@ -17,6 +17,8 @@
     <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
     <!-- Standard iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{asset('AdminLTE/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Styles -->
     <link href="{{asset('focus/assets/css/lib/calendar2/pignose.calendar.min.css')}}" rel="stylesheet">
     <link href="{{asset('focus/assets/css/lib/chartist/chartist.min.css')}}" rel="stylesheet">
@@ -33,7 +35,11 @@
     <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
-
+    <!-- TEXT EDITOR -->
+    <script src="{{asset('TextEditor/ckeditor.js')}}"></script>
+    <script src="{{asset('TextEditor/samples/js/sample.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('TextEditor/samples/css/samples.css')}}">
+    <link rel="stylesheet" href="{{asset('TextEditor/samples/toolbarconfigurator/lib/codemirror/neo.css')}}">
 </head>
 
 <body>
@@ -52,7 +58,7 @@
                     </li>
                     <li class="label">Apps</li>
                     <li>
-                        <a href="{{route('divisi')}}" class="sidebar-sub-toggle"><i class="ti-view-list-alt"></i> Divisi</a>
+                        <a href="{{route('divisi')}}"><i class="ti-view-list-alt"></i> Divisi</a>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-plus"></i> Open Recuirement <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
@@ -67,7 +73,12 @@
                             <li><a href="chart-flot.html">Daftar Daftar Akun</a></li>
                         </ul>
                     </li>
-                    <li><a class="sidebar-sub-toggle"><i class="ti-agenda"></i> Rapat</span></a></li>
+                    <li><a class="sidebar-sub-toggle"><i class="ti-pencil-alt2"></i> Rapat <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <ul>
+                            <li><a href="{{route('rapat')}}">List Notulensi</a></li>
+                            <li><a href="{{route('create-rapat')}}">Tambah Notulensi</a></li>
+                        </ul>
+                    </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="chart-flot.html">Kas Masuk</a></li>
@@ -144,6 +155,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                     <li class="breadcrumb-item active">@yield('submenu')</li>
+                                    <li class="breadcrumb-item active">@yield('submenu2')</li>
                                 </ol>
                             </div>
                         </div>
@@ -171,18 +183,15 @@
     </div>
 
     <!-- jquery vendor -->
-    <script src="{{asset('focus/assets/js/lib/jquery.min.js')}}">
-    </script>
+    <script src="{{asset('focus/assets/js/lib/jquery.min.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/jquery.nanoscroller.min.js')}}"></script>
     <!-- nano scroller -->
     <script src="{{asset('focus/assets/js/lib/menubar/sidebar.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/preloader/pace.min.js')}}"></script>
     <!-- sidebar -->
-
     <script src="{{asset('focus/assets/js/lib/bootstrap.min.js')}}"></script>
     <script src="{{asset('focus/assets/js/scripts.js')}}"></script>
     <!-- bootstrap -->
-
     <script src="{{asset('focus/assets/js/lib/calendar-2/moment.latest.min.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/calendar-2/pignose.calendar.min.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/calendar-2/pignose.init.js')}}"></script>
@@ -195,7 +204,6 @@
     <script src="{{asset('focus/assets/js/lib/sparklinechart/sparkline.init.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/owl-carousel/owl.carousel.min.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/owl-carousel/owl.carousel-init.js')}}"></script>
-
     <!-- JS Grid Scripts Start-->
     <script src="{{asset('focus/assets/js/lib/jsgrid/db.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/jsgrid/jsgrid.core.js')}}"></script>
@@ -210,13 +218,22 @@
     <script src="{{asset('focus/assets/js/lib/jsgrid/fields/jsgrid.field.control.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/jsgrid/jsgrid-init.js')}}"></script>
     <!-- JS Grid Scripts End-->
-
     <script src="{{asset('focus/assets/js/lib/bootstrap.min.js')}}"></script>
     <script src="{{asset('focus/assets/js/scripts.js')}}"></script>
     <!-- scripit init-->
-
     <script src="{{asset('focus/assets/js/dashboard2.js')}}"></script>
-    <!-- DataTables  & Plugins -->
+    <!-- scripit init data tabel FOCUS-->
+    <script src="{{asset('focus/assets/js/lib/data-table/datatables.min.js')}}"></script>
+    <script src="{{asset('focus/assets/js/lib/data-table/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('focus/assets/js/lib/data-table/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('focus/assets/js/lib/data-table/jszip.min.js')}}"></script>
+    <script src="{{asset('focus/assets/js/lib/data-table/pdfmake.min.js')}}"></script>
+    <script src="{{asset('focus/assets/js/lib/data-table/vfs_fonts.js')}}"></script>
+    <script src="{{asset('focus/assets/js/lib/data-table/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('focus/assets/js/lib/data-table/buttons.print.min.js')}}"></script>
+    <script src="{{asset('focus/assets/js/lib/data-table/datatables-init.js')}}"></script>
+    <script src="{{asset('focus/assets/js/lib/data-table/buttons.colVis.min.js')}}"></script>
+    <!-- DataTables  & Plugins Admin LTE -->
     <script src="{{asset('AdminLTE/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
@@ -248,6 +265,9 @@
                 "responsive": true,
             });
         });
+    </script>
+    <script>
+        initSample();
     </script>
 </body>
 

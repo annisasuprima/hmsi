@@ -10,8 +10,8 @@
             <h2>Data Divisi HMSI</h2>
         </div>
         <div class="float-right">
-            <a href="{{route('create-kelas')}}">
-                <button type="button" class="btn btn-success m-b-10 m-l-5">+ Divisi</button>
+            <a href="{{route('create-divisi')}}" class="color-success">
+                <button type="button" class="btn btn-success btn-outline m-b-10 m-l-5">+ Divisi</button>
             </a>
         </div>
     </div>
@@ -29,30 +29,21 @@
                 </tr>
             </thead>
             <tbody>
+                <?php $no = 1; ?>
+                @foreach($dtDivisi as $tampil)
                 <tr>
-                    <td>Presto</td>
-                    <td>Nintendo DS browser</td>
-                    <td>Nintendo DS</td>
-                    <td>8.5</td>
-                    <td>C/A<sup>1</sup></td>
+                    <td>{{$no++}}</td>
+                    <td>{{$tampil->kode_divisi}}</td>
+                    <td>{{$tampil->nama_divisi}}</td>
+                    <td>-</td>
+                    <td>
+                        <a href="#" class="btn btn-warning btn-sm m-b-10 m-l-5"><i class="ti-eye"></i></a>
+                        <a href="{{url('edit-divisi',$tampil->id)}}" class="btn btn-success btn-sm m-b-10 m-l-5"><i class="ti-pencil"></i></a>  
+                        <a href="{{url('delete-divisi',$tampil->id)}}" class="btn btn-danger btn-sm m-b-10 m-l-5" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
+                    </td>
                 </tr>
-                <tr>
-                    <td>KHTML</td>
-                    <td>Konqureror 3.1</td>
-                    <td>KDE 3.1</td>
-                    <td>3.1</td>
-                    <td>C</td>
-                </tr>
+                @endforeach
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>No</th>
-                    <th>Kode Divisi</th>
-                    <th>Nama Divisi</th>
-                    <th>Jumlah Anggota</th>
-                    <th>Opsi</th>
-                </tr>
-            </tfoot>
         </table>
     </div>
 
