@@ -5,63 +5,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title>Daftar HMSI</title>
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="{{asset('Regist/form/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+    <link rel="stylesheet" href="{{asset('Regist/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="{{asset('Regist/form/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('Regist/css/style.css')}}">
 </head>
 
 <body>
 
     <div class="main">
 
-        <!-- Sign up form -->
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Daftar OR HMSI</h2>
-                        <form method="POST" class="register-form" id="register-form">
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" />
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="Your Email" />
-                            </div>
-                            <div class="form-group">
-                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password" />
-                            </div>
-                            <div class="form-group">
-                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" />
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in <a href="#" class="term-service">Terms of service</a></label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register" />
-                            </div>
-                        </form>
+        <div class="container">
+            <form method="POST" class="appointment-form" id="appointment-form">
+                <h2>Pendaftaran OR HMSI 2021/2022</h2>
+                <div class="form-group-1">
+                    <input type="text" name="nama" id="title" placeholder="Masukkan Nama" required />
+                    <input type="text" name="nim" id="name" placeholder="Masukkan NIM" required />
+                    <input type="email" name="email" id="email" placeholder="Email" required />
+                    <input type="number" name="no_hp" id="phone_number" placeholder="No. HP" required />
+                    <div class="select-list">
+                        <select name="jenis_kelamin" id="course_type">
+                            <option slected value="">-Jenis Kelamin-</option>
+                            <option value="laki-laki">Laki-Laki</option>
+                            <option value="perempuan">Perempuan</option>
+                        </select>
                     </div>
-                    <div class="signup-image">
-                        <figure><img src="{{asset('Regist/form/images/hmsi.png')}}" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link">I am already member</a>
-                    </div>
+                    <input type="text" name="alamat" id="alamat" placeholder="Alamat" required />
+                    <input type="text" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir" required />
+                    <input type="date" name="tgl_lahir" id="tgl_lahir" placeholder="Tempat Lahir" required />
                 </div>
-            </div>
-        </section>
+                <br>
+                <div class="form-group-2">
+                    <h3>Pemilihan Divisi</h3>
+                    <div class="select-list">
+                        <select name="divis1" id="confirm_type">
+                            <option slected value="">-Angkatan-</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                        </select>
+                    </div>
+                    <table>
+                        <tr>
+                            <td width="150px">
+                                <div class="select-list">
+                                    <select name="divis1" id="confirm_type">
+                                        <option seleected value="">-Pilihan Divisi 1-</option>
+                                        @foreach ($listdiv as $dt)
+                                        <option value="{{$dt->nama_divisi}}">{{$dt->nama_divisi}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <textarea name="alasan2" id="alamat" cols="35" rows="5" style="resize:none;" placeholder="Tuliskan alasannya Anda memilih divisi tersebut.."></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="select-list">
+                                    <select name="divis2" id="confirm_type">
+                                        <option seleected value="">-Pilihan Divisi 2-</option>
+                                        @foreach ($listdiv as $dt)
+                                        <option value="{{$dt->nama_divisi}}">{{$dt->nama_divisi}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <textarea name="alasan2" id="alamat" cols="35" rows="5" style="resize:none;" placeholder="Tuliskan alasannya Anda memilih divisi tersebut.."></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Upload Foto" readonly required /></td>
+                            <td><input type="file" name="cv" id="cv" required /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Upload cv" readonly required /></td>
+                            <td><input type="file" name="cv" id="cv" required /></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="form-submit">
+                    <input type="submit" name="submit" id="submit" class="submit" value="Kirim Form Pendaftaran" />
+                    <a href="{{route('home')}}">Back to Home</a>
+                </div>
+            </form>
+        </div>
+
     </div>
 
     <!-- JS -->
-    <script src="{{asset('Regist/form/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('Regist/form/js/main.js')}}"></script>
+    <script src="{{asset('Regist/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('Regist/js/main.js')}}"></script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>

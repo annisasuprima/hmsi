@@ -155,7 +155,7 @@
                         <p> Pengurus anggota HMSI dapat login dengan menggunakan akun yang telah diberikan admin. Login ini bertujuan untuk menginputkan kegiatan internal HMSI sendiri.</p>
                     </div>
                     <div class="col-lg-3 cta-btn-container text-center">
-                        <a class="cta-btn align-middle" href="#">Login</a>
+                        <a class="cta-btn align-middle" href="{{route('login')}}">Login</a>
                     </div>
                 </div>
 
@@ -199,7 +199,7 @@
                         </div>
                     </li>
                 </ul>
-                <a href="#" class="btn-learn-more">Daftar</a>
+                <a href="{{route('daftar')}}" class="btn-learn-more">Daftar</a>
             </div>
         </section><!-- End Recruitment Section -->
 

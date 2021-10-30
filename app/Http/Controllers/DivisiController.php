@@ -19,6 +19,15 @@ class DivisiController extends Controller
         return view('Divisi.ReadDivisi',compact('dtDivisi'));
     }
 
+    public function daftar()
+    {
+        $listdiv = DB::table('divisi')
+        ->get([
+            'id','nama_divisi'
+        ]);
+        return view('Page.daftar', compact('listdiv'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

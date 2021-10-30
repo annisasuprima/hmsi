@@ -17,13 +17,13 @@
 
     </div>
     <div>
-            <!-- <form action=" ..... " method="post"> -->
-                @csrf
-                <select name="mahasiswa_id" class="form-select form-select-md" aria-label=".form-select-md example"> 
-                <option value="" hidden>-- Pilih Peserta OR --</option>
-                </select>
-                <button class="btn btn-primary ml-2" type="submit">Tambah Peserta</button>
-            <!-- </form> -->
+        <!-- <form action=" ..... " method="post"> -->
+        @csrf
+        <select name="mahasiswa_id" class="form-select form-select-md" aria-label=".form-select-md example">
+            <option value="" hidden>-- Pilih Peserta OR --</option>
+        </select>
+        <button class="btn btn-primary ml-2" type="submit">Tambah Peserta</button>
+        <!-- </form> -->
     </div>
 </div>
 <div class="row">
@@ -47,40 +47,10 @@
                     <td>Miftah Mussaumi Adi</td>
                     <td>miftah@gmail.com</td>
                     <td>
-                        <a href="#" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>SI.X.45.AB</td>
-                    <td>1911521011</td>
-                    <td>Mutiara Raudhatul Jannah</td>
-                    <td>mutiara@gmail.com</td>
-                    <td>
-                        <a href="#" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>SI.X.45.AB</td>
-                    <td>1911521011</td>
-                    <td>Mutiara Raudhatul Jannah</td>
-                    <td>mutiara@gmail.com</td>
-                    <td>
-                        <a href="#" class="btn btn-danger">Delete</a>
+                        <a href="#" class="btn btn-danger btn-sm m-b-10 m-l-5" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
                     </td>
                 </tr>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>No</th>
-                    <th>Nomor Himpunan</th>
-                    <th>NIM</th>
-                    <th>Nama Anggota</th>
-                    <th>Username</th>
-                    <th>Aksi</th>
-                </tr>
-            </tfoot>
         </table>
     </div>
 

@@ -32,46 +32,13 @@
                     <td>Miftah Mussaumi Adi</td>
                     <td>miftah@gmail.com</td>
                     <td>
-                        <a href="#" class="btn btn-info">Detail</a>
-                        <a href="#" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
+                        <a href="#" class="btn btn-warning btn-sm m-b-10 m-l-5"><i class="ti-eye"></i></a>
+                        <a href="#" class="btn btn-success btn-sm m-b-10 m-l-5"><i class="ti-pencil"></i></a>  
+                        <a href="#" class="btn btn-danger btn-sm m-b-10 m-l-5" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>SI.X.45.AB</td>
-                    <td>1911521011</td>
-                    <td>Mutiara Raudhatul Jannah</td>
-                    <td>mutiara@gmail.com</td>
-                    <td>
-                        <a href="#" class="btn btn-info">Detail</a>
-                        <a href="#" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>SI.X.45.AB</td>
-                    <td>1911521011</td>
-                    <td>Mutiara Raudhatul Jannah</td>
-                    <td>mutiara@gmail.com</td>
-                    <td>
-                        <a href="#" class="btn btn-info">Detail</a>
-                        <a href="#" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
-                    </td>
                 </tr>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>No</th>
-                    <th>Nomor Himpunan</th>
-                    <th>NIM</th>
-                    <th>Nama Anggota</th>
-                    <th>Username</th>
-                    <th>Aksi</th>
-                </tr>
-            </tfoot>
         </table>
     </div>
 
