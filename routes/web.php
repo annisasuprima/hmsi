@@ -30,6 +30,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/daftar-peserta', [App\Http\Controllers\OpRecController::class, 'index']);
+Route::get('/laporan-hasil', [App\Http\Controllers\OpRecController::class, 'show']);
+
 Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');
 Route::get('/create-divisi', [DivisiController::class, 'create'])->name('create-kelas');
 

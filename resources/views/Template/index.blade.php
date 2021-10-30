@@ -60,17 +60,17 @@
                     <li>
                         <a href="{{route('divisi')}}"><i class="ti-view-list-alt"></i> Divisi</a>
                     </li>
-                    <li><a class="sidebar-sub-toggle"><i class="ti-plus"></i> Open Recuirement <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <li><a class="sidebar-sub-toggle"><i class="ti-plus"></i> Open Recruitment <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="chart-flot.html">Form OR</a></li>
-                            <li><a href="chart-flot.html">Daftar Peserta OR</a></li>
-                            <li><a href="chart-flot.html">Laporan Hasil OR</a></li>
+                            <li><a href="/daftar-peserta">Daftar Peserta OR</a></li>
+                            <li><a href="/laporan-hasil">Laporan Hasil OR</a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-id-badge"></i> Akun Anggota <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="chart-flot.html">Tambah Akun</a></li>
-                            <li><a href="chart-flot.html">Daftar Daftar Akun</a></li>
+                        <li><a href="{{route('create-akun')}}">Tambah Akun</a></li>
+                            <li><a href="{{route('list-akun')}}">Daftar Akun</a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-pencil-alt2"></i> Rapat <span class="sidebar-collapse-icon ti-angle-down"></span></a>
