@@ -191,7 +191,7 @@
                     </li>
 
                     <li>
-                        <div data-bs-toggle="collapse" href="#faq3" class="collapsed question">Pengunguman<i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+                        <div data-bs-toggle="collapse" href="#faq3" class="collapsed question">Pengumuman<i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
                         <div id="faq3" class="collapse" data-bs-parent=".faq-list">
                             <p>
                                 [ 10 Nov ] Pendaftar dapat melihat hasil kelulusan melalui website kembali
@@ -199,7 +199,7 @@
                         </div>
                     </li>
                 </ul>
-                <a href="#" class="btn-learn-more">Dafar</a>
+                <a href="#" class="btn-learn-more">Daftar</a>
             </div>
         </section><!-- End Recruitment Section -->
 

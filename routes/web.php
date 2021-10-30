@@ -20,6 +20,12 @@ Route::get('/', function () {
     return view('Page.homepage');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/daftar-peserta', [App\Http\Controllers\OpRecController::class, 'index']);
+
 Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');
 Route::get('/create-divisi', [DivisiController::class, 'create'])->name('create-kelas');
 
