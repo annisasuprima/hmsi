@@ -49,7 +49,8 @@ class OpRecController extends Controller
      */
     public function show(OpRec $opRec)
     {
-        //
+        $dtPeserta = OpRec::all();
+        return view('OpRec.LaporanHasil',compact('dtPeserta'));
     }
 
     /**

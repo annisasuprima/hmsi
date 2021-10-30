@@ -64,7 +64,7 @@
                         <ul>
                             <li><a href="chart-flot.html">Form OR</a></li>
                             <li><a href="/daftar-peserta">Daftar Peserta OR</a></li>
-                            <li><a href="chart-flot.html">Laporan Hasil OR</a></li>
+                            <li><a href="/laporan-hasil">Laporan Hasil OR</a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-id-badge"></i> Akun Anggota <span class="sidebar-collapse-icon ti-angle-down"></span></a>
