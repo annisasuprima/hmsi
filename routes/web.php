@@ -19,6 +19,16 @@ use App\Http\Controllers\RapatController;
 Route::get('/', function () {
     return view('Page.homepage');
 });
+Route::get('/login', function () {
+    return view('Page.login');
+});
+Route::get('/daftar', function () {
+    return view('Page.daftar');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
 Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');
 Route::get('/create-divisi', [DivisiController::class, 'create'])->name('create-kelas');
