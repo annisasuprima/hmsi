@@ -16,7 +16,7 @@ use App\Http\Controllers\RapatController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('Page.homepage');
 });
 
 Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');
