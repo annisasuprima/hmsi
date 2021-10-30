@@ -58,8 +58,8 @@
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-id-badge"></i> Akun Anggota <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="chart-flot.html">Tambah Akun</a></li>
-                            <li><a href="chart-flot.html">Daftar Daftar Akun</a></li>
+                            <li><a href="{{route('create-akun')}}">Tambah Akun</a></li>
+                            <li><a href="{{route('list-akun')}}">Daftar Akun</a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-agenda"></i> Rapat</span></a></li>
