@@ -5,6 +5,7 @@ use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\RapatController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Peserta_orController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,35 +22,38 @@ Route::get('/', function () {
     return view('Page.homepage');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/test', function () {
+    return view('Page.d');
+});
+
+// HOMEPAGE,LOGIN,DAFTAR
 Route::get('/daftar', [LoginController::class, 'daftar'])->name('daftar');
 Route::get('/home', [LoginController::class, 'home'])->name('home');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+// PESERTA OR
+Route::get('/lihat-peserta', [Peserta_orController::class, 'index'])->name('lihat-peserta');
+Route::post('/save-peserta', [Peserta_orController::class, 'store'])->name('save-peserta');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
-Route::get('/daftar-peserta', [App\Http\Controllers\OpRecController::class, 'index']);
-Route::get('/laporan-hasil', [App\Http\Controllers\OpRecController::class, 'show']);
-
-Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');
-Route::get('/create-divisi', [DivisiController::class, 'create'])->name('create-kelas');
-
+// AKUN ANGGOTA
 Route::get('/list-akun', [AkunController::class, 'index'])->name('list-akun');
 Route::get('/list-akun/{id}/detail1', [AkunController::class, 'show1'])->name('detail-akun1');
 Route::get('/list-akun/{id}/detail2', [AkunController::class, 'show2'])->name('detail-akun2');
 Route::get('/create-akun', [AkunController::class, 'create'])->name('create-akun');
 
+// DIVISI
+Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');
 Route::get('/create-divisi', [DivisiController::class, 'create'])->name('create-divisi');
 Route::post('/save-divisi', [DivisiController::class, 'store'])->name('save-divisi');
 Route::get('/delete-divisi/{id}', [DivisiController::class, 'destroy'])->name('delete-divisi');
 Route::get('/edit-divisi/{id}', [DivisiController::class, 'edit'])->name('edit-divisi');
 Route::post('/update-divisi/{id}', [DivisiController::class, 'update'])->name('update-divisi');
 
+// RAPAT
 Route::get('/rapat', [RapatController::class, 'index'])->name('rapat');
 Route::get('/create-rapat', [RapatController::class, 'create'])->name('create-rapat');
 Route::post('/save-rapat', [RapatController::class, 'store'])->name('save-rapat');
