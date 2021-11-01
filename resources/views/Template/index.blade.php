@@ -74,9 +74,9 @@
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="chart-flot.html">Kas Masuk</a></li>
-                            <li><a href="chart-flot.html">Kas Keluar</a></li>
-                            <li><a href="chart-flot.html">Laporan Kas</a></li>
+                            <li><a href="/kas-masuk">Kas Masuk</a></li>
+                            <li><a href="/kas-keluar">Kas Keluar</a></li>
+                            <li><a href="/laporan-kas">Laporan Kas</a></li>
                         </ul>
                     </li>
                     <li><a><i class="ti-power-off"></i> Logout</a></li>
