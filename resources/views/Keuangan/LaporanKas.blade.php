@@ -43,7 +43,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $no = 1; ?>
+                <?php $no = 1; $total = 0; ?>
                 @foreach($dtLaporan as $view)
                 <tr>
                     <td>{{$no++}}</td>
@@ -69,7 +69,16 @@
                         ?>
                     </td>
                     <td>
-                       
+                        <?php
+                            if ($view->id_kategori == '1'){
+                                $total += $view->jumlah_pembayaran;
+                                echo $total;
+                            } 
+                            else if ($view->id_kategori == '2'){
+                                $total -= $view->jumlah_pembayaran;
+                                echo $total;
+                            }                                
+                        ?>
                     </td>
                 </tr>
                 @endforeach

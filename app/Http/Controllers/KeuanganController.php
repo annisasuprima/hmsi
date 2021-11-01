@@ -67,7 +67,6 @@ class KeuanganController extends Controller
         $dtLaporan = DB::table('keuangan')
                         // ->where('id_kategori', '=', '1')
                         ->get(); 
-
         return view('Keuangan.LaporanKas', compact('dtLaporan'));
     }
 
