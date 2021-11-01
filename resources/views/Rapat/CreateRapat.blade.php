@@ -1,6 +1,11 @@
 @extends('Template.index')
 
 @section('title','Tambah Rapat')
+<!-- TEXT EDITOR -->
+    <script src="{{asset('TextEditor/ckeditor.js')}}"></script>
+    <script src="{{asset('TextEditor/samples/js/sample.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('TextEditor/samples/css/samples.css')}}">
+    <link rel="stylesheet" href="{{asset('TextEditor/samples/toolbarconfigurator/lib/codemirror/neo.css')}}">
 @section('sapaan','Penambahan Notulensi Rapat')
 @section('submenu','Tambah Notulensi')
 @section('container')

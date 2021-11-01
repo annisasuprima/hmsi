@@ -26,9 +26,6 @@
                 <td><strong>Waktu</strong></td>
                 <td>:</td>
                 <td>
-                    <?php
-                    date_default_timezone_set('Asia/Jakarta');
-                    ?>
                     {{$dt->waktu_mulai}} - {{$dt->waktu_selesai}} WIB
                 </td>
             </tr>

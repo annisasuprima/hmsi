@@ -20,20 +20,24 @@
                     <th>Nomor Himpunan</th>
                     <th>NIM</th>
                     <th>Nama Anggota</th>
-                    <th>Username</th>
+                    <th>Divisi</th>
+                    <th>Email</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
+                <?php $no = 1; ?>
+                @foreach($dtAnggota as $list)
                 <tr>
-                    <td>1</td>
-                    <td>SI.X.39.AB</td>
-                    <td>1911522017</td>
-                    <td>Miftah Mussaumi Adi</td>
-                    <td>miftah@gmail.com</td>
+                    <td>{{$no++}}</td>
+                    <td>{{$list->no_himpunan}}</td>
+                    <td>{{$list->nim}}</td>
+                    <td>{{$list->nama}}</td>
+                    <td>{{$list->nama_divisi}}</td>
+                    <td>{{$list->email}}</td>
                     <td>
                         <a href="#" class="btn btn-warning btn-sm m-b-10 m-l-5"><i class="ti-eye"></i></a>
-                        <a href="#" class="btn btn-success btn-sm m-b-10 m-l-5"><i class="ti-pencil"></i></a>  
+                        <a href="#" class="btn btn-success btn-sm m-b-10 m-l-5"><i class="ti-pencil"></i></a>
                         <a href="#" class="btn btn-danger btn-sm m-b-10 m-l-5" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
                     </td>
                 </tr>

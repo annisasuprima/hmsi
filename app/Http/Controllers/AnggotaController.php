@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anggota;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class AkunController extends Controller
+class AnggotaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,17 @@ class AkunController extends Controller
      */
     public function index()
     {
-        return view('Akun.ListAkun');
+        $dtAnggota = DB::table('anggota')
+        ->join('divisi', 'divisi.id', '=', 'anggota.id_divisi')
+        ->get([
+            'divisi.id AS id_divisi', 'divisi.nama_divisi', 'anggota.id_pesertaor',
+            'anggota.nim', 'anggota.nama', 'anggota.password',
+            'anggota.jabatan', 'anggota.jenis_kelamin', 'anggota.alamat', 
+            'anggota.tempat_lahir','anggota.tgl_lahir', 'anggota.email', 'anggota.angkatan',
+            'anggota.no_hp','anggota.foto','anggota.cv', 'anggota.no_himpunan',
+            'anggota.tahun_jabatan','anggota.jenis_keanggotaan', 'anggota.id  AS id_anggota'
+        ]);
+        return view('Anggota.ReadAnggota', compact('dtAnggota'));
     }
 
     /**
@@ -23,7 +35,7 @@ class AkunController extends Controller
      */
     public function create()
     {
-        return view('Akun.CreateAkun');
+        //
     }
 
     /**
@@ -40,25 +52,21 @@ class AkunController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Anggota  $anggota
      * @return \Illuminate\Http\Response
      */
-    public function show1($id)
+    public function show(Anggota $anggota)
     {
-        return view('Akun.DetailAkunInfo1');
+        //
     }
 
-    public function show2($id)
-    {
-        return view('Akun.DetailAkunInfo2');
-    }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Anggota  $anggota
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Anggota $anggota)
     {
         //
     }
@@ -67,10 +75,10 @@ class AkunController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Anggota  $anggota
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Anggota $anggota)
     {
         //
     }
@@ -78,10 +86,10 @@ class AkunController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Anggota  $anggota
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Anggota $anggota)
     {
         //
     }

@@ -26,8 +26,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/detail', function () {
+    return view('OpRec.DetailPeserta');
+});
+
 Route::get('/test', function () {
-    return view('Page.d');
+    return view('Template.test');
 });
 
 // HOMEPAGE,LOGIN,DAFTAR
@@ -38,6 +42,8 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 // PESERTA OR
 Route::get('/lihat-peserta', [Peserta_orController::class, 'index'])->name('lihat-peserta');
 Route::post('/save-peserta', [Peserta_orController::class, 'store'])->name('save-peserta');
+Route::get('/detail-peserta/{id}', [Peserta_orController::class, 'show'])->name('detail-peserta');
+Route::post('/nilai-peserta/{id}', [Peserta_orController::class, 'update'])->name('nilai-peserta');
 
 // AKUN ANGGOTA
 Route::get('/list-akun', [AkunController::class, 'index'])->name('list-akun');

@@ -52,7 +52,7 @@
                     <li><a class="sidebar-sub-toggle"><i class="ti-plus"></i> Open Recruitment <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="chart-flot.html">Form OR</a></li>
-                            <li><a href="/daftar-peserta">Daftar Peserta OR</a></li>
+                            <li><a href="{{route('lihat-peserta')}}">Daftar Peserta OR</a></li>
                             <li><a href="/laporan-hasil">Laporan Hasil OR</a></li>
                         </ul>
                     </li>
