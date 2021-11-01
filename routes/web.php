@@ -61,3 +61,8 @@ Route::get('/detail-rapat/{id}', [RapatController::class, 'show'])->name('detail
 Route::get('/delete-rapat/{id}', [RapatController::class, 'destroy'])->name('delete-rapat');
 Route::get('/edit-rapat/{id}', [RapatController::class, 'edit'])->name('edit-rapat');
 Route::post('/update-rapat/{id}', [RapatController::class, 'update'])->name('update-rapat');
+
+// KEUANGAN 
+Route::get('/kas-masuk', [App\Http\Controllers\KeuanganController::class, 'index'])->name('kas-masuk');
+Route::get('/kas-keluar', [App\Http\Controllers\KeuanganController::class, 'index1'])->name('kas-keluar');
+Route::get('/laporan-kas', [App\Http\Controllers\KeuanganController::class, 'show'])->name('laporan-kas');
