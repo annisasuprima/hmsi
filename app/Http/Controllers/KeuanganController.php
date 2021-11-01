@@ -18,7 +18,7 @@ class KeuanganController extends Controller
     {
         $dtKasMasuk = DB::table('keuangan')
                         -> join ('anggota', 'keuangan.id_anggota', '=', 'anggota.id')
-                        -> select ('no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran')
+                        -> select ('no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'status_konfirmasi')
                         -> where ('id_kategori','=', '1' )
                         -> get();
 

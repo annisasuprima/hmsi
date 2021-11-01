@@ -53,9 +53,8 @@
                     <td>{{$view->nama}}</td>
                     <td>{{$view->tanggal_pembayaran}}</td>
                     <td>{{$view->jumlah_pembayaran}}</td>
-                    <td>-</td>
+                    <td>{{$view->status_konfirmasi}}</td>
                     <td>
-                        <a href="" class="text-warning"><i class="ti-eye"></i></a>
                         <a href="" class="text-success"><i class="ti-pencil"></i></a>
                         <a href="" class="text-danger" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
                     </td>
