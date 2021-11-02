@@ -52,7 +52,11 @@
                     <li><a class="sidebar-sub-toggle"><i class="ti-plus"></i> Open Recruitment <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="chart-flot.html">Form OR</a></li>
-                            <li><a href="/daftar-peserta">Daftar Peserta OR</a></li>
+<<<<<<< HEAD
+                            <li><a href="{{route('lihat-peserta')}}">Daftar Peserta OR</a></li>
+=======
+                            <li><a href="/lihat-peserta">Daftar Peserta OR</a></li>
+>>>>>>> 5d22a1336b04606dd6440191ea04c81e9127a64b
                             <li><a href="/laporan-hasil">Laporan Hasil OR</a></li>
                         </ul>
                     </li>
@@ -70,9 +74,9 @@
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="chart-flot.html">Kas Masuk</a></li>
-                            <li><a href="chart-flot.html">Kas Keluar</a></li>
-                            <li><a href="chart-flot.html">Laporan Kas</a></li>
+                            <li><a href="/kas-masuk">Kas Masuk</a></li>
+                            <li><a href="/kas-keluar">Kas Keluar</a></li>
+                            <li><a href="/laporan-kas">Laporan Kas</a></li>
                         </ul>
                     </li>
                     <li><a><i class="ti-power-off"></i> Logout</a></li>

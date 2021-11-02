@@ -1,4 +1,4 @@
-@extends('Template.index')
+@extends('Template.index2')
 
 @section('title','Rapat')
 @section('sapaan','Rapat')
@@ -13,7 +13,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <table id="example2" class="table table-bordered table-hover">
+        <table id="row-select" class="display table table-borderd table-hover">
             <thead>
                 <tr>
                     <th>No</th>
@@ -38,6 +38,15 @@
                 </tr>
                 @endforeach
             </tbody>
+            <tfoot>
+                <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Divisi</th>
+                    <th>Topik</th>
+                    <th>Opsi</th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>

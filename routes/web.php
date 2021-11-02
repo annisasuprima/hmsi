@@ -26,8 +26,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/detail', function () {
+    return view('OpRec.DetailPeserta');
+});
+
 Route::get('/test', function () {
-    return view('Page.d');
+    return view('Template.test');
 });
 
 // HOMEPAGE,LOGIN,DAFTAR
@@ -38,6 +42,8 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 // PESERTA OR
 Route::get('/lihat-peserta', [Peserta_orController::class, 'index'])->name('lihat-peserta');
 Route::post('/save-peserta', [Peserta_orController::class, 'store'])->name('save-peserta');
+Route::get('/detail-peserta/{id}', [Peserta_orController::class, 'show'])->name('detail-peserta');
+Route::post('/nilai-peserta/{id}', [Peserta_orController::class, 'update'])->name('nilai-peserta');
 
 // DATA ANGGOTA
 Route::get('/list-anggota', [AnggotaController::class, 'index'])->name('list-anggota');
@@ -66,3 +72,8 @@ Route::get('/detail-rapat/{id}', [RapatController::class, 'show'])->name('detail
 Route::get('/delete-rapat/{id}', [RapatController::class, 'destroy'])->name('delete-rapat');
 Route::get('/edit-rapat/{id}', [RapatController::class, 'edit'])->name('edit-rapat');
 Route::post('/update-rapat/{id}', [RapatController::class, 'update'])->name('update-rapat');
+
+// KEUANGAN 
+Route::get('/kas-masuk', [App\Http\Controllers\KeuanganController::class, 'index'])->name('kas-masuk');
+Route::get('/kas-keluar', [App\Http\Controllers\KeuanganController::class, 'index1'])->name('kas-keluar');
+Route::get('/laporan-kas', [App\Http\Controllers\KeuanganController::class, 'show'])->name('laporan-kas');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Peserta_or;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Peserta_orController extends Controller
 {
@@ -88,9 +89,17 @@ class Peserta_orController extends Controller
      * @param  \App\Models\Peserta_or  $peserta_or
      * @return \Illuminate\Http\Response
      */
-    public function show(Peserta_or $peserta_or)
+    public function show($id)
     {
-        //
+        $peserta = DB::table('peserta_or')
+        ->where('id', '=', $id)
+        ->get([
+            'id', 'nim', 'email', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tgl_lahir',
+            'no_hp', 'angkatan', 'alamat', 'divis1', 'alasan1', 'divis2', 'alasan2', 'foto', 'cv',
+            'nilai', 'status_or'
+        ]);
+
+        return view('OpRec.DetailPeserta', compact('peserta'));
     }
 
     /**
@@ -101,7 +110,7 @@ class Peserta_orController extends Controller
      */
     public function edit(Peserta_or $peserta_or)
     {
-        //
+
     }
 
     /**
@@ -111,9 +120,25 @@ class Peserta_orController extends Controller
      * @param  \App\Models\Peserta_or  $peserta_or
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Peserta_or $peserta_or)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        $id = $request->id;
+        $nilai = $request->nilai;
+        $update = DB::table('peserta_or')
+        ->where('id','=', $id)
+        ->update([
+            'nilai'=> $nilai
+        ]);
+
+        $peserta = DB::table('peserta_or')
+        ->where('id', '=', $id)
+        ->get([
+            'id', 'nim', 'email', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tgl_lahir',
+            'no_hp', 'angkatan', 'alamat', 'divis1', 'alasan1', 'divis2', 'alasan2', 'foto', 'cv',
+            'nilai', 'status_or'
+        ]);
+        return view('OpRec.DetailPeserta', compact('peserta'));         
     }
 
     /**

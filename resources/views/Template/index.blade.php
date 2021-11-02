@@ -17,8 +17,6 @@
     <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
     <!-- Standard iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{asset('AdminLTE/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Styles -->
     <link href="{{asset('focus/assets/css/lib/calendar2/pignose.calendar.min.css')}}" rel="stylesheet">
     <link href="{{asset('focus/assets/css/lib/chartist/chartist.min.css')}}" rel="stylesheet">
@@ -31,19 +29,14 @@
     <link href="{{asset('focus/assets/css/lib/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('focus/assets/css/lib/helper.css')}}" rel="stylesheet">
     <link href="{{asset('focus/assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('focus/assets/css/lib/sweetalert/sweetalert.css')}}" rel="stylesheet">
     <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
-    <!-- TEXT EDITOR -->
-    <script src="{{asset('TextEditor/ckeditor.js')}}"></script>
-    <script src="{{asset('TextEditor/samples/js/sample.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('TextEditor/samples/css/samples.css')}}">
-    <link rel="stylesheet" href="{{asset('TextEditor/samples/toolbarconfigurator/lib/codemirror/neo.css')}}">
 </head>
 
 <body>
-
     <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
         <div class="nano">
             <div class="nano-content">
@@ -81,9 +74,9 @@
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="chart-flot.html">Kas Masuk</a></li>
-                            <li><a href="chart-flot.html">Kas Keluar</a></li>
-                            <li><a href="chart-flot.html">Laporan Kas</a></li>
+                            <li><a href="/kas-masuk">Kas Masuk</a></li>
+                            <li><a href="/kas-keluar">Kas Keluar</a></li>
+                            <li><a href="/laporan-kas">Laporan Kas</a></li>
                         </ul>
                     </li>
                     <li><a><i class="ti-power-off"></i> Logout</a></li>
@@ -218,8 +211,6 @@
     <script src="{{asset('focus/assets/js/lib/jsgrid/fields/jsgrid.field.control.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/jsgrid/jsgrid-init.js')}}"></script>
     <!-- JS Grid Scripts End-->
-    <script src="{{asset('focus/assets/js/lib/bootstrap.min.js')}}"></script>
-    <script src="{{asset('focus/assets/js/scripts.js')}}"></script>
     <!-- scripit init-->
     <script src="{{asset('focus/assets/js/dashboard2.js')}}"></script>
     <!-- scripit init data tabel FOCUS-->
@@ -246,26 +237,11 @@
     <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
     <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
     <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+    <!-- Sweet Alert -->
+    <script src="{{asset('focus/assets/js/lib/sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('focus/assets/js/lib/sweetalert/sweetalert.init.js')}}"></script>
     <!-- Page specific script -->
-    <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script>
+
     <script>
         initSample();
     </script>
