@@ -1,9 +1,17 @@
 @extends('Template.index')
 
 @section('title','Tambah Rapat')
+<!-- TEXT EDITOR -->
+<script src="{{asset('TextEditor/ckeditor.js')}}"></script>
+<script src="{{asset('TextEditor/samples/js/sample.js')}}"></script>
+<link rel="stylesheet" href="{{asset('TextEditor/samples/css/samples.css')}}">
+<link rel="stylesheet" href="{{asset('TextEditor/samples/toolbarconfigurator/lib/codemirror/neo.css')}}">
 @section('sapaan','Penambahan Notulensi Rapat')
 @section('submenu','Rapat')
 @section('container')
+<div class="row">
+    <a href="{{url('rapat')}}"><i class="ti-arrow-left"></i> Back</a>
+</div>
 <div class="card-title">
     <h4>Form Notulensi Rapat</h4>
 </div>
@@ -65,7 +73,7 @@
             </tr>
             @endforeach
         </table>
-        <textarea name="hasil" id="isi" cols="100" rows="10">{{ $dt->hasil }}</textarea>
+        <textarea name="hasil" id="isi" cols="100" rows="10">{!! $dt->hasil !!}</textarea>
         <p></p>
         <button type="submit" class="btn btn-success btn-rounded m-b-10 m-l-5">Submit</button>
     </form>

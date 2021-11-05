@@ -52,18 +52,14 @@
                     <li><a class="sidebar-sub-toggle"><i class="ti-plus"></i> Open Recruitment <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="chart-flot.html">Form OR</a></li>
-<<<<<<< HEAD
                             <li><a href="{{route('lihat-peserta')}}">Daftar Peserta OR</a></li>
-=======
-                            <li><a href="/lihat-peserta">Daftar Peserta OR</a></li>
->>>>>>> 5d22a1336b04606dd6440191ea04c81e9127a64b
                             <li><a href="/laporan-hasil">Laporan Hasil OR</a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-id-badge"></i> Akun Anggota <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="{{route('create-akun')}}">Tambah Akun</a></li>
-                            <li><a href="{{route('list-akun')}}">Daftar Akun</a></li>
+                            <li><a href="#">Tambah Akun</a></li>
+                            <li><a href="{{route('anggota')}}">Daftar Anggota</a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-pencil-alt2"></i> Rapat <span class="sidebar-collapse-icon ti-angle-down"></span></a>

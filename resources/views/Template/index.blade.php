@@ -62,8 +62,8 @@
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-id-badge"></i> Akun Anggota <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="{{route('create-akun')}}">Tambah Akun</a></li>
-                            <li><a href="{{route('list-akun')}}">Daftar Akun</a></li>
+                            <li><a href="#">Tambah Akun</a></li>
+                            <li><a href="{{route('anggota')}}">Daftar Anggota</a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-pencil-alt2"></i> Rapat <span class="sidebar-collapse-icon ti-angle-down"></span></a>
@@ -241,7 +241,25 @@
     <script src="{{asset('focus/assets/js/lib/sweetalert/sweetalert.min.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/sweetalert/sweetalert.init.js')}}"></script>
     <!-- Page specific script -->
-
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
     <script>
         initSample();
     </script>

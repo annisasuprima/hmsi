@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDivisisTable extends Migration
+class AddNoHimpunanFieldToPesertaOrTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateDivisisTable extends Migration
      */
     public function up()
     {
-        Schema::create('divisis', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('peserta_or', function (Blueprint $table) {
+            $table->string('no_himpunan', 30);
         });
     }
 
@@ -26,6 +25,8 @@ class CreateDivisisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('divisis');
+        Schema::table('peserta_or', function (Blueprint $table) {
+            $table->dropColumn('no_himpunan');
+        });
     }
 }

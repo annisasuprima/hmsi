@@ -42,6 +42,10 @@
                             <div class="contact-information">
                                 <h4>Contact information</h4>
                                 <div class="phone-content">
+                                    <span class="contact-title">No. Himpunan:</span>
+                                    <span class="phone-number">{{$ps->no_himpunan}}</span>
+                                </div>
+                                <div class="phone-content">
                                     <span class="contact-title">Email:</span>
                                     <span class="phone-number">{{$ps->email}}</span>
                                 </div>
@@ -87,7 +91,6 @@
             </div>
         </div>
         @endforeach
-
     </div>
 </div>
 @endsection

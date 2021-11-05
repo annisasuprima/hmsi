@@ -24,8 +24,9 @@
                 <div class="form-group-1">
                     <input type="text" name="nama" id="title" placeholder="Masukkan Nama" required />
                     <input type="text" name="nim" id="name" placeholder="Masukkan NIM" required />
+                    <input type="text" name="no_himpunan" id="no_himpunan" placeholder="Nomor Himpunan" required />
                     <input type="email" name="email" id="email" placeholder="Email" required />
-                    <input type="number" name="no_hp" id="phone_number" placeholder="No. HP" required />
+                    <input type="text" name="no_hp" id="phone_number" placeholder="No. HP" required />
                     <div class="select-list">
                         <select name="jenis_kelamin">
                             <option slected value="">-Jenis Kelamin-</option>

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DivisiController;
-use App\Http\Controllers\AkunController;
+use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\RapatController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Peserta_orController;
@@ -46,10 +46,11 @@ Route::get('/detail-peserta/{id}', [Peserta_orController::class, 'show'])->name(
 Route::post('/nilai-peserta/{id}', [Peserta_orController::class, 'update'])->name('nilai-peserta');
 
 // AKUN ANGGOTA
-Route::get('/list-akun', [AkunController::class, 'index'])->name('list-akun');
-Route::get('/list-akun/{id}/detail1', [AkunController::class, 'show1'])->name('detail-akun1');
-Route::get('/list-akun/{id}/detail2', [AkunController::class, 'show2'])->name('detail-akun2');
-Route::get('/create-akun', [AkunController::class, 'create'])->name('create-akun');
+Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota');
+Route::get('/tambah-anggota', [AnggotaController::class, 'store'])->name('tambah-anggota');
+Route::get('/list-anggota/{id}/detail1', [AnggotaController::class, 'show1'])->name('detail-anggota1');
+Route::get('/list-anggota/{id}/detail2', [AnggotaController::class, 'show2'])->name('detail-anggota2');
+Route::get('/create-anggota', [AnggotaController::class, 'create'])->name('create-anggota');
 
 // DIVISI
 Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');

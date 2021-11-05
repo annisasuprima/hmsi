@@ -14,6 +14,6 @@ class Peserta_or extends Model
     protected $fillable = [
         'id', 'nim', 'email', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tgl_lahir',
         'no_hp','angkatan','alamat','divis1','alasan1','divis2','alasan2','foto','cv',
-        'nilai','status_or'
+        'nilai','status_or','no_himpunan'
     ];
 }

@@ -18,7 +18,6 @@
                 <tr>
                     <th>No</th>
                     <th>Nomor Himpunan</th>
-                    <th>NIM</th>
                     <th>Nama Anggota</th>
                     <th>Divisi</th>
                     <th>Email</th>
@@ -31,7 +30,6 @@
                 <tr>
                     <td>{{$no++}}</td>
                     <td>{{$list->no_himpunan}}</td>
-                    <td>{{$list->nim}}</td>
                     <td>{{$list->nama}}</td>
                     <td>{{$list->nama_divisi}}</td>
                     <td>{{$list->email}}</td>
@@ -41,7 +39,7 @@
                         <a href="#" class="btn btn-danger btn-sm m-b-10 m-l-5" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
                     </td>
                 </tr>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

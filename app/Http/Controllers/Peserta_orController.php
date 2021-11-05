@@ -15,7 +15,27 @@ class Peserta_orController extends Controller
      */
     public function index()
     {
-        $dtOr = Peserta_or::all();
+        $status = "lulus";
+        $lulus = DB::table('peserta_or')
+        ->where('status_or', '=', $status)
+        ->get(['id AS id_pesertaor']);
+
+        $jml = count(collect($lulus));
+        if($jml>0){
+            foreach ($lulus as $peserta_lulus) {
+                $pt_lulus[] = $peserta_lulus->id_pesertaor;
+            }
+            
+            $dtOr = DB::table('peserta_or')
+            ->whereNotIn('id',$pt_lulus)
+            ->get([
+                'id', 'nim', 'email', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tgl_lahir',
+                'no_hp', 'angkatan', 'alamat', 'divis1', 'alasan1', 'divis2', 'alasan2', 'foto', 'cv',
+                'nilai', 'status_or', 'no_himpunan', 'created_at'
+            ]);
+        } else {
+            $dtOr = Peserta_or::all();
+        }
         return view('OpRec.ReadPeserta', compact('dtOr'));
     }
 
@@ -57,25 +77,11 @@ class Peserta_orController extends Controller
             'alasan1' => $request->alasan1,
             'divis2' => $request->divis2,
             'alasan2' => $request->alasan2,
+            'no_himpunan' => $request->no_himpunan,
             'foto' => $filefoto,
-            'cv' => $filecv
+            'cv' => $filecv,
+            
         ]);
-        // $dtPeserta = new Peserta_or;
-        // $dtPeserta->nim = $request->nim;
-        // $dtPeserta->email = $request->email;
-        // $dtPeserta->jenis_kelamin = $request->jenis_kelamin;
-        // $dtPeserta->tempat_lahir = $request->tempat_lahir;
-        // $dtPeserta->tgl_lahir = $request->tgl_lahir;
-        // $dtPeserta->no_hp = $request->no_hp;
-        // $dtPeserta->angkatan = $request->angkatan;
-        // $dtPeserta->alamat = $request->alamat;
-        // $dtPeserta->divis1 = $request->divis1;
-        // $dtPeserta->alasan1 = $request->alasan1;
-        // $dtPeserta->divis2 = $request->divis2;
-        // $dtPeserta->alasan2 = $request->alasan2;
-        // $dtPeserta->cv = $filecv;
-        // $dtPeserta->foto = $filefoto;
-
         $cv->move(public_path().'/PesertaOr/cv',$filecv);
         $foto->move(public_path() . '/PesertaOr/foto', $filefoto);
         
@@ -96,7 +102,7 @@ class Peserta_orController extends Controller
         ->get([
             'id', 'nim', 'email', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tgl_lahir',
             'no_hp', 'angkatan', 'alamat', 'divis1', 'alasan1', 'divis2', 'alasan2', 'foto', 'cv',
-            'nilai', 'status_or'
+            'nilai', 'status_or','no_himpunan','created_at'
         ]);
 
         return view('OpRec.DetailPeserta', compact('peserta'));
@@ -136,7 +142,7 @@ class Peserta_orController extends Controller
         ->get([
             'id', 'nim', 'email', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tgl_lahir',
             'no_hp', 'angkatan', 'alamat', 'divis1', 'alasan1', 'divis2', 'alasan2', 'foto', 'cv',
-            'nilai', 'status_or'
+            'nilai', 'status_or','no_himpunan','created_at'
         ]);
         return view('OpRec.DetailPeserta', compact('peserta'));         
     }

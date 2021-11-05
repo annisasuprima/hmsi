@@ -49,9 +49,7 @@
                     <td>{{$view->divis2}}</td>
                     <td>{{$view->nilai}}</td>
                     <td>
-                        <a href="#" data-toggle="modal" data-target="#terima" class="btn btn-success btn-sm m-b-10 m-l-5">
-                            <i class="ti-check"></i>
-                        </a>
+                        <button type="button" class="btn btn-success btn-sm m-b-10 m-l-5" data-toggle="modal" data-target="#terima"><i class="ti-check"></i></button>
                         <a href="" class="btn btn-danger btn-sm m-b-10 m-l-5"><i class="ti-close"></i></a>
                     </td>
                 </tr>
@@ -65,21 +63,44 @@
                                     <strong>Terima</strong>
                                 </h4>
                             </div>
-                            <div class="modal-body">
-                                <form>
+                            <form action="{{route('tambah-anggota')}}" method="POST">
+                                <div class="modal-body">
+                                    {{csrf_field()}}
                                     <div class="row">
                                         <label class="control-label">Pilih Peletakan Divisi</label>
-                                        <select class="form-control form-white" data-placeholder="Choose a color..." name="nama_divisi">
+                                        <select class="form-control form-white" name="nama_divisi">
+                                            <option slected value="" disabled>-Peletakan Divisi-</option>
                                             <option value="{{$view->divis1}}">{{$view->divis1}}</option>
                                             <option value="{{$view->divis2}}">{{$view->divis2}}</option>
                                         </select>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
-                            </div>
+                                    <!-- Tahun masuk, dan password (default), jenis_keanggotaan-->
+                                    <?php
+                                    $daftar = $view->created_at;
+                                    $tahun = substr($daftar, 0, 4);
+                                    ?>
+                                    <input type="text" name="id_pesertaor" value="{{$view->id}}" hidden>
+                                    <input type="text" name="no_himpunan" value="{{$view->no_himpunan}}" hidden>
+                                    <input type="text" name="nama" value="{{$view->nama}}" hidden>
+                                    <input type="text" name="jabatan" value="anggota" hidden>
+                                    <input type="text" name="jenis_kelamin" value="{{$view->jenis_kelamin}}" hidden>
+                                    <input type="text" name="alamat" value="{{$view->alamat}}" hidden>
+                                    <input type="text" name="tempat_lahir" value="{{$view->tempat_lahir}}" hidden>
+                                    <input type="text" name="tgl_lahir" value="{{$view->tgl_lahir}}" hidden>
+                                    <input type="text" name="email" value="{{$view->email}}" hidden>
+                                    <input type="text" name="no_hp" value="{{$view->no_hp}}" hidden>
+                                    <input type="text" name="foto" value="{{$view->foto}}" hidden>
+                                    <input type="text" name="angkatan" value="{{$view->angkatan}}" hidden>
+                                    <input type="text" name="cv" value="{{$view->cv}}" hidden>
+                                    <input type="text" name="tahun_jabatan" value="{{$tahun}}" hidden>
+                                    <input type="text" name="alamat" value="{{$view->alamat}}" hidden>
+                                    <input type="text" name="jenis_keanggotaan" value="Anggota Biasa" hidden>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success waves-effect waves-light save-category">Terima</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
