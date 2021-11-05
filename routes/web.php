@@ -51,6 +51,16 @@ Route::get('/tambah-anggota', [AnggotaController::class, 'store'])->name('tambah
 Route::get('/list-anggota/{id}/detail1', [AnggotaController::class, 'show1'])->name('detail-anggota1');
 Route::get('/list-anggota/{id}/detail2', [AnggotaController::class, 'show2'])->name('detail-anggota2');
 Route::get('/create-anggota', [AnggotaController::class, 'create'])->name('create-anggota');
+// DATA ANGGOTA
+Route::get('/list-anggota', [AnggotaController::class, 'index'])->name('list-anggota');
+Route::get('/list-anggota/{id}/detail1', [AnggotaController::class, 'show1'])->name('detail-anggota1');
+Route::get('/list-anggota/{id}/detail2', [AnggotaController::class, 'show2'])->name('detail-anggota2');
+Route::get('/create-anggota', [AnggotaController::class, 'create'])->name('create-anggota');
+Route::get('/edit-anggota/{id}', [AnggotaController::class, 'edit'])->name('edit-anggota');
+Route::get('/delete-anggota/{id}', [AnggotaController::class, 'destroy'])->name('delete-anggota');
+Route::post('/update-anggota/{id}', [AnggotaController::class, 'update'])->name('update-anggota');
+Route::post('/anggota/{id}/store', [AnggotaController::class, 'store']);
+Route::delete('/anggota/{id}/hapus_anggota', [AnggotaController::class, 'hapus_anggota'])->name('detail.hapus');
 
 // DIVISI
 Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');

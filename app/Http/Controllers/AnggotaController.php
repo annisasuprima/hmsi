@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anggota;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Anggota;
+use App\Models\Peserta_or;
+
 
 class AnggotaController extends Controller
 {
@@ -15,6 +16,7 @@ class AnggotaController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $dtAnggota = DB::table('anggota')
         ->join('divisi', 'divisi.id', '=', 'anggota.id_divisi')
         ->join('peserta_or','peserta_or.id','=','anggota.id_pesertaor')
@@ -27,6 +29,11 @@ class AnggotaController extends Controller
             'anggota.tahun_jabatan','anggota.jenis_keanggotaan', 'anggota.id  AS id_anggota'
         ]);
         return view('Anggota.ReadAnggota', compact('dtAnggota'));
+=======
+        $dtAnggota = Anggota::all();
+        $non_anggota = Peserta_or::all();
+        return view('Anggota.ListAnggota',compact('dtAnggota', 'non_anggota'));
+>>>>>>> f5e4a5b84c7288e9e0ed9ccc88fb20d5ec2bf57e
     }
 
     /**
@@ -36,7 +43,9 @@ class AnggotaController extends Controller
      */
     public function create()
     {
-        //
+        $non_anggota = Peserta_or::all();
+        $data_agt = Anggota::all();
+        return view('Anggota.CreateAnggota', compact('non_anggota', 'data_agt'));
     }
 
     /**
@@ -45,8 +54,10 @@ class AnggotaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    
+     public function store($id)
     {
+<<<<<<< HEAD
         // dd($request->all());
         $div = DB::table('divisi')
         ->where('nama_divisi','=',$request->nama_divisi)
@@ -84,50 +95,103 @@ class AnggotaController extends Controller
             'status_or' => $status
         ]);
         return redirect('anggota');
+=======
+        $non_anggota = Peserta_or::all();
+        return view('Anggota.CreateAnggota',compact('non_anggota'));
+>>>>>>> f5e4a5b84c7288e9e0ed9ccc88fb20d5ec2bf57e
     }
+
+    //  public function store_peserta(Request $request, $id){
+    //     // $non_anggota = Peserta_or::findorfail($id);
+    //     $request->validate([
+    //         'id_pesertaor' => 'required',
+    //     ], [
+    //         'id_pesertaor.required' => 'Pilih Nama Peserta OR',
+       
+    //     ]);
+
+    //     if($request->isMethod('post')){
+    //     $request->request->add(['id' => $id]);
+    //     Krs::create([
+    //         'id' => $request->id,
+    //         'id_pesertaor' => $request->id_pesertaor,
+    //     ]);
+    //     return redirect()->back();
+    //     // return view('Anggota.CreateAnggota',compact('non_anggota'));
+    //     }
+    // }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Anggota  $anggota
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Anggota $anggota)
+    public function show1($id)
     {
-        //
+        $data_anggota = Anggota::findorfail($id);
+        return view('Anggota.DetailAnggotaInfo1', compact('data_anggota'));
     }
 
+    public function show2($id)
+    {
+        $data_anggota = Anggota::findorfail($id);
+        return view('Anggota.DetailAnggotaInfo2', compact('data_anggota'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Anggota  $anggota
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Anggota $anggota)
+    public function edit($id)
     {
-        //
+        $data_anggota = Anggota::findorfail($id);
+        return view('Anggota.EditAnggota', compact('data_anggota'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Anggota  $anggota
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Anggota $anggota)
+    public function update(Request $request, $id)
     {
-        //
+        $data_anggota = Anggota::findorfail($id);
+        $data_anggota->update($request->all());
+        return redirect('list-anggota');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Anggota  $anggota
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Anggota $anggota)
+    public function destroy($id)
     {
-        //
+        $anggota = Anggota::findorfail($id);
+        $anggota->delete();
+        return back();
+    }
+
+
+    public function hapus_anggota($id_pesertaor)
+    {
+       
+        // $krs = Krs::where('id','=',$id, 'AND', 'mahasiswa_id', '=', $mahasiswa_id)->delete();
+        // return redirect()->back();
+        // $krs =Krs::where('kelas_id', $kelas_id)
+        // ->where('mahasiswa_id', $mahasiswa_id)->get();
+
+        // foreach($krs as $krs)
+        // {
+        // $krs->delete();
+        // }
+        Anggota::where('id_pesertaor', $id_pesertaor)
+        ->delete();
+        return redirect()->back();
     }
 }
