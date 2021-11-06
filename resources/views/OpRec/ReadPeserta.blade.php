@@ -14,18 +14,6 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <div class="float-left">
-            <div class="input-group rounded">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <span class="input-group-text border-0" id="search-addon">
-                    <i class="fas fa-search"></i>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
         <table id="example2" class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -94,7 +82,7 @@
                                     <input type="text" name="cv" value="{{$view->cv}}" hidden>
                                     <input type="text" name="tahun_jabatan" value="{{$tahun}}" hidden>
                                     <input type="text" name="alamat" value="{{$view->alamat}}" hidden>
-                                    <input type="text" name="jenis_keanggotaan" value="Anggota Biasa" hidden>
+                                    <input type="text" name="nim" value="{{$view->nim}}" hidden>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>

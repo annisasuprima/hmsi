@@ -60,7 +60,9 @@ class AnggotaController extends Controller
             $data = $divisi_id->id;
         }
 
+        $keanggotaan = "Anggota Biasa";
         $password = "12345";
+
         Anggota::create([
             'id_divisi' => $data,
             'id_pesertaor' => $request->id_pesertaor,
@@ -78,7 +80,8 @@ class AnggotaController extends Controller
             'foto' => $request->foto,
             'cv' => $request->cv,
             'tahun_jabatan' => $request->tahun_jabatan,
-            'jenis_keanggotaan' => $request->jenis_keanggotaan,
+            'jenis_keanggotaan' => $keanggotaan,
+            'nim' => $request->nim
         ]);
 
         $status = "lulus";
@@ -87,10 +90,44 @@ class AnggotaController extends Controller
         ->update([
             'status_or' => $status
         ]);
+
+        return view('OpRec.ReadPeserta');
     }
 
      public function save(Request $request){
-       
+
+        $cv = $request->cv;
+        $foto = $request->foto;
+        $filecv = $cv->getClientOriginalName();
+        $filefoto = $foto->getClientOriginalName();
+
+        $keanggotaan = "Anggota Biasa";
+        $password = "12345";
+
+        Anggota::create([
+            'id_divisi' => $request->id_divisi,
+            'no_himpunan' => $request->no_himpunan,
+            'nama' => $request->nama,
+            'password' => $password,
+            'jabatan' => $request->jabatan,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tgl_lahir' => $request->tgl_lahir,
+            'email'  => $request->email,
+            'no_hp' => $request->no_hp,
+            'angkatan' => $request->angkatan,
+            'foto' => $filefoto,
+            'cv' => $filecv,
+            'tahun_jabatan' => $request->tahun_jabatan,
+            'jenis_keanggotaan' => $keanggotaan,
+            'nim' => $request->nim
+        ]);
+
+        $cv->move(public_path() . '/Hmsi/cv', $filecv);
+        $foto->move(public_path() . '/Hmsi/foto', $filefoto);
+
+        return redirect('anggota');
     }
 
     /**
@@ -103,11 +140,10 @@ class AnggotaController extends Controller
     {
         $dtAnggota = DB::table('anggota')
         ->join('divisi', 'divisi.id', '=', 'anggota.id_divisi')
-        ->join('peserta_or', 'peserta_or.id', '=', 'anggota.id_pesertaor')
         ->where('anggota.id','=',$id)
         ->get([
-            'divisi.id AS id_divisi', 'divisi.nama_divisi', 'peserta_or.id AS id_pesertaor',
-            'peserta_or.nim', 'anggota.id_pesertaor', 'anggota.nama', 'anggota.password',
+            'divisi.id AS id_divisi', 'divisi.nama_divisi', 'nim',
+            'anggota.id_pesertaor', 'anggota.nama', 'anggota.password',
             'anggota.angkatan', 'anggota.jabatan', 'anggota.jenis_kelamin', 'anggota.alamat',
             'anggota.tempat_lahir', 'anggota.tgl_lahir', 'anggota.email',
             'anggota.no_hp', 'anggota.foto', 'anggota.cv', 'anggota.no_himpunan',
@@ -158,16 +194,6 @@ class AnggotaController extends Controller
 
     public function hapus_anggota($id_pesertaor)
     {
-       
-        // $krs = Krs::where('id','=',$id, 'AND', 'mahasiswa_id', '=', $mahasiswa_id)->delete();
-        // return redirect()->back();
-        // $krs =Krs::where('kelas_id', $kelas_id)
-        // ->where('mahasiswa_id', $mahasiswa_id)->get();
-
-        // foreach($krs as $krs)
-        // {
-        // $krs->delete();
-        // }
         Anggota::where('id_pesertaor', $id_pesertaor)
         ->delete();
         return redirect()->back();

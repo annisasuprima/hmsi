@@ -47,7 +47,7 @@ Route::post('/nilai-peserta/{id}', [Peserta_orController::class, 'update'])->nam
 
 // AKUN ANGGOTA
 Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota');
-Route::get('/tambah-anggota', [AnggotaController::class, 'store'])->name('tambah-anggota'); //Dari peserta OR
+Route::post('/tambah-anggota', [AnggotaController::class, 'store'])->name('tambah-anggota'); //Dari peserta OR
 Route::get('/create-anggota', [AnggotaController::class, 'create'])->name('create-anggota'); //Buat anggota lewat form
 Route::post('/save-anggota', [AnggotaController::class, 'save'])->name('save-anggota');
 Route::get('/detail-anggota/{id}', [AnggotaController::class, 'show'])->name('detail-anggota');

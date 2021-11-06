@@ -32,6 +32,7 @@ class CreatePesertaOrTable extends Migration
             $table->string('cv');
             $table->integer('nilai')->unsigned();
             $table->string('status_or', 30);
+            $table->string('no_himpunan', 30);
             $table->timestamps();
         });
     }

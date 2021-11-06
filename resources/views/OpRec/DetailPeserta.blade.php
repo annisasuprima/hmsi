@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="user-photo m-b-30">
-                    <img class="img-fluid" src="{{asset('PesertaOr/foto/'. $ps->foto)}}" alt="" />
+                    <img class="img-fluid" src="{{asset('Hmsi/foto/'. $ps->foto)}}" alt="" />
                 </div>
                 <div class="user-work">
                     <form action="{{route('nilai-peserta',$ps->id)}}" method="post">

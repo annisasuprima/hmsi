@@ -16,7 +16,7 @@ class CreateAnggotaTable extends Migration
         Schema::create('anggota', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_divisi')->unsigned();    // FK - (id) divisi [kode_divisi]
-            $table->bigInteger('id_pesertaor')->unsigned(); // FK - (id) peserta_or [nim]
+            $table->string('nim', 10); 
             $table->string('no_himpunan', 30);  // CPK - keuangan
             $table->string('nama', 50);
             $table->string('password', 30);
@@ -37,7 +37,6 @@ class CreateAnggotaTable extends Migration
 
         Schema::table('anggota', function (Blueprint $table) {
             $table->foreign('id_divisi')->references('id')->on('divisi')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('id_pesertaor')->references('id')->on('peserta_or')->onDelete('cascade')->onUpdate('cascade');
         });
 
     }

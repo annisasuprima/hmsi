@@ -63,8 +63,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="user-photo m-b-30">
-                                <img class="img-fluid" src="{{asset('PesertaOr/foto/'. $detail->foto)}}" alt="" />
-                                <!-- <img class="img-fluid" src="{{asset('focus/assets/images/user-profile.jpg')}}" alt="" /> -->
+                                <img class="img-fluid" src="{{asset('Hmsi/foto/'. $detail->foto)}}" alt="" />
                             </div>
                         </div>
                     </div>
@@ -109,7 +108,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="user-photo m-b-30">
-                            <img class="img-fluid" src="{{asset('focus/assets/images/user-profile.jpg')}}" alt="" />
+                            <img class="img-fluid" src="{{asset('Hmsi/foto/'. $detail->foto)}}" alt="" />
                         </div>
                     </div>
                 </div>

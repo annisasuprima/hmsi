@@ -82,8 +82,8 @@ class Peserta_orController extends Controller
             'cv' => $filecv,
             
         ]);
-        $cv->move(public_path().'/PesertaOr/cv',$filecv);
-        $foto->move(public_path() . '/PesertaOr/foto', $filefoto);
+        $cv->move(public_path().'/Hmsi/cv',$filecv);
+        $foto->move(public_path() . '/Hmsi/foto', $filefoto);
         
         print('Berhasil disimpan');
 
