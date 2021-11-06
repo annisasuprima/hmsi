@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Anggota;
 use App\Models\Peserta_or;
+use Illuminate\Support\Facades\DB;
 
 
 class AnggotaController extends Controller
@@ -16,24 +17,17 @@ class AnggotaController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $dtAnggota = DB::table('anggota')
         ->join('divisi', 'divisi.id', '=', 'anggota.id_divisi')
-        ->join('peserta_or','peserta_or.id','=','anggota.id_pesertaor')
         ->get([
-            'divisi.id AS id_divisi', 'divisi.nama_divisi','peserta_or.id AS id_pesertaor', 'anggota.id_pesertaor',
-            'anggota.nama', 'anggota.password', 'anggota.angkatan',
-            'anggota.jabatan', 'anggota.jenis_kelamin', 'anggota.alamat', 
-            'anggota.tempat_lahir','anggota.tgl_lahir', 'anggota.email', 
-            'anggota.no_hp','anggota.foto','anggota.cv', 'anggota.no_himpunan',
-            'anggota.tahun_jabatan','anggota.jenis_keanggotaan', 'anggota.id  AS id_anggota'
+            'divisi.id AS id_divisi', 'divisi.nama_divisi','anggota.nama', 'anggota.email',
+            'anggota.no_himpunan','anggota.id  AS id_anggota'
         ]);
         return view('Anggota.ReadAnggota', compact('dtAnggota'));
-=======
-        $dtAnggota = Anggota::all();
-        $non_anggota = Peserta_or::all();
-        return view('Anggota.ListAnggota',compact('dtAnggota', 'non_anggota'));
->>>>>>> f5e4a5b84c7288e9e0ed9ccc88fb20d5ec2bf57e
+        
+        // $dtAnggota = Anggota::all();
+        // $non_anggota = Peserta_or::all();
+        // return view('Anggota.ListAnggota',compact('dtAnggota', 'non_anggota'));
     }
 
     /**
@@ -43,9 +37,9 @@ class AnggotaController extends Controller
      */
     public function create()
     {
-        $non_anggota = Peserta_or::all();
-        $data_agt = Anggota::all();
-        return view('Anggota.CreateAnggota', compact('non_anggota', 'data_agt'));
+        $divisi = DB::table('divisi')
+        ->get(['id', 'nama_divisi']);
+        return view('Anggota.CreateAnggota',compact ('divisi'));
     }
 
     /**
@@ -55,9 +49,8 @@ class AnggotaController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-     public function store($id)
+     public function store(Request $request)
     {
-<<<<<<< HEAD
         // dd($request->all());
         $div = DB::table('divisi')
         ->where('nama_divisi','=',$request->nama_divisi)
@@ -94,32 +87,11 @@ class AnggotaController extends Controller
         ->update([
             'status_or' => $status
         ]);
-        return redirect('anggota');
-=======
-        $non_anggota = Peserta_or::all();
-        return view('Anggota.CreateAnggota',compact('non_anggota'));
->>>>>>> f5e4a5b84c7288e9e0ed9ccc88fb20d5ec2bf57e
     }
 
-    //  public function store_peserta(Request $request, $id){
-    //     // $non_anggota = Peserta_or::findorfail($id);
-    //     $request->validate([
-    //         'id_pesertaor' => 'required',
-    //     ], [
-    //         'id_pesertaor.required' => 'Pilih Nama Peserta OR',
+     public function save(Request $request){
        
-    //     ]);
-
-    //     if($request->isMethod('post')){
-    //     $request->request->add(['id' => $id]);
-    //     Krs::create([
-    //         'id' => $request->id,
-    //         'id_pesertaor' => $request->id_pesertaor,
-    //     ]);
-    //     return redirect()->back();
-    //     // return view('Anggota.CreateAnggota',compact('non_anggota'));
-    //     }
-    // }
+    }
 
     /**
      * Display the specified resource.
@@ -127,17 +99,23 @@ class AnggotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show1($id)
+    public function show($id)
     {
-        $data_anggota = Anggota::findorfail($id);
-        return view('Anggota.DetailAnggotaInfo1', compact('data_anggota'));
+        $dtAnggota = DB::table('anggota')
+        ->join('divisi', 'divisi.id', '=', 'anggota.id_divisi')
+        ->join('peserta_or', 'peserta_or.id', '=', 'anggota.id_pesertaor')
+        ->where('anggota.id','=',$id)
+        ->get([
+            'divisi.id AS id_divisi', 'divisi.nama_divisi', 'peserta_or.id AS id_pesertaor',
+            'peserta_or.nim', 'anggota.id_pesertaor', 'anggota.nama', 'anggota.password',
+            'anggota.angkatan', 'anggota.jabatan', 'anggota.jenis_kelamin', 'anggota.alamat',
+            'anggota.tempat_lahir', 'anggota.tgl_lahir', 'anggota.email',
+            'anggota.no_hp', 'anggota.foto', 'anggota.cv', 'anggota.no_himpunan',
+            'anggota.tahun_jabatan', 'anggota.jenis_keanggotaan', 'anggota.id  AS id_anggota'
+        ]);
+        return view('Anggota.DetailAnggota', compact('dtAnggota'));
     }
 
-    public function show2($id)
-    {
-        $data_anggota = Anggota::findorfail($id);
-        return view('Anggota.DetailAnggotaInfo2', compact('data_anggota'));
-    }
     /**
      * Show the form for editing the specified resource.
      *

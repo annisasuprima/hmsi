@@ -33,4 +33,5 @@
             <button type="submit" class="btn btn-success btn-rounded m-b-10 m-l-5">Submit</button>
         </form>
     </div>
-    @endsection
+</div>
+@endsection

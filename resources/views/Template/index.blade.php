@@ -62,10 +62,8 @@
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-id-badge"></i> Akun Anggota <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="#">Tambah Akun</a></li>
                             <li><a href="{{route('anggota')}}">Daftar Anggota</a></li>
                             <li><a href="{{route('create-anggota')}}">Tambah Akun</a></li>
-                            <li><a href="{{route('list-anggota')}}">Daftar Akun</a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-pencil-alt2"></i> Rapat <span class="sidebar-collapse-icon ti-angle-down"></span></a>

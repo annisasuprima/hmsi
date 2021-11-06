@@ -219,8 +219,9 @@ span.badge {
 }
 .vtabs .tab-content {
   display: table-cell;
-  padding: 20px;
+  /*padding: 20px;*/
   vertical-align: top;
+  width: 900px;
 }
 .tabs-vertical li .nav-link.active,
 .tabs-vertical li .nav-link.active:focus,

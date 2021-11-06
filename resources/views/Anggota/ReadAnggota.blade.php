@@ -34,7 +34,7 @@
                     <td>{{$list->nama_divisi}}</td>
                     <td>{{$list->email}}</td>
                     <td>
-                        <a href="#" class="btn btn-warning btn-sm m-b-10 m-l-5"><i class="ti-eye"></i></a>
+                        <a href="{{url('detail-anggota',$list->id_anggota)}}" class="btn btn-warning btn-sm m-b-10 m-l-5"><i class="ti-eye"></i></a>
                         <a href="#" class="btn btn-success btn-sm m-b-10 m-l-5"><i class="ti-pencil"></i></a>
                         <a href="#" class="btn btn-danger btn-sm m-b-10 m-l-5" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
                     </td>
