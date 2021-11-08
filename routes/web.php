@@ -51,10 +51,10 @@ Route::post('/tambah-anggota', [AnggotaController::class, 'store'])->name('tamba
 Route::get('/create-anggota', [AnggotaController::class, 'create'])->name('create-anggota'); //Buat anggota lewat form
 Route::post('/save-anggota', [AnggotaController::class, 'save'])->name('save-anggota');
 Route::get('/detail-anggota/{id}', [AnggotaController::class, 'show'])->name('detail-anggota');
-// DATA ANGGOTA
 Route::get('/edit-anggota/{id}', [AnggotaController::class, 'edit'])->name('edit-anggota');
-Route::get('/delete-anggota/{id}', [AnggotaController::class, 'destroy'])->name('delete-anggota');
 Route::post('/update-anggota/{id}', [AnggotaController::class, 'update'])->name('update-anggota');
+// DATA ANGGOTA
+Route::get('/delete-anggota/{id}', [AnggotaController::class, 'destroy'])->name('delete-anggota');
 Route::delete('/anggota/{id}/hapus_anggota', [AnggotaController::class, 'hapus_anggota'])->name('detail.hapus');
 
 // DIVISI

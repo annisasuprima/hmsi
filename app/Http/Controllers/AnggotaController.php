@@ -24,10 +24,6 @@ class AnggotaController extends Controller
             'anggota.no_himpunan','anggota.id  AS id_anggota'
         ]);
         return view('Anggota.ReadAnggota', compact('dtAnggota'));
-        
-        // $dtAnggota = Anggota::all();
-        // $non_anggota = Peserta_or::all();
-        // return view('Anggota.ListAnggota',compact('dtAnggota', 'non_anggota'));
     }
 
     /**
@@ -142,7 +138,7 @@ class AnggotaController extends Controller
         ->join('divisi', 'divisi.id', '=', 'anggota.id_divisi')
         ->where('anggota.id','=',$id)
         ->get([
-            'divisi.id AS id_divisi', 'divisi.nama_divisi', 'nim',
+            'divisi.id AS id_divisi', 'divisi.nama_divisi', 'anggota.nim',
             'anggota.id_pesertaor', 'anggota.nama', 'anggota.password',
             'anggota.angkatan', 'anggota.jabatan', 'anggota.jenis_kelamin', 'anggota.alamat',
             'anggota.tempat_lahir', 'anggota.tgl_lahir', 'anggota.email',
@@ -160,8 +156,22 @@ class AnggotaController extends Controller
      */
     public function edit($id)
     {
-        $data_anggota = Anggota::findorfail($id);
-        return view('Anggota.EditAnggota', compact('data_anggota'));
+        $divisi = DB::table('divisi')
+        ->get(['id', 'nama_divisi']);
+
+        $anggota = DB::table('anggota')
+        ->where('id', '=', $id)
+        ->get([
+            'id','nim', 'nama', 
+            'angkatan', 'jabatan', 
+            'jenis_kelamin', 'alamat','tempat_lahir', 
+            'tgl_lahir', 'email','no_hp', 
+            'foto', 'cv', 'no_himpunan',
+            'tahun_jabatan', 'jenis_keanggotaan'
+        ]);
+        // $anggota = Anggota::findorfail($id);
+        
+        return view('Anggota.EditAnggota', compact('anggota','divisi'));
     }
 
     /**
@@ -173,9 +183,50 @@ class AnggotaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data_anggota = Anggota::findorfail($id);
-        $data_anggota->update($request->all());
-        return redirect('list-anggota');
+        $dtAnggota = DB::table('anggota')
+        ->where('id', '=', $id)
+        ->get([
+            'foto', 'cv', 'id'
+        ]);
+
+        foreach ($dtAnggota as $agt) {
+            $foto = $agt->foto;
+            $cv = $agt->cv;
+        }
+        unlink(public_path('Hmsi/foto/' . $foto));
+        unlink(public_path('Hmsi/cv/' . $cv));
+
+        $cv = $request->cv;
+        $foto = $request->foto;
+        $filecv = $cv->getClientOriginalName();
+        $filefoto = $foto->getClientOriginalName();
+
+        $update = DB::table('anggota')
+        ->where('id', '=', $id)
+        ->update([
+            'id_divisi' => $request->id_divisi,
+            'no_himpunan' => $request->no_himpunan,
+            'nama' => $request->nama,
+            'jabatan' => $request->jabatan,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tgl_lahir' => $request->tgl_lahir,
+            'email'  => $request->email,
+            'no_hp' => $request->no_hp,
+            'angkatan' => $request->angkatan,
+            'foto' => $filefoto,
+            'cv' => $filecv,
+            'tahun_jabatan' => $request->tahun_jabatan,
+            'jenis_keanggotaan' => $request->jenis_keanggotaan,
+            'nim' => $request->nim
+        ]);
+
+        $cv->move(public_path() . '/Hmsi/cv', $filecv);
+        $foto->move(public_path() . '/Hmsi/foto', $filefoto);
+        // $data_anggota = Anggota::findorfail($id);
+        // $data_anggota->update($request->all());
+        return redirect('anggota');
     }
 
     /**

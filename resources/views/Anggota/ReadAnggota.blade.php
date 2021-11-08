@@ -28,14 +28,13 @@
                 <?php $no = 1; ?>
                 @foreach($dtAnggota as $list)
                 <tr>
-                    <td>{{$no++}}</td>
-                    <td>{{$list->no_himpunan}}</td>
-                    <td>{{$list->nama}}</td>
-                    <td>{{$list->nama_divisi}}</td>
-                    <td>{{$list->email}}</td>
+                    <td><a href="{{url('detail-anggota',$list->id_anggota)}}">{{$no++}}</a></td>
+                    <td><a href="{{url('detail-anggota',$list->id_anggota)}}">{{$list->no_himpunan}}</a></td>
+                    <td><a href="{{url('detail-anggota',$list->id_anggota)}}">{{$list->nama}}</a></td>
+                    <td><a href="{{url('detail-anggota',$list->id_anggota)}}">{{$list->nama_divisi}}</a></td>
+                    <td><a href="{{url('detail-anggota',$list->id_anggota)}}">{{$list->email}}</a></td>
                     <td>
-                        <a href="{{url('detail-anggota',$list->id_anggota)}}" class="btn btn-warning btn-sm m-b-10 m-l-5"><i class="ti-eye"></i></a>
-                        <a href="#" class="btn btn-success btn-sm m-b-10 m-l-5"><i class="ti-pencil"></i></a>
+                        <a href="{{url('edit-anggota',$list->id_anggota)}}" class="btn btn-success btn-sm m-b-10 m-l-5"><i class="ti-pencil"></i></a>
                         <a href="#" class="btn btn-danger btn-sm m-b-10 m-l-5" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
                     </td>
                 </tr>

@@ -22,7 +22,7 @@
                 </td>
                 <td>
                     <select class="form-control" name="id_divisi">
-                        <option>-Pilih Divisi-</option>
+                        <option disabled>-Pilih Divisi-</option>
                         @foreach ($divisi as $dt)
                         <option value="{{ $dt->id }}">{{$dt->nama_divisi}}</option>
                         @endforeach
