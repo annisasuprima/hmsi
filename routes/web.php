@@ -44,6 +44,8 @@ Route::get('/lihat-peserta', [Peserta_orController::class, 'index'])->name('liha
 Route::post('/save-peserta', [Peserta_orController::class, 'store'])->name('save-peserta');
 Route::get('/detail-peserta/{id}', [Peserta_orController::class, 'show'])->name('detail-peserta');
 Route::post('/nilai-peserta/{id}', [Peserta_orController::class, 'update'])->name('nilai-peserta');
+Route::get('/tolak-peserta/{id}', [Peserta_orController::class, 'tolak'])->name('tolak-peserta');
+Route::get('/laporan-peserta', [Peserta_orController::class, 'laporan'])->name('laporan-peserta');
 
 // AKUN ANGGOTA
 Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota');
@@ -53,9 +55,7 @@ Route::post('/save-anggota', [AnggotaController::class, 'save'])->name('save-ang
 Route::get('/detail-anggota/{id}', [AnggotaController::class, 'show'])->name('detail-anggota');
 Route::get('/edit-anggota/{id}', [AnggotaController::class, 'edit'])->name('edit-anggota');
 Route::post('/update-anggota/{id}', [AnggotaController::class, 'update'])->name('update-anggota');
-// DATA ANGGOTA
 Route::get('/delete-anggota/{id}', [AnggotaController::class, 'destroy'])->name('delete-anggota');
-Route::delete('/anggota/{id}/hapus_anggota', [AnggotaController::class, 'hapus_anggota'])->name('detail.hapus');
 
 // DIVISI
 Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');

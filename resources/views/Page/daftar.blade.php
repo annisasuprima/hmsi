@@ -29,7 +29,7 @@
                     <input type="text" name="no_hp" id="phone_number" placeholder="No. HP" required />
                     <div class="select-list">
                         <select name="jenis_kelamin">
-                            <option slected value="">-Jenis Kelamin-</option>
+                            <option disabled selected>-Jenis Kelamin-</option>
                             <option value="laki-laki">Laki-Laki</option>
                             <option value="perempuan">Perempuan</option>
                         </select>

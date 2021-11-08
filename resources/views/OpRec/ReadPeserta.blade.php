@@ -38,7 +38,7 @@
                     <td>{{$view->nilai}}</td>
                     <td>
                         <button type="button" class="btn btn-success btn-sm m-b-10 m-l-5" data-toggle="modal" data-target="#terima"><i class="ti-check"></i></button>
-                        <a href="" class="btn btn-danger btn-sm m-b-10 m-l-5"><i class="ti-close"></i></a>
+                        <a href="{{url('tolak-peserta',$view->id)}}" class="btn btn-danger btn-sm m-b-10 m-l-5" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-close"></i></a>
                     </td>
                 </tr>
                 <!-- Modal Add Category -->

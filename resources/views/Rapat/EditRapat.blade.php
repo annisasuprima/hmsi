@@ -16,17 +16,17 @@
     <h4>Form Notulensi Rapat</h4>
 </div>
 <div class="caard-body">
-    <form action="{{route('save-rapat')}}" method="POST">
+    @foreach ($rapat as $dt)
+    <form action="{{route('update-rapat',$dt->id_rapat)}}" method="POST">
         {{csrf_field()}}
         <table>
-            @foreach ($rapat as $dt)
             <tr>
                 <td width="150px">
                     <label>Divisi</label>
                 </td>
                 <td>
                     <select class="form-control" name="id_divisi">
-                        <option>-Pilih Divisi-</option>
+                        <option disabled selected>-Pilih Divisi-</option>
                         @foreach ($divisi as $dv)
                         <option value="{{ $dv->id }}">{{$dv->nama_divisi}}</option>
                         @endforeach
@@ -71,12 +71,12 @@
                 </td>
                 <td></td>
             </tr>
-            @endforeach
         </table>
         <textarea name="hasil" id="isi" cols="100" rows="10">{!! $dt->hasil !!}</textarea>
         <p></p>
         <button type="submit" class="btn btn-success btn-rounded m-b-10 m-l-5">Submit</button>
     </form>
+    @endforeach
     <script>
         CKEDITOR.replace('isi');
     </script>

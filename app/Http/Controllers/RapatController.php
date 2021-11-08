@@ -109,7 +109,7 @@ class RapatController extends Controller
     {
         $rapat = Rapat::findorfail($id);
         $rapat->update($request->all());
-        return back();
+        return redirect('rapat');
     }
 
     /**
@@ -122,6 +122,6 @@ class RapatController extends Controller
     {
         $rapat = Rapat::findorfail($id);
         $rapat->delete();
-        return back();
+        return redirect('rapat');
     }
 }

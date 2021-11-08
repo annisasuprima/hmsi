@@ -11,6 +11,7 @@
         <ul class="nav nav-tabs tabs-vertical" role="tablist">
             <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home3" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Pribadi</span> </a> </li>
             <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile3" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Himpunan</span></a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#cv" role="tab"><span class="hidden-sm-up"><i class="ti-files"></i></span> <span class="hidden-xs-down">CV</span></a> </li>
         </ul>
         <!-- Tab panes -->
         @foreach ($dtAnggota as $detail)
@@ -109,6 +110,15 @@
                     <div class="col-lg-3">
                         <div class="user-photo m-b-30">
                             <img class="img-fluid" src="{{asset('Hmsi/foto/'. $detail->foto)}}" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane  p-20" id="cv" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="user-photo m-b-30">
+                            <img class="img-fluid" src="{{asset('Hmsi/cv/'. $detail->cv)}}" width="500px" height="1000px" alt="" />
                         </div>
                     </div>
                 </div>

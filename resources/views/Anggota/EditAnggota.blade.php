@@ -24,7 +24,7 @@
                     </td>
                     <td>
                         <select class="form-control" name="id_divisi">
-                            <option disabled>-Divisi-</option>
+                            <option disabled selected>-Divisi-</option>
                             @foreach ($divisi as $dt)
                             <option value="{{ $dt->id }}">{{$dt->nama_divisi}}</option>
                             @endforeach

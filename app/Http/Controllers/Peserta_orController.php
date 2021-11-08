@@ -16,8 +16,10 @@ class Peserta_orController extends Controller
     public function index()
     {
         $status = "lulus";
+        $status2 = "Tidak lulus";
         $lulus = DB::table('peserta_or')
         ->where('status_or', '=', $status)
+        ->orWhere('status_or', '=', $status2)
         ->get(['id AS id_pesertaor']);
 
         $jml = count(collect($lulus));
@@ -37,6 +39,18 @@ class Peserta_orController extends Controller
             $dtOr = Peserta_or::all();
         }
         return view('OpRec.ReadPeserta', compact('dtOr'));
+    }
+
+    public function laporan()
+    {
+        $laporan = DB::table('peserta_or')
+        ->leftJoin('anggota','anggota.id_pesertaor','=','peserta_or.id')
+        ->leftjoin('divisi','divisi.id','=','anggota.id_divisi')
+        ->get([
+            'peserta_or.no_himpunan','peserta_or.nim','peserta_or.nama',
+            'peserta_or.status_or','divisi.nama_divisi'
+        ]);
+        return view('OpRec.LaporanPeserta', compact('laporan'));
     }
 
     /**
@@ -147,6 +161,18 @@ class Peserta_orController extends Controller
         return view('OpRec.DetailPeserta', compact('peserta'));         
     }
 
+    public function tolak(Request $request, $id)
+    {
+        // dd($request->all());
+
+        $status = "Tidak lulus";
+        $update = DB::table('peserta_or')
+        ->where('id', '=', $id)
+        ->update([
+            'status_or' => $status
+        ]);
+        return redirect('lihat-peserta');
+    }
     /**
      * Remove the specified resource from storage.
      *

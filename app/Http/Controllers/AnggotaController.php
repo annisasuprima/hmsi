@@ -239,7 +239,7 @@ class AnggotaController extends Controller
     {
         $anggota = Anggota::findorfail($id);
         $anggota->delete();
-        return back();
+        return redirect('anggota');
     }
 
 
