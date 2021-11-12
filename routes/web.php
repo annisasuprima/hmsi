@@ -6,6 +6,7 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\RapatController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Peserta_orController;
+use App\Http\Controllers\AbsensiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,10 @@ Route::get('/detail-rapat/{id}', [RapatController::class, 'show'])->name('detail
 Route::get('/delete-rapat/{id}', [RapatController::class, 'destroy'])->name('delete-rapat');
 Route::get('/edit-rapat/{id}', [RapatController::class, 'edit'])->name('edit-rapat');
 Route::post('/update-rapat/{id}', [RapatController::class, 'update'])->name('update-rapat');
+
+//PENGURUS
+Route::get('/pengurus', [AbsensiController::class, 'index'])->name('pengurus');
+Route::get('/absensi/{id}', [AbsensiController::class, 'show'])->name('absensi/{id}');
 
 // KEUANGAN 
 Route::get('/kas-masuk', [App\Http\Controllers\KeuanganController::class, 'index'])->name('kas-masuk');

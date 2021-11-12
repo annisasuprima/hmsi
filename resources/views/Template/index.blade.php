@@ -70,6 +70,7 @@
                         <ul>
                             <li><a href="{{route('rapat')}}">List Notulensi</a></li>
                             <li><a href="{{route('create-rapat')}}">Tambah Notulensi</a></li>
+                            <li><a href="{{route('pengurus')}}">Absensi</a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>

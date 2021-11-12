@@ -18,8 +18,8 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($laporan as $dt)
                 <?php $no = 1; ?>
+                @foreach ($laporan as $dt)
                 <tr>
                     <td>{{$no++}}</td>
                     <td>{{$dt->no_himpunan}}</td>
