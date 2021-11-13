@@ -35,6 +35,19 @@
                     </td>
                 </tr>
                 <tr>
+                    <td width="150px">
+                        <label>Kategori</label>
+                    </td>
+                    <td>
+                        <select class="form-control" name="id_kategori">
+                            <option disabled selected>-Pilih Kategori-</option>
+                            @foreach ($kategori as $kat)
+                            <option value="{{ $kat->id }}">{{$kat->nama_kategori}}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         <label>Jumlah</label>
                     </td>

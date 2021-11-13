@@ -51,8 +51,8 @@
                     <td>{{$view->tanggal_pembayaran}}</td>
                     <td>{{$view->jumlah_pembayaran}}</td>
                     <td>
-                        <a href="" class="text-success"><i class="ti-pencil"></i></a>
-                        <a href="" class="text-danger" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
+                    <a href="/ubah-kas-keluar/{{$view->id}}" class="text-success"><i class="ti-pencil"></i></a>
+                        <a href="/delete-kas-keluar/{{$view->id}}" class="btn btn-danger btn-sm m-b-10 m-l-5" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
                     </td>
                 </tr>
                 @endforeach

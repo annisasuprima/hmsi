@@ -19,7 +19,7 @@
                         <label>No Himpunan</label>
                     </td>
                     <td>
-                        <input type="text" name="tanggal" value="{{$n->no_himpunan}}" class="form-control input-default ">
+                        <input type="text" name="no_himpunan" value="{{$n->no_himpunan}}" class="form-control input-default ">
                     </td>
                 </tr>
                 <tr>
@@ -31,11 +31,29 @@
                     </td>
                 </tr>
                 <tr>
+                    <td width="150px">
+                        <label>Kategori</label>
+                    </td>
+                    <td>
+                        @foreach ($kt as $kategori)
+                        <input type="text" name="kategori" value="{{$kategori->nama_kategori}}" class="form-control input-default ">
+                        @endforeach
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         <label>Jumlah</label>
                     </td>
                     <td>
                         <input type="number" name="jumlah" value="{{$n->jumlah_pembayaran}}" class="form-control input-default ">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Keterangan</label>
+                    </td>
+                    <td>
+                        <input type="text" name="ket" value="{{$n->keterangan}}" class="form-control input-default ">
                     </td>
                 </tr>
                 <tr>
