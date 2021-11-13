@@ -13,26 +13,9 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="float-left">
-            <div class="input-group rounded">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <span class="input-group-text border-0" id="search-addon">
-                    <i class="fas fa-search"></i>
-                </span>
-            </div>
-        </div>
-        <div class="float-right">
-            <a href="{{route('create-divisi')}}" class="color-success">
-                <button type="button" class="btn btn-success btn-outline m-b-10 m-l-5">Print</button>
-            </a>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
-        <table id="example2" class="table table-bordered table-hover">
+<div class="bootstrap-data-table-panel">
+    <div class="table-responsive">
+        <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>No</th>
@@ -50,7 +33,7 @@
                     <td>{{$view->tanggal_pembayaran}}</td>
                     <td>
                         <?php
-                            if ($view->id_kategori == '1'){
+                            if ($view->ket_kategori == 'kas masuk'){
                                 echo $view->jumlah_pembayaran;
                             } 
                             else{
@@ -60,7 +43,7 @@
                     </td>
                     <td>
                         <?php
-                            if ($view->id_kategori == '2'){
+                            if ($view->ket_kategori == 'kas keluar'){
                                 echo $view->jumlah_pembayaran;
                             } 
                             else{
@@ -70,11 +53,11 @@
                     </td>
                     <td>
                         <?php
-                            if ($view->id_kategori == '1'){
+                            if ($view->ket_kategori == 'kas masuk'){
                                 $total += $view->jumlah_pembayaran;
                                 echo $total;
                             } 
-                            else if ($view->id_kategori == '2'){
+                            else if ($view->ket_kategori == 'kas keluar'){
                                 $total -= $view->jumlah_pembayaran;
                                 echo $total;
                             }                                

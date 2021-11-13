@@ -24,8 +24,8 @@
             </div>
         </div>
         <div class="float-right">
-            <a href="{{route('create-divisi')}}" class="color-success">
-                <button type="button" class="btn btn-success btn-outline m-b-10 m-l-5">+ Entry</button>
+            <a href="{{route('create-kas-keluar')}}" class="color-success">
+                <button type="button" class="btn btn-success btn-outline m-b-10 m-l-5">+ Pengeluaran</button>
             </a>
         </div>
     </div>

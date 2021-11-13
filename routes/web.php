@@ -81,6 +81,13 @@ Route::group(['middleware'=>['auth:user,anggota']], function(){
 
     // KEUANGAN 
     Route::get('/kas-masuk', [App\Http\Controllers\KeuanganController::class, 'index'])->name('kas-masuk');
+    Route::get('/create-kas-masuk', [App\Http\Controllers\KeuanganController::class, 'create'])->name('create-kas-masuk');
+    Route::post('/create-kas-masuk', [App\Http\Controllers\KeuanganController::class, 'store']);
+    Route::get('/ubah-kas-masuk/{id}', [App\Http\Controllers\KeuanganController::class, 'edit']);
+    Route::post('/update-kas-masuk/{id}', [App\Http\Controllers\KeuanganController::class, 'update']);
+    Route::get('/delete-kas-masuk/{id}', [App\Http\Controllers\KeuanganController::class, 'destroy']);
     Route::get('/kas-keluar', [App\Http\Controllers\KeuanganController::class, 'index1'])->name('kas-keluar');
+    Route::get('/create-kas-keluar', [App\Http\Controllers\KeuanganController::class, 'create1'])->name('create-kas-keluar');
+    Route::post('/create-kas-keluar', [App\Http\Controllers\KeuanganController::class, 'store1']);
     Route::get('/laporan-kas', [App\Http\Controllers\KeuanganController::class, 'show'])->name('laporan-kas');
 });

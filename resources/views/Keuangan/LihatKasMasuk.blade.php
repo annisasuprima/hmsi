@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="float-right">
-            <a href="{{route('create-divisi')}}" class="color-success">
+            <a href="{{route('create-kas-masuk')}}" class="color-success">
                 <button type="button" class="btn btn-success btn-outline m-b-10 m-l-5">+ Entry</button>
             </a>
         </div>
@@ -55,8 +55,9 @@
                     <td>{{$view->jumlah_pembayaran}}</td>
                     <td>{{$view->status_konfirmasi}}</td>
                     <td>
-                        <a href="" class="text-success"><i class="ti-pencil"></i></a>
-                        <a href="" class="text-danger" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
+                        <a href="/ubah-kas-masuk/{{$view->id}}" class="text-success"><i class="ti-pencil"></i></a>
+                        <a href="/delete-kas-masuk/{{$view->id}}" class="btn btn-danger btn-sm m-b-10 m-l-5" onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="ti-trash"></i></a>
+                    </td>
                     </td>
                 </tr>
                 @endforeach

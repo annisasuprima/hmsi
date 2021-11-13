@@ -18,8 +18,10 @@ class KeuanganController extends Controller
     {
         $dtKasMasuk = DB::table('keuangan')
                         -> join ('anggota', 'keuangan.id_anggota', '=', 'anggota.id')
-                        -> select ('no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'status_konfirmasi')
-                        -> where ('id_kategori','=', '1' )
+                        -> select ('keuangan.id', 'no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'status_konfirmasi')
+                        -> where(
+                            ['id_kategori' => '1'],
+                            ['id_kategori' => '2'])
                         -> get();
 
         return view('Keuangan.LihatKasMasuk', compact('dtKasMasuk'));
@@ -28,7 +30,9 @@ class KeuanganController extends Controller
     public function index1()
     {
         $dtKasKeluar = DB::table('keuangan')
-                        -> where ('id_kategori','=', '2' )
+                        -> where(
+                            ['id_kategori' => '3'],
+                            ['id_kategori' => '4'])
                         -> get();
 
         return view('Keuangan.LihatKasKeluar', compact('dtKasKeluar'));
@@ -42,7 +46,15 @@ class KeuanganController extends Controller
      */
     public function create()
     {
-        //
+        $anggota = DB::table('anggota')
+        ->get(['id', 'no_himpunan']);
+
+        return view('Keuangan.CreateKasMasuk', compact('anggota'));
+    }
+
+    public function create1()
+    {
+        return view('Keuangan.CreateKasKeluar');
     }
 
     /**
@@ -53,7 +65,20 @@ class KeuanganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kategori = "1";
+        $bukti = "Cash";
+
+        Keuangan::create([
+            'id_anggota' => $request->id_anggota,
+            'id_kategori' => $kategori,
+            'tanggal_pembayaran' => $request->tanggal,
+            'jumlah_pembayaran' => $request->jumlah,
+            'bukti_pembayaran' => $bukti,
+            'keterangan' => $request->ket,
+            'status_konfirmasi' => $request->status,
+        ]);
+
+        return redirect('/kas-masuk');
     }
 
     /**
@@ -65,8 +90,13 @@ class KeuanganController extends Controller
     public function show(Keuangan $keuangan)
     {
         $dtLaporan = DB::table('keuangan')
-                        // ->where('id_kategori', '=', '1')
-                        ->get(); 
+                        -> join ('kat_keuangan', 'keuangan.id_kategori', '=', 'kat_keuangan.id')
+                        -> select ('ket_kategori', 'keterangan', 'tanggal_pembayaran', 'jumlah_pembayaran')
+                        // -> where ('id_kategori','=', '1' )
+                        -> get();
+        // $dtLaporan = DB::table('keuangan')
+        //                 // ->where('id_kategori', '=', '1')
+        //                 ->get(); 
         return view('Keuangan.LaporanKas', compact('dtLaporan'));
     }
 
@@ -76,9 +106,18 @@ class KeuanganController extends Controller
      * @param  \App\Models\Keuangan  $keuangan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Keuangan $keuangan)
+    public function edit($id)
     {
-        //
+        $anggota = DB::table('anggota')
+        ->get(['id', 'no_himpunan']);
+
+        $keuangan = DB::table('keuangan')
+                        -> join ('anggota', 'keuangan.id_anggota', '=', 'anggota.id')
+                        -> select ('keuangan.id', 'no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'status_konfirmasi')
+                        -> where('keuangan.id', '=', '2')
+                        -> get();
+
+        return view('Keuangan.EditKasMasuk', compact('keuangan', 'anggota'));
     }
 
     /**
@@ -90,7 +129,20 @@ class KeuanganController extends Controller
      */
     public function update(Request $request, Keuangan $keuangan)
     {
-        //
+        // $kategori = "1";
+        // $bukti = "Cash";
+
+        // Keuangan::update([
+        //     'id_anggota' => $request->id_anggota,
+        //     'id_kategori' => $kategori,
+        //     'tanggal_pembayaran' => $request->tanggal,
+        //     'jumlah_pembayaran' => $request->jumlah,
+        //     'bukti_pembayaran' => $bukti,
+        //     'keterangan' => $request->ket,
+        //     'status_konfirmasi' => $request->status,
+        // ]);
+
+        return redirect('/kas-masuk');
     }
 
     /**
@@ -99,8 +151,10 @@ class KeuanganController extends Controller
      * @param  \App\Models\Keuangan  $keuangan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Keuangan $keuangan)
+    public function destroy($id)
     {
-        //
+        $kasMasuk = keuangan::findorfail($id);
+        $kasMasuk->delete();
+        return redirect('/kas-masuk');
     }
 }
