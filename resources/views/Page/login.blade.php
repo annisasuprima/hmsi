@@ -15,23 +15,21 @@
 </head>
 
 <body>
-
     <div class="main">
-
         <div class="container">
-            <form method="POST" class="appointment-form" id="appointment-form">
+            <form action="{{route('postlogin')}}" method="POST" class="appointment-form" id="appointment-form">
+                {{csrf_field()}}
                 <h2>Pendaftaran OR HMSI 2021/2022</h2>
                 <div class="form-group-1">
                     <input type="email" name="email" id="email" placeholder="Email" required />
                     <input type="password" name="password" id="password" placeholder="Password" required />
                 </div>
                 <div class="form-submit">
-                    <input type="submit" name="submit" id="submit" class="submit" value="Login" />
+                    <input type="submit" name="submit"  class="submit" value="Login" />
                     <a href="{{route('home')}}">Back to Home</a>
                 </div>
             </form>
         </div>
-
     </div>
 
     <!-- JS -->

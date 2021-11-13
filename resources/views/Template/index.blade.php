@@ -49,6 +49,7 @@
                     <li>
                         <a class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard</a>
                     </li>
+                    @if (Str::length(Auth::guard('user')->user()) > 0)
                     <li class="label">Apps</li>
                     <li>
                         <a href="{{route('divisi')}}"><i class="ti-view-list-alt"></i> Divisi</a>
@@ -70,7 +71,6 @@
                         <ul>
                             <li><a href="{{route('rapat')}}">List Notulensi</a></li>
                             <li><a href="{{route('create-rapat')}}">Tambah Notulensi</a></li>
-                            <li><a href="{{route('pengurus')}}">Absensi</a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
@@ -80,7 +80,15 @@
                             <li><a href="/laporan-kas">Laporan Kas</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="ti-power-off"></i> Logout</a></li>
+                    @elseif(Str::length(Auth::guard('anggota')->user()) > 0)
+                    <li>
+                        <a href="#"><i class="ti-money"></i> Keuangan</a>
+                    </li>
+                    <li>
+                        <a href="{{route('pengurus')}}"><i class="ti-pencil-alt2"></i> Notulensi</a>
+                    </li>
+                    @endif
+                    <li><a href="{{route('logout')}}"><i class="ti-power-off"></i> Logout</a></li>
 
                 </ul>
             </div>

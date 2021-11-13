@@ -64,7 +64,7 @@
                     </td>
                     <td>
                         <select class="form-control" name="jabatan">
-                            <option disabled>-Pilih Jabatan-</option>
+                            <option disabled selected>-Pilih Jabatan-</option>
                             <option value="Ketua Hima">Ketua Hima</option>
                             <option value="Wakil Ketua Hima">Wakil Ketua Hima</option>
                             <option value="Bendahara Umum">Bendahara Umum</option>
@@ -81,7 +81,7 @@
                     </td>
                     <td>
                         <select class="form-control" name="jenis_kelamin">
-                            <option disabled>-Pilih-</option>
+                            <option disabled selected>-Pilih-</option>
                             <option value="Laki-laki">Laki-Laki</option>
                             <option value="Perempuan">Perempuan</option>
                         </select>

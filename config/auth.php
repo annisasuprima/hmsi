@@ -40,6 +40,22 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+
+        'anggota' => [
+        'driver'=> 'session',
+        'provider' => 'anggota'
+        ],
+
+        'user' => [
+            'driver'=> 'session',
+            'provider' => 'users'
+        ],
     ],
 
     /*
@@ -65,10 +81,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'anggota' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Anggota::class,
+        ],
     ],
 
     /*

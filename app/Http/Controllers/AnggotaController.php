@@ -104,7 +104,7 @@ class AnggotaController extends Controller
             'id_divisi' => $request->id_divisi,
             'no_himpunan' => $request->no_himpunan,
             'nama' => $request->nama,
-            'password' => $password,
+            'password' => bcrypt($password),
             'jabatan' => $request->jabatan,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat,

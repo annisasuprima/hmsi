@@ -64,6 +64,18 @@ class AbsensiController extends Controller
         return view('Pengurus.TakeAbsensi',compact('dtrapat'));
     }
 
+    public function detail($id)
+    {
+        $detailrapat = DB::table('rapat')
+            ->join('divisi', 'divisi.id', '=', 'rapat.id_divisi')
+            ->where('rapat.id', '=', $id)
+            ->get([
+                'divisi.id', 'divisi.nama_divisi', 'rapat.tanggal',
+                'rapat.waktu_mulai', 'rapat.waktu_selesai', 'rapat.topik',
+                'rapat.hasil', 'rapat.id  AS id_rapat'
+            ]);
+        return view('Pengurus.DetailNotulen', compact('detailrapat'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
