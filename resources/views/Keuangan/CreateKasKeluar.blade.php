@@ -57,6 +57,14 @@
                 </tr>
                 <tr>
                     <td>
+                        <label>Bukti Pembayaran</label>
+                    </td>
+                    <td>
+                        <input type="file" name="foto" placeholder="Input Foto" class="form-control input-default ">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label>Keterangan</label>
                     </td>
                     <td>

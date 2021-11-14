@@ -63,17 +63,14 @@
                         <input type="text" name="ket" placeholder="Input Keterangan" class="form-control input-default ">
                     </td>
                 </tr>
-                <!-- <tr>
+                <tr>
                     <td>
-                        <label>Status</label>
+                        <label>Bukti Pembayaran</label>
                     </td>
                     <td>
-                        <select class="form-control" name="status">
-                            <option disabled selected>-Pilih Status-</option>
-                            <option value="Konfirm">Terkonfirmasi</option>
-                            <option value="Tolak">Ditolak</option>
-                        </select>
-                </tr> -->
+                        <input type="file" name="foto" placeholder="Input Foto" class="form-control input-default ">
+                    </td>
+                </tr>
             </table><br>
             <button type="submit" class="btn btn-success btn-rounded m-b-10 m-l-5">Submit</button>
         </form>

@@ -34,7 +34,6 @@
                     <th>Tanggal</th>
                     <th>Jumlah</th>
                     <th>Status</th>
-                    <th>Opsi</th>
                 </tr>
             </thead>
             <tbody>

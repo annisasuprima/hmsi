@@ -57,6 +57,14 @@
                 </tr>
                 <tr>
                     <td>
+                        <label>Bukti Pembayaran</label>
+                    </td>
+                    <td>
+                        <input type="text" name="bukti" placeholder="Input Bukti" class="form-control input-default ">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label>Keterangan</label>
                     </td>
                     <td>

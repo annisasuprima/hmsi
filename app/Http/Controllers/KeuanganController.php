@@ -45,8 +45,8 @@ class KeuanganController extends Controller
     {
         $dtRiwayat = DB::table('keuangan')
                         -> join ('anggota', 'keuangan.id_anggota', '=', 'anggota.id')
-                        -> select ('keuangan.id', 'no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'status_konfirmasi')
-                        // -> where('id_kategori', '1')
+                        -> select ('keuangan.id', 'anggota.id', 'no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'status_konfirmasi')
+                        // -> where('anggota.id', '')
                         -> get();
 
         return view('Keuangan.LihatPembayaran', compact('dtRiwayat'));
@@ -106,14 +106,12 @@ class KeuanganController extends Controller
      //SIMPAN DATA KAS MASUK
     public function store(Request $request)
     {
-        $bukti = "Cash";
-
         Keuangan::create([
             'id_anggota' => $request->id_anggota,
             'id_kategori' => $request->id_kategori,
             'tanggal_pembayaran' => $request->tanggal,
             'jumlah_pembayaran' => $request->jumlah,
-            'bukti_pembayaran' => $bukti,
+            'bukti_pembayaran' => $request->bukti,
             'keterangan' => $request->ket,
             'status_konfirmasi' => $request->status,
         ]);
@@ -124,14 +122,15 @@ class KeuanganController extends Controller
     //SIMPAN DATA KAS KELUAR
     public function store1(Request $request)
     {
-        $bukti = "Belum";
+        $foto = $request->foto;
+        $bukti = $foto->getClientOriginalName();
 
         Keuangan::create([
             'id_anggota' => $request->id_anggota,
             'id_kategori' => $request->id_kategori,
             'tanggal_pembayaran' => $request->tanggal,
             'jumlah_pembayaran' => $request->jumlah,
-            'bukti_pembayaran' => $bukti,
+            'bukti_pembayaran' => $request->bukti,
             'keterangan' => $request->ket,
             'status_konfirmasi' => $request->status,
         ]);
@@ -142,7 +141,9 @@ class KeuanganController extends Controller
     //SIMPAN DATA PEMBAYARAN
     public function store2(Request $request)
     {
-        $bukti = "Belum";
+        // $bukti = "Belum";
+        $foto = $request->foto;
+        $bukti = $foto->getClientOriginalName();
         $status = "Belum";
 
         Keuangan::create([
@@ -189,7 +190,7 @@ class KeuanganController extends Controller
     {
         $keuangan = DB::table('keuangan')
                         -> join ('anggota', 'keuangan.id_anggota', '=', 'anggota.id')
-                        -> select ('keuangan.id', 'no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'keterangan', 'status_konfirmasi')
+                        -> select ('keuangan.id', 'no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'bukti_pembayaran', 'keterangan', 'status_konfirmasi')
                         -> where('keuangan.id', '=', $id)
                         -> get();
 
@@ -206,7 +207,7 @@ class KeuanganController extends Controller
     {
         $keuangan = DB::table('keuangan')
                         -> join ('anggota', 'keuangan.id_anggota', '=', 'anggota.id')
-                        -> select ('keuangan.id', 'no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'keterangan', 'status_konfirmasi')
+                        -> select ('keuangan.id', 'no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'bukti_pembayaran', 'keterangan', 'status_konfirmasi')
                         -> where('keuangan.id', '=', $id)
                         -> get();
 
@@ -228,8 +229,6 @@ class KeuanganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $bukti = "Cash";
-
         $anggota = DB::table('anggota')
                     ->where('no_himpunan','=', $request->no_himpunan)
                     ->get(['id']);
@@ -253,7 +252,7 @@ class KeuanganController extends Controller
             'id_kategori' => $dt_kategori,
             'tanggal_pembayaran' => $request->tanggal,
             'jumlah_pembayaran' => $request->jumlah,
-            'bukti_pembayaran' => $bukti,
+            'bukti_pembayaran' => $request->bukti,
             'keterangan' => $request->ket,
             'status_konfirmasi' => $request->status,
         ]); 

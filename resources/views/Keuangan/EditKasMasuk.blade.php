@@ -50,6 +50,14 @@
                 </tr>
                 <tr>
                     <td>
+                        <label>Bukti Pembayaran</label>
+                    </td>
+                    <td>
+                        <input type="text" name="bukti" value="{{$n->bukti_pembayaran}}"class="form-control input-default ">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label>Keterangan</label>
                     </td>
                     <td>
