@@ -77,8 +77,11 @@
                         </ul>
                     </li>
                     @elseif(Str::length(Auth::guard('anggota')->user()) > 0)
-                    <li>
-                        <a href="#"><i class="ti-money"></i> Keuangan</a>
+                    <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <ul>
+                            <li><a href="/form-bayar">Form Pembayaran</a></li>
+                            <li><a href="/riwayat-kas">Riwayat</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="{{route('pengurus')}}"><i class="ti-pencil-alt2"></i> Notulensi</a>
