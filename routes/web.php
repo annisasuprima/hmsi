@@ -29,25 +29,23 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+// HOMEPAGE,LOGIN,DAFTAR
+Route::get('/daftar', [LoginController::class, 'daftar'])->name('daftar');
+Route::post('/save-peserta', [Peserta_orController::class, 'store'])->name('save-peserta');
+Route::get('/home', [LoginController::class, 'home'])->name('home');
+
 Route::group(['middleware'=>['auth:user,anggota']], function(){
-    // PAGE DASHBOARD  
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    });
-
-    // HOMEPAGE,LOGIN,DAFTAR
-    Route::get('/daftar', [LoginController::class, 'daftar'])->name('daftar');
-    Route::get('/home', [LoginController::class, 'home'])->name('home');
-
+    
+    Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
     // PESERTA OR
     Route::get('/lihat-peserta', [Peserta_orController::class, 'index'])->name('lihat-peserta');
-    Route::post('/save-peserta', [Peserta_orController::class, 'store'])->name('save-peserta');
     Route::get('/detail-peserta/{id}', [Peserta_orController::class, 'show'])->name('detail-peserta');
     Route::post('/nilai-peserta/{id}', [Peserta_orController::class, 'update'])->name('nilai-peserta');
     Route::get('/tolak-peserta/{id}', [Peserta_orController::class, 'tolak'])->name('tolak-peserta');
     Route::get('/laporan-peserta', [Peserta_orController::class, 'laporan'])->name('laporan-peserta');
 
     // AKUN ANGGOTA
+    Route::get('/profil', [AnggotaController::class, 'profil'])->name('profil');
     Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota');
     Route::post('/tambah-anggota', [AnggotaController::class, 'store'])->name('tambah-anggota'); //Dari peserta OR
     Route::get('/create-anggota', [AnggotaController::class, 'create'])->name('create-anggota'); //Buat anggota lewat form
@@ -74,10 +72,11 @@ Route::group(['middleware'=>['auth:user,anggota']], function(){
     Route::get('/edit-rapat/{id}', [RapatController::class, 'edit'])->name('edit-rapat');
     Route::post('/update-rapat/{id}', [RapatController::class, 'update'])->name('update-rapat');
 
-    //PENGURUS
+    //PENGURUS ABSENSI
     Route::get('/pengurus', [AbsensiController::class, 'index'])->name('pengurus');
     Route::get('/absensi/{id}', [AbsensiController::class, 'show'])->name('absensi/{id}');
     Route::get('/detail/{id}', [AbsensiController::class, 'detail'])->name('detail-rapat');
+    Route::post('/save-absen', [AbsensiController::class, 'store'])->name('save-absen');
 
     // KEUANGAN (ADMIN)
     Route::get('/kas-masuk', [App\Http\Controllers\KeuanganController::class, 'index'])->name('kas-masuk');

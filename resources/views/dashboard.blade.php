@@ -41,11 +41,11 @@
                             <!-- <img src="assets/images/logo.png" alt="" /> --><span>HMSI Unand</span>
                         </a>
                     </div>
+                    @if (Str::length(Auth::guard('user')->user()) > 0)
                     <li class="label">Main</li>
                     <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard</a>
+                        <a href="{{route('dashboard')}}"><i class="ti-home"></i> Dashboard</a>
                     </li>
-                    @if (Str::length(Auth::guard('user')->user()) > 0)
                     <li class="label">Apps</li>
                     <li>
                         <a href="{{route('divisi')}}"><i class="ti-view-list-alt"></i> Divisi</a>
@@ -77,6 +77,9 @@
                         </ul>
                     </li>
                     @elseif(Str::length(Auth::guard('anggota')->user()) > 0)
+                    <li>
+                        <a href="{{route('profil')}}"><i class="ti-home"></i> Profil</a>
+                    </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="/form-bayar">Form Pembayaran</a></li>
@@ -108,27 +111,13 @@
                     <div class="float-right">
                         <div class="dropdown dib">
                             <div class="header-icon" data-toggle="dropdown">
-                                <span class="user-avatar">John
-                                    <i class="ti-angle-down f-s-10"></i>
+                                <span class="user-avatar">
+                                    @if (Str::length(Auth::guard('anggota')->user()) > 0)
+                                    <a href="{{route('profil')}}">{{ Auth::guard('anggota')->user()->nama }}</a>
+                                    @elseif (Str::length(Auth::guard('user')->user()) > 0)
+                                    {{ Auth::guard('user')->user()->name }}
+                                    @endif
                                 </span>
-                                <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-content-body">
-                                        <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="ti-user"></i>
-                                                    <span>Profile</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="ti-power-off"></i>
-                                                    <span>Logout</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -168,11 +157,11 @@
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="stat-widget-one">
-                                    <div class="stat-icon dib"><i class="ti-money color-success border-success"></i>
+                                    <div class="stat-icon dib"><i class="ti-user color-success border-success"></i>
                                     </div>
                                     <div class="stat-content dib">
-                                        <div class="stat-text">Total Profit</div>
-                                        <div class="stat-digit">1,012</div>
+                                        <div class="stat-text">Pengurus</div>
+                                        <div class="stat-digit">{{$jml_agt}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -180,11 +169,11 @@
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="stat-widget-one">
-                                    <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                                    <div class="stat-icon dib"><i class="ti-id-badge color-primary border-primary"></i>
                                     </div>
                                     <div class="stat-content dib">
-                                        <div class="stat-text">New Customer</div>
-                                        <div class="stat-digit">961</div>
+                                        <div class="stat-text">Peserta OR</div>
+                                        <div class="stat-digit">{{$jml_ps}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -192,11 +181,11 @@
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="stat-widget-one">
-                                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                                    <div class="stat-icon dib"><i class="ti-marker-alt color-pink border-pink"></i>
                                     </div>
                                     <div class="stat-content dib">
-                                        <div class="stat-text">Active Projects</div>
-                                        <div class="stat-digit">770</div>
+                                        <div class="stat-text">Notulensi</div>
+                                        <div class="stat-digit">{{$jml_rapat}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -204,9 +193,9 @@
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="stat-widget-one">
-                                    <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
+                                    <div class="stat-icon dib"><i class="ti-money color-danger border-danger"></i></div>
                                     <div class="stat-content dib">
-                                        <div class="stat-text">Referral</div>
+                                        <div class="stat-text">Keuangan</div>
                                         <div class="stat-digit">2,781</div>
                                     </div>
                                 </div>
@@ -289,90 +278,78 @@
                                         <div class="item">
                                             <div class="testimonial-content">
                                                 <div class="testimonial-text">
-                                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet,
-                                                    consectetur adipisicing elit, sed do eiusmod tempor
-                                                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                    minim veniam, quis
-                                                    nostrud exercitation <i class="fa fa-quote-right"></i>
+                                                    <i class="fa fa-quote-left"></i> HMSI adalah Himpunan Mahasiswa Sistem Informasi yang berada
+                                                    pada jurusan Sistem Informasi yang berfungsi sebagai wadah untuk
+                                                    menyalurkan aspirasi, media komunikasi dan informasi, serta pembelajaran
+                                                    organisasi untuk pengembangan diri bagi anggotanya. <i class="fa fa-quote-right"></i>
                                                 </div>
-                                                <img class="testimonial-author-img" src="assets/images/avatar/1.jpg" alt="" />
-                                                <div class="testimonial-author">TYRION LANNISTER</div>
-                                                <div class="testimonial-author-position">Founder-Ceo. Dell Corp
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="testimonial-content">
-                                                <div class="testimonial-text">
-                                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet,
-                                                    consectetur adipisicing elit, sed do eiusmod tempor
-                                                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                    minim veniam, quis
-                                                    nostrud exercitation <i class="fa fa-quote-right"></i>
-                                                </div>
-                                                <img class="testimonial-author-img" src="assets/images/avatar/1.jpg" alt="" />
-                                                <div class="testimonial-author">TYRION LANNISTER</div>
-                                                <div class="testimonial-author-position">Founder-Ceo. Dell Corp
+                                                <img class="testimonial-author-img" src="{{asset('Hmsi/unand.png')}}" alt="" />
+                                                <div class="testimonial-author">About HMSI</div>
+                                                <div class="testimonial-author-position">hmsi unand
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="item">
                                             <div class="testimonial-content">
                                                 <div class="testimonial-text">
-                                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet,
-                                                    consectetur adipisicing elit, sed do eiusmod tempor
-                                                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                    minim veniam, quis
-                                                    nostrud exercitation <i class="fa fa-quote-right"></i>
+                                                    <i class="fa fa-quote-left"></i> Merupakan divisi yang bertanggung jawab atas segala kegiatan
+                                                    mahasiswa sistem informasi universitas andalas. <i class="fa fa-quote-right"></i>
                                                 </div>
-                                                <img class="testimonial-author-img" src="assets/images/avatar/1.jpg" alt="" />
-                                                <div class="testimonial-author">TYRION LANNISTER</div>
-                                                <div class="testimonial-author-position">Founder-Ceo. Dell Corp
+                                                <img class="testimonial-author-img" src="{{asset('Hmsi/kms.png')}}" alt="" />
+                                                <div class="testimonial-author">Divisi Kemahasiswaan</div>
+                                                <div class="testimonial-author-position">Penjelasan Divisi
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="item">
                                             <div class="testimonial-content">
                                                 <div class="testimonial-text">
-                                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet,
-                                                    consectetur adipisicing elit, sed do eiusmod tempor
-                                                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                    minim veniam, quis
-                                                    nostrud exercitation <i class="fa fa-quote-right"></i>
+                                                    <i class="fa fa-quote-left"></i>Merupakan divisi yang bertanggung jawab atas segala
+                                                    kegiatan hubungan masayarakat sistem informasi universitas
+                                                    andalas. <i class="fa fa-quote-right"></i>
                                                 </div>
-                                                <img class="testimonial-author-img" src="assets/images/avatar/1.jpg" alt="" />
-                                                <div class="testimonial-author">TYRION LANNISTER</div>
-                                                <div class="testimonial-author-position">Founder-Ceo. Dell Corp
+                                                <img class="testimonial-author-img" src="{{asset('Hmsi/humas.png')}}" alt="" />
+                                                <div class="testimonial-author">Divisi Humas</div>
+                                                <div class="testimonial-author-position">Penjelasan Divisi
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="item">
                                             <div class="testimonial-content">
                                                 <div class="testimonial-text">
-                                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet,
-                                                    consectetur adipisicing elit, sed do eiusmod tempor
-                                                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                    minim veniam, quis
-                                                    nostrud exercitation <i class="fa fa-quote-right"></i>
+                                                    <i class="fa fa-quote-left"></i> Merupakan divisi yang bertanggung jawab atas segala
+                                                    kegiatan di kesekretariatan himpunan mahasiswa
+                                                    sistem informasi. <i class="fa fa-quote-right"></i>
                                                 </div>
-                                                <img class="testimonial-author-img" src="assets/images/avatar/1.jpg" alt="" />
-                                                <div class="testimonial-author">TYRION LANNISTER</div>
-                                                <div class="testimonial-author-position">Founder-Ceo. Dell Corp
+                                                <img class="testimonial-author-img" src="{{asset('Hmsi/rtk.png')}}" alt="" />
+                                                <div class="testimonial-author">Divisi Rumah Tangga</div>
+                                                <div class="testimonial-author-position">Penjelasan Divisi
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="item">
                                             <div class="testimonial-content">
                                                 <div class="testimonial-text">
-                                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet,
-                                                    consectetur adipisicing elit, sed do eiusmod tempor
-                                                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                    minim veniam, quis
-                                                    nostrud exercitation <i class="fa fa-quote-right"></i>
+                                                    <i class="fa fa-quote-left"></i> Merupakan divisi yang bertanggung jawab atas segala
+                                                    kegiatan keprofesian dan teknologi informasi pada himpunan
+                                                    mahasiswa sistem infomrasi.<i class="fa fa-quote-right"></i>
                                                 </div>
-                                                <img class="testimonial-author-img" src="assets/images/avatar/1.jpg" alt="" />
-                                                <div class="testimonial-author">TYRION LANNISTER</div>
-                                                <div class="testimonial-author-position">Founder-Ceo. Dell Corp
+                                                <img class="testimonial-author-img" src="{{asset('Hmsi/profit.png')}}" alt="" />
+                                                <div class="testimonial-author">Divisi Keprofesian dan IT</div>
+                                                <div class="testimonial-author-position">Penjelasan Divisi
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="testimonial-content">
+                                                <div class="testimonial-text">
+                                                    <i class="fa fa-quote-left"></i> Merupakan divisi yang bertanggung jawab atas segala
+                                                    kegiatan wirausaha pada himpunan mahasiswa sistem
+                                                    informasi. <i class="fa fa-quote-right"></i>
+                                                </div>
+                                                <img class="testimonial-author-img" src="{{asset('Hmsi/kwu.png')}}" alt="" />
+                                                <div class="testimonial-author">Divisi Kewirausahaan</div>
+                                                <div class="testimonial-author-position">Penjelasan Divisi
                                                 </div>
                                             </div>
                                         </div>
@@ -409,7 +386,6 @@
     <script src="{{asset('focus/assets/js/lib/calendar-2/moment.latest.min.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/calendar-2/pignose.calendar.min.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/calendar-2/pignose.init.js')}}"></script>
-
 
     <script src="{{asset('focus/assets/js/lib/weather/jquery.simpleWeather.min.js')}}"></script>
     <script src="{{asset('focus/assets/js/lib/weather/weather-init.js')}}"></script>

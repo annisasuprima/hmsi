@@ -23,10 +23,10 @@
                 <h2>Pendaftaran OR HMSI 2021/2022</h2>
                 <div class="form-group-1">
                     <input type="text" name="nama" id="title" placeholder="Masukkan Nama" required />
-                    <input type="text" name="nim" id="name" placeholder="Masukkan NIM" required />
+                    <input type="text" name="nim" id="name" placeholder="Masukkan NIM" maxlength="10" required />
                     <input type="text" name="no_himpunan" id="no_himpunan" placeholder="Nomor Himpunan" required />
                     <input type="email" name="email" id="email" placeholder="Email" required />
-                    <input type="text" name="no_hp" id="phone_number" placeholder="No. HP" required />
+                    <input type="text" name="no_hp" id="phone_number" maxlength="12" placeholder="No. HP" required />
                     <div class="select-list">
                         <select name="jenis_kelamin">
                             <option disabled selected>-Jenis Kelamin-</option>
@@ -95,7 +95,12 @@
                     </table>
                 </div>
                 <div class="form-submit">
-                    <input type="submit" class="submit" value="Kirim Form Pendaftaran" />
+                    <table>
+                        <tr>
+                            <td><input type="submit" class="submit" value="Kirim Form Pendaftaran" /></td>
+                            <td><input type="reset" class="submit" value="reset"></td>
+                        </tr>
+                    </table>
                     <a href="{{route('home')}}">Back to Home</a>
                 </div>
             </form>
@@ -106,6 +111,7 @@
     <!-- JS -->
     <script src="{{asset('Regist/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('Regist/js/main.js')}}"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+    @include('sweetalert::alert')
+</body>
 
 </html>

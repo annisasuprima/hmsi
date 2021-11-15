@@ -29,7 +29,7 @@
     <link href="{{asset('focus/assets/css/lib/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('focus/assets/css/lib/helper.css')}}" rel="stylesheet">
     <link href="{{asset('focus/assets/css/style.css')}}" rel="stylesheet">
-    <link href="{{asset('focus/assets/css/lib/sweetalert/sweetalert.css')}}" rel="stylesheet">
+    <!-- <link href="{{asset('focus/assets/css/lib/sweetalert/sweetalert.css')}}" rel="stylesheet"> -->
     <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -45,11 +45,11 @@
                             <!-- <img src="assets/images/logo.png" alt="" /> --><span>HMSI Unand</span>
                         </a>
                     </div>
+                    @if (Str::length(Auth::guard('user')->user()) > 0)
                     <li class="label">Main</li>
                     <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard</a>
+                        <a href="{{route('dashboard')}}"><i class="ti-home"></i> Dashboard</a>
                     </li>
-                    @if (Str::length(Auth::guard('user')->user()) > 0)
                     <li class="label">Apps</li>
                     <li>
                         <a href="{{route('divisi')}}"><i class="ti-view-list-alt"></i> Divisi</a>
@@ -81,6 +81,9 @@
                         </ul>
                     </li>
                     @elseif(Str::length(Auth::guard('anggota')->user()) > 0)
+                    <li>
+                        <a href="{{route('profil')}}"><i class="ti-home"></i> Profil</a>
+                    </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="/form-bayar">Form Pembayaran</a></li>
@@ -113,27 +116,13 @@
                     <div class="float-right">
                         <div class="dropdown dib">
                             <div class="header-icon" data-toggle="dropdown">
-                                <span class="user-avatar">John
-                                    <i class="ti-angle-down f-s-10"></i>
+                                <span class="user-avatar">
+                                    @if (Str::length(Auth::guard('anggota')->user()) > 0)
+                                    {{ Auth::guard('anggota')->user()->nama }}
+                                    @elseif (Str::length(Auth::guard('user')->user()) > 0)
+                                    {{ Auth::guard('user')->user()->name }}
+                                    @endif
                                 </span>
-                                <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-content-body">
-                                        <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="ti-user"></i>
-                                                    <span>Profile</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="ti-power-off"></i>
-                                                    <span>Logout</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -250,8 +239,8 @@
     <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
     <script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
     <!-- Sweet Alert -->
-    <script src="{{asset('focus/assets/js/lib/sweetalert/sweetalert.min.js')}}"></script>
-    <script src="{{asset('focus/assets/js/lib/sweetalert/sweetalert.init.js')}}"></script>
+    <!-- <script src="{{asset('focus/assets/js/lib/sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('focus/assets/js/lib/sweetalert/sweetalert.init.js')}}"></script> -->
     <!-- Page specific script -->
     <script>
         $(function() {

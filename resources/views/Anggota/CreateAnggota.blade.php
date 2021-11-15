@@ -55,7 +55,7 @@
                         <label>Angkatan</label>
                     </td>
                     <td>
-                        <input type="text" name="angkatan" placeholder="Input Angkatan (2***)" class="form-control input-default ">
+                        <input type="text" maxlength="4" name="angkatan" placeholder="Input Angkatan (2***)" class="form-control input-default ">
                     </td>
                 </tr>
                 <tr>
@@ -124,7 +124,7 @@
                         <label>Nomor Hp</label>
                     </td>
                     <td>
-                        <input type="text" name="no_hp" placeholder="Input No.Handphone (WA)" class="form-control input-default ">
+                        <input type="text" maxlength="12" name="no_hp" placeholder="Input No.Handphone (WA)" class="form-control input-default ">
                     </td>
                 </tr>
                 <tr>

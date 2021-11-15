@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Anggota;
 use App\Models\Peserta_or;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 
 class AnggotaController extends Controller
 {
@@ -24,6 +24,22 @@ class AnggotaController extends Controller
             'anggota.no_himpunan','anggota.id  AS id_anggota'
         ]);
         return view('Anggota.ReadAnggota', compact('dtAnggota'));
+    }
+
+    public function profil()
+    {
+        $dtAnggota = DB::table('anggota')
+        ->join('divisi', 'divisi.id', '=', 'anggota.id_divisi')
+        ->where('anggota.id', '=', Auth::guard('anggota')->user()->id )
+        ->get([
+            'divisi.id AS id_divisi', 'divisi.nama_divisi', 'anggota.nim',
+            'anggota.id_pesertaor', 'anggota.nama', 'anggota.password',
+            'anggota.angkatan', 'anggota.jabatan', 'anggota.jenis_kelamin', 'anggota.alamat',
+            'anggota.tempat_lahir', 'anggota.tgl_lahir', 'anggota.email',
+            'anggota.no_hp', 'anggota.foto', 'anggota.cv', 'anggota.no_himpunan',
+            'anggota.tahun_jabatan', 'anggota.jenis_keanggotaan', 'anggota.id  AS id_anggota'
+        ]);
+        return view('Page.profil',compact('dtAnggota'));
     }
 
     /**
@@ -57,15 +73,17 @@ class AnggotaController extends Controller
         }
 
         $keanggotaan = "Anggota Biasa";
+        $jabatan = "anggota";
         $password = "12345";
+        $tahun = date('Y');
 
         Anggota::create([
             'id_divisi' => $data,
             'id_pesertaor' => $request->id_pesertaor,
             'no_himpunan' => $request->no_himpunan,
             'nama' => $request->nama,
-            'password' => $password,
-            'jabatan' => $request->jabatan,
+            'password' => bcrypt($password),
+            'jabatan' => $jabatan,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat,
             'tempat_lahir' => $request->tempat_lahir,
@@ -75,7 +93,7 @@ class AnggotaController extends Controller
             'angkatan' => $request->angkatan,
             'foto' => $request->foto,
             'cv' => $request->cv,
-            'tahun_jabatan' => $request->tahun_jabatan,
+            'tahun_jabatan' => $tahun,
             'jenis_keanggotaan' => $keanggotaan,
             'nim' => $request->nim
         ]);
@@ -87,7 +105,7 @@ class AnggotaController extends Controller
             'status_or' => $status
         ]);
 
-        return view('OpRec.ReadPeserta');
+        return back()->with('success', 'Peserta berhasil diterima!');;
     }
 
      public function save(Request $request){
