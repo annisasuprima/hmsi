@@ -11,7 +11,7 @@
 <div class="card-body">
     <br>
     <div class="table-responsive">
-        <form action="" method="POST">
+        <form action="{{route('save-absen')}}" method="POST">
             {{csrf_field()}}
             <table cellpadding="7">
                 @foreach ($dtrapat as $dt)
@@ -21,6 +21,7 @@
                     </td>
                     <td>
                         <input type="text" name="nama" value="{{$dt->tanggal}}" class="form-control input-default ">
+                        <input type="text" name="id_rapat" value="{{$dt->id_rapat}}" hidden class="form-control input-default ">
                     </td>
                 </tr>
                 <tr>
@@ -36,7 +37,10 @@
                         <label>Nomor Himpunan</label>
                     </td>
                     <td>
-                        <input type="text" name="no_himpunan" placeholder="Input No.Himpunan" class="form-control input-default ">
+                        @foreach ($dtanggota as $agt)
+                        <input type="text" name="no_himpunan" value="{{$agt->no_himpunan}}" class="form-control input-default ">
+                        <input type="text" name="id_anggota" value="{{$agt->id}}" class="form-control input-default" hidden>
+                        @endforeach
                     </td>
                 </tr>
                 <tr>
@@ -44,10 +48,9 @@
                         <label>Status</label>
                     </td>
                     <td>
-                        <input type='radio' name='jenis_kelamin' value='Hadir' /> Hadir
-                        <input type='radio' name='jenis_kelamin' value='Izin' /> Izin
-                        <input type='radio' name='jenis_kelamin' value='Terlambat' /> Terlambat
-                        <input type='radio' name='jenis_kelamin' value='Tidak ada keterangan' />Tidak ada keterangan
+                        <input type='radio' name='status_kehadiran' value='Hadir' /> Hadir
+                        <input type='radio' name='status_kehadiran' value='Izin' /> Izin
+                        <input type='radio' name='status_kehadiran' value='Tidak Hadir' /> Terlambat
                     </td>
                 </tr>
                 @endforeach

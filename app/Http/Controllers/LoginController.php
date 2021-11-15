@@ -13,7 +13,7 @@ class LoginController extends Controller
         if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password])){
             return redirect('/dashboard');
         } else if (Auth::guard('anggota')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect('/dashboard');
+            return redirect('/profil');
         }
 
         return redirect ('/login');
@@ -46,5 +46,10 @@ class LoginController extends Controller
     public function home()
     {
         return view('Page.homepage');
+    }
+
+    public function dashboard()
+    {
+        return view('dashboard');
     }
 }

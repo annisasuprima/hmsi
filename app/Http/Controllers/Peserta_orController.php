@@ -46,6 +46,8 @@ class Peserta_orController extends Controller
         $laporan = DB::table('peserta_or')
         ->leftJoin('anggota','anggota.id_pesertaor','=','peserta_or.id')
         ->leftjoin('divisi','divisi.id','=','anggota.id_divisi')
+        ->where('status_or','=','lulus')
+        ->orWhere('status_or','=','tidak lulus')
         ->get([
             'peserta_or.no_himpunan','peserta_or.nim','peserta_or.nama',
             'peserta_or.status_or','divisi.nama_divisi'
@@ -99,7 +101,7 @@ class Peserta_orController extends Controller
         $cv->move(public_path().'/Hmsi/cv',$filecv);
         $foto->move(public_path() . '/Hmsi/foto', $filefoto);
         
-        print('Berhasil disimpan');
+        return back()->with('success', 'Anda sudah berhasil mendaftar');
 
     }
 

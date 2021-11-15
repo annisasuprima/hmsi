@@ -6,6 +6,8 @@ use App\Models\Absensi;
 use App\Models\Divisi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Auth;
 
 class AbsensiController extends Controller
 {
@@ -23,7 +25,8 @@ class AbsensiController extends Controller
             'rapat.waktu_mulai', 'rapat.waktu_selesai', 'rapat.topik',
             'rapat.hasil', 'rapat.id  AS id_rapat'
         ]);
-        return view('Pengurus.ListDivisi',compact('dtrapat'));
+
+        return view('Pengurus.ListDivisi',compact('dtrapat',));
     }
 
     /**
@@ -44,7 +47,12 @@ class AbsensiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Absensi::create([
+            'id_anggota' => $request->id_anggota,
+            'id_rapat' => $request->id_rapat,
+            'status_kehadiran' => $request->status_kehadiran
+        ]);
+        return back();
     }
 
     /**
@@ -61,7 +69,13 @@ class AbsensiController extends Controller
         ->get([ 
             'rapat.tanggal','rapat.topik','rapat.id  AS id_rapat'
         ]);
-        return view('Pengurus.TakeAbsensi',compact('dtrapat'));
+
+        $dtanggota = DB::table('anggota')
+        ->where('id','=', Auth::guard('anggota')->user()->id)
+        ->get([
+            'id','no_himpunan'
+        ]);
+        return view('Pengurus.TakeAbsensi',compact('dtrapat','dtanggota'));
     }
 
     public function detail($id)
@@ -74,7 +88,15 @@ class AbsensiController extends Controller
                 'rapat.waktu_mulai', 'rapat.waktu_selesai', 'rapat.topik',
                 'rapat.hasil', 'rapat.id  AS id_rapat'
             ]);
-        return view('Pengurus.DetailNotulen', compact('detailrapat'));
+        
+        $kehadiran = DB::table('absensi')
+        ->join('anggota','anggota.id','=','absensi.id_anggota')
+        ->join('rapat','rapat.id','=','absensi.id_rapat')
+        ->where('rapat.id','=',$id)
+        ->get([
+            'anggota.nama','absensi.status_kehadiran'
+        ]);
+        return view('Pengurus.DetailNotulen', compact('detailrapat','kehadiran'));
     }
     /**
      * Show the form for editing the specified resource.

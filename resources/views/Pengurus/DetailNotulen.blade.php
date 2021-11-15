@@ -34,7 +34,12 @@
                 <td>{{$dt->topik}}</td>
             </tr>
             @endforeach
-        </table>
+        </table><br>
+        <span>Kehadiran :</span>
+        <?php $no = 1; ?>
+        @foreach ($kehadiran as $abs)
+        <p>{{$no++}}. {{$abs->nama}} ({{$abs->status_kehadiran}})</p>
+        @endforeach
         <br>
         <br>
         <a href="{{url('pengurus')}}" class="btn btn-default btn-rounded m-b-10">Back</a>

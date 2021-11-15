@@ -71,9 +71,18 @@ class RapatController extends Controller
         ->get([
             'divisi.id','divisi.nama_divisi', 'rapat.tanggal',
             'rapat.waktu_mulai', 'rapat.waktu_selesai', 'rapat.topik',
-            'rapat.hasil','rapat.id  AS id_rapat'
+            'rapat.hasil','rapat.id  AS id_rapat',
         ]);
-        return view('Rapat.DetailRapat',compact('detailrapat'));
+
+        $kehadiran = DB::table('absensi')
+        ->join('anggota','anggota.id','=','absensi.id_anggota')
+        ->join('rapat','rapat.id','=','absensi.id_rapat')
+        ->where('rapat.id','=',$id)
+        ->get([
+            'anggota.nama','absensi.status_kehadiran'
+        ]);
+
+        return view('Rapat.DetailRapat',compact('detailrapat','kehadiran'));
 
     }
 
