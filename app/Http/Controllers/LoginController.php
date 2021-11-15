@@ -59,6 +59,14 @@ class LoginController extends Controller
 
     public function dashboard()
     {
-        return view('dashboard');
+        $pengurus = DB::table('anggota')->get();
+        $jml_agt = count(collect($pengurus));
+
+        $peserta_or = DB::table('peserta_or')->get();
+        $jml_ps = count(collect($peserta_or));
+
+        $rapat = DB::table('rapat')->get();
+        $jml_rapat = count(collect($rapat));
+        return view('dashboard',compact('jml_agt','jml_ps','jml_rapat'));
     }
 }
