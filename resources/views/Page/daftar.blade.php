@@ -23,7 +23,7 @@
                 <h2>Pendaftaran OR HMSI 2021/2022</h2>
                 <div class="form-group-1">
                     <input type="text" name="nama" id="title" placeholder="Masukkan Nama" required />
-                    <input type="text" name="nim" id="name" placeholder="Masukkan NIM" required />
+                    <input type="text" name="nim" id="name" placeholder="Masukkan NIM" maxlength="10" required />
                     <input type="text" name="no_himpunan" id="no_himpunan" placeholder="Nomor Himpunan" required />
                     <input type="email" name="email" id="email" placeholder="Email" required />
                     <input type="text" name="no_hp" id="phone_number" maxlength="12" placeholder="No. HP" required />

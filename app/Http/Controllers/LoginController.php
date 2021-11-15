@@ -36,7 +36,16 @@ class LoginController extends Controller
 
     public function daftar()
     {
+        $inti = DB::table('divisi')
+        ->where('id','=', '7')
+        ->get();
+
+        foreach ($inti as $data){
+            $pd[] = $data->id;
+        }
+
         $listdiv = DB::table('divisi')
+        ->whereNotIn('id',$pd)
         ->get([
             'id', 'nama_divisi'
         ]);

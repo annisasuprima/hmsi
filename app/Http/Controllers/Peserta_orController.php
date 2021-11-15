@@ -160,7 +160,7 @@ class Peserta_orController extends Controller
             'no_hp', 'angkatan', 'alamat', 'divis1', 'alasan1', 'divis2', 'alasan2', 'foto', 'cv',
             'nilai', 'status_or','no_himpunan','created_at'
         ]);
-        return view('OpRec.DetailPeserta', compact('peserta'));         
+        return view('OpRec.DetailPeserta', compact('peserta'))->with('success', 'Nilai Berhasil diinputkan!');       
     }
 
     public function tolak(Request $request, $id)
@@ -173,7 +173,7 @@ class Peserta_orController extends Controller
         ->update([
             'status_or' => $status
         ]);
-        return redirect('lihat-peserta');
+        return redirect('lihat-peserta')->with('success', 'Peserta berhasil DITOLAK!');
     }
     /**
      * Remove the specified resource from storage.

@@ -20,6 +20,8 @@ class AbsensiController extends Controller
     {
         $dtrapat = DB::table('rapat')
         ->join('divisi', 'divisi.id', '=', 'rapat.id_divisi')
+        ->join('anggota','anggota.divisi_id','=','divisi.id')
+        ->where('anggota_divisi_id','=', Auth::guard('anggota')->user()->divisi_id)
         ->get([
             'divisi.id', 'divisi.nama_divisi', 'rapat.tanggal',
             'rapat.waktu_mulai', 'rapat.waktu_selesai', 'rapat.topik',

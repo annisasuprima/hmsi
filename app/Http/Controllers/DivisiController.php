@@ -87,7 +87,7 @@ class DivisiController extends Controller
     {
         $div = Divisi::findorfail($id);
         $div->update($request->all());
-        return redirect('divisi');
+        return redirect('divisi')->with('success', 'Data berhasil diedit!');
     }
 
     /**

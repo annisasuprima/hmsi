@@ -73,7 +73,9 @@ class AnggotaController extends Controller
         }
 
         $keanggotaan = "Anggota Biasa";
+        $jabatan = "anggota";
         $password = "12345";
+        $tahun = date('Y');
 
         Anggota::create([
             'id_divisi' => $data,
@@ -81,7 +83,7 @@ class AnggotaController extends Controller
             'no_himpunan' => $request->no_himpunan,
             'nama' => $request->nama,
             'password' => bcrypt($password),
-            'jabatan' => $request->jabatan,
+            'jabatan' => $jabatan,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat,
             'tempat_lahir' => $request->tempat_lahir,
@@ -91,7 +93,7 @@ class AnggotaController extends Controller
             'angkatan' => $request->angkatan,
             'foto' => $request->foto,
             'cv' => $request->cv,
-            'tahun_jabatan' => $request->tahun_jabatan,
+            'tahun_jabatan' => $tahun,
             'jenis_keanggotaan' => $keanggotaan,
             'nim' => $request->nim
         ]);

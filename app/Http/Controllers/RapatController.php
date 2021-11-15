@@ -54,7 +54,7 @@ class RapatController extends Controller
             'topik'         => $request->topik,
             'hasil'         => $request->hasil
         ]);
-        return redirect('rapat');
+        return redirect('rapat')->with('success', 'Notulensi berhasil ditambahkan');
     }
 
     /**
