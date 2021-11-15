@@ -36,7 +36,6 @@
                         <td>
                             <a href="{{url('detail',$tampil->id_rapat)}}" class="btn btn-warning btn-rounded btn-sm m-b-5 m-l-5">Detail</i></a>
                             <a href="{{url('absensi',$tampil->id_rapat)}}" class="btn btn-primary btn-rounded btn-sm m-b-5 m-l-5">Absensi</i></a>
-                            <!-- <a href="{{url('absensi',Auth::guard('anggota')->user()->id)}}" class="btn btn-primary btn-rounded btn-sm m-b-5 m-l-5">Absensi</i></a> -->
                         </td>
                     </tr>
                     @endforeach
@@ -52,5 +51,6 @@
             </table>
         </div>
     </div>
+    @include('sweetalert::alert')
 </div>
 @endsection
