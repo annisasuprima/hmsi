@@ -6,6 +6,7 @@ use App\Models\Keuangan;
 use App\Models\Anggota;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class KeuanganController extends Controller
 {
@@ -46,7 +47,7 @@ class KeuanganController extends Controller
         $dtRiwayat = DB::table('keuangan')
                         -> join ('anggota', 'keuangan.id_anggota', '=', 'anggota.id')
                         -> select ('keuangan.id', 'anggota.id', 'no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'status_konfirmasi')
-                        // -> where('anggota.id', '')
+                        -> where('anggota.id', '=', Auth::guard('anggota')->user()->id )
                         -> get();
 
         return view('Keuangan.LihatPembayaran', compact('dtRiwayat'));
