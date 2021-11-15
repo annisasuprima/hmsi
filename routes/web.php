@@ -78,8 +78,24 @@ Route::group(['middleware'=>['auth:user,anggota']], function(){
     Route::get('/detail/{id}', [AbsensiController::class, 'detail'])->name('detail-rapat');
     Route::post('/save-absen', [AbsensiController::class, 'store'])->name('save-absen');
 
-    // KEUANGAN 
+    // KEUANGAN (ADMIN)
     Route::get('/kas-masuk', [App\Http\Controllers\KeuanganController::class, 'index'])->name('kas-masuk');
+    Route::get('/create-kas-masuk', [App\Http\Controllers\KeuanganController::class, 'create'])->name('create-kas-masuk');
+    Route::post('/create-kas-masuk', [App\Http\Controllers\KeuanganController::class, 'store']);
+    Route::get('/ubah-kas-masuk/{id}', [App\Http\Controllers\KeuanganController::class, 'edit']);
+    Route::post('/update-kas-masuk/{id}', [App\Http\Controllers\KeuanganController::class, 'update']);
+    Route::get('/delete-kas-masuk/{id}', [App\Http\Controllers\KeuanganController::class, 'destroy']);
     Route::get('/kas-keluar', [App\Http\Controllers\KeuanganController::class, 'index1'])->name('kas-keluar');
+    Route::get('/create-kas-keluar', [App\Http\Controllers\KeuanganController::class, 'create1'])->name('create-kas-keluar');
+    Route::post('/create-kas-keluar', [App\Http\Controllers\KeuanganController::class, 'store1']);
+    Route::get('/ubah-kas-keluar/{id}', [App\Http\Controllers\KeuanganController::class, 'edit1']);
+    Route::post('/update-kas-keluar/{id}', [App\Http\Controllers\KeuanganController::class, 'update1']);
+    Route::get('/delete-kas-keluar/{id}', [App\Http\Controllers\KeuanganController::class, 'destroy1']);
     Route::get('/laporan-kas', [App\Http\Controllers\KeuanganController::class, 'show'])->name('laporan-kas');
+
+    //KEUANGAN (ANGGOTA)
+    Route::get('/riwayat-kas', [App\Http\Controllers\KeuanganController::class, 'show_riwayat']);
+    Route::get('/form-bayar', [App\Http\Controllers\KeuanganController::class, 'create2']);
+    Route::post('/form-bayar', [App\Http\Controllers\KeuanganController::class, 'store2']);
+    
 });

@@ -77,11 +77,19 @@
                         </ul>
                     </li>
                     @elseif(Str::length(Auth::guard('anggota')->user()) > 0)
+<<<<<<< HEAD
                     <li>
                         <a href="{{route('profil')}}"><i class="ti-home"></i> Profil</a>
                     </li>
                     <li>
                         <a href="#"><i class="ti-money"></i> Keuangan</a>
+=======
+                    <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <ul>
+                            <li><a href="/form-bayar">Form Pembayaran</a></li>
+                            <li><a href="/riwayat-kas">Riwayat</a></li>
+                        </ul>
+>>>>>>> 7132842c1923595835fae873cd14528c03915214
                     </li>
                     <li>
                         <a href="{{route('pengurus')}}"><i class="ti-pencil-alt2"></i> Notulensi</a>
