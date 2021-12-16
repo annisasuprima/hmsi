@@ -20,12 +20,20 @@ class KeuanganController extends Controller
     public function index()
     {
         $dtKasMasuk = DB::table('keuangan')
-                        -> join ('anggota', 'keuangan.id_anggota', '=', 'anggota.id')
-                        -> select ('keuangan.id', 'no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'status_konfirmasi')
-                        -> where('id_kategori', '1')
-                        -> orWhere('id_kategori', '2')
-                        -> orWhere('id_kategori', '5')
-                        -> get();
+        ->join('anggota', 'keuangan.id_anggota', '=', 'anggota.id')
+        ->join('kat_keuangan', 'keuangan.id_kategori','=','kat_keuangan.id')
+        ->where('kat_keuangan.ket_kategori','kas masuk')
+        ->get([
+            'keuangan.id', 'anggota.no_himpunan', 'anggota.nama', 'keuangan.tanggal_pembayaran',
+            'keuangan.jumlah_pembayaran', 'keuangan.status_konfirmasi'
+        ]);
+        // $dtKasMasuk = DB::table('keuangan')
+        //                 -> join ('anggota', 'keuangan.id_anggota', '=', 'anggota.id')
+        //                 -> select ('keuangan.id', 'no_himpunan', 'nama', 'tanggal_pembayaran', 'jumlah_pembayaran', 'status_konfirmasi')
+        //                 -> where('id_kategori', '1')
+        //                 -> orWhere('id_kategori', '2')
+        //                 -> orWhere('id_kategori', '5')
+        //                 -> get();
 
         return view('Keuangan.LihatKasMasuk', compact('dtKasMasuk'));
     }

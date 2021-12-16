@@ -18,7 +18,19 @@ class AbsensiController extends Controller
      */
     public function index()
     {
+        $anggota = DB::table('anggota')
+        ->where('id','=', Auth::guard('anggota')->user()->id)
+        ->get(
+            'id_divisi'
+        );
+
+        foreach ($anggota as $divisi) {
+            $dt_divisi = $divisi->id_divisi;
+        }
+
         $dtrapat = DB::table('rapat')
+        ->where('id_divisi','=',$dt_divisi)
+        ->orWhere('id_divisi','=','7')
         ->join('divisi', 'divisi.id', '=', 'rapat.id_divisi')
         ->get([
             'divisi.id', 'divisi.nama_divisi', 'rapat.tanggal',

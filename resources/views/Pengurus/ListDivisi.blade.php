@@ -12,7 +12,11 @@
     </div>
 </div>
 <div class="row">
-
+    <div class="col-lg-12">
+        <a href="" class="btn btn-primary btn-rounded btn-sm m-b-5 m-l-5">Absensi</a>
+    </div>
+</div>
+<div class="row">
     <div class="col-lg-10">
         <div class="table-responsive">
             <table id="row-select" class="display table table-borderd table-hover">
@@ -34,8 +38,8 @@
                         <td>{{$tampil->nama_divisi}}</td>
                         <td>{{$tampil->topik}}</td>
                         <td>
-                            <a href="{{url('detail',$tampil->id_rapat)}}" class="btn btn-warning btn-rounded btn-sm m-b-5 m-l-5">Detail</i></a>
-                            <a href="{{url('absensi',$tampil->id_rapat)}}" class="btn btn-primary btn-rounded btn-sm m-b-5 m-l-5">Absensi</i></a>
+                            <a href="{{url('detail',$tampil->id_rapat)}}" class="btn btn-warning btn-rounded btn-sm m-b-5 m-l-5">Detail</a>
+                            <a href="{{url('absensi',$tampil->id_rapat)}}" class="btn btn-primary btn-rounded btn-sm m-b-5 m-l-5">Absensi</a>
                         </td>
                     </tr>
                     @endforeach
