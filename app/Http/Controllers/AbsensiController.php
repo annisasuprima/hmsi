@@ -41,6 +41,56 @@ class AbsensiController extends Controller
         return view('Pengurus.ListDivisi',compact('dtrapat',));
     }
 
+    public function listabsen()
+    {
+        $anggota = DB::table('anggota')
+        ->where('id', '=', Auth::guard('anggota')->user()->id)
+        ->get(
+            'id_divisi',
+        );
+        foreach ($anggota as $dtAnggota) {
+            $id_anggota = Auth::guard('anggota')->user()->id;
+            $id_divisi = $dtAnggota->id_divisi;
+        }
+
+        // Data Rapat yang sudah aambil absen
+        $rapat=DB::table('absensi')
+        ->where('id_anggota','=',$id_anggota)
+        ->get(['id_rapat']);
+
+        $jml = count(collect($rapat));
+        
+        if($jml>0){
+            foreach($rapat as $rapat2){
+                $dtRapat[] = $rapat2->id_rapat;
+            }
+            $absen = DB::table('rapat')
+            ->join('divisi','divisi.id','=','rapat.id_divisi')
+            ->join('anggota','anggota.id_divisi','=','divisi.id')
+            ->whereNotIn('rapat.id',$dtRapat)
+            ->where('divisi.id','=',$id_divisi)
+            ->distinct()
+            ->get([
+                'divisi.id', 'divisi.nama_divisi', 'rapat.tanggal',
+                'rapat.waktu_mulai', 'rapat.waktu_selesai', 'rapat.topik',
+                'rapat.hasil', 'rapat.id  AS id_rapat'
+            ]);
+        } else {
+            $absen = DB::table('rapat')
+            ->join('divisi', 'divisi.id', '=', 'rapat.id_divisi')
+            ->join('anggota', 'anggota.id_divisi', '=', 'divisi.id')
+            ->where('divisi.id', '=', $id_divisi)
+            ->distinct()
+            ->get([
+                'divisi.id', 'divisi.nama_divisi', 'rapat.tanggal',
+                'rapat.waktu_mulai', 'rapat.waktu_selesai', 'rapat.topik',
+                'rapat.hasil', 'rapat.id  AS id_rapat'
+            ]);
+        }
+
+        return view('Pengurus.ListAbsen', compact('absen',));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

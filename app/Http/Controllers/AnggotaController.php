@@ -61,7 +61,7 @@ class AnggotaController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-     public function store(Request $request)
+    public function store(Request $request)
     {
         // dd($request->all());
         $div = DB::table('divisi')
@@ -105,10 +105,10 @@ class AnggotaController extends Controller
             'status_or' => $status
         ]);
 
-        return back()->with('success', 'Peserta berhasil diterima!');;
+        return back()->with('success', 'Peserta berhasil diterima!');
     }
 
-     public function save(Request $request){
+    public function save(Request $request){
 
         $cv = $request->cv;
         $foto = $request->foto;
@@ -141,7 +141,7 @@ class AnggotaController extends Controller
         $cv->move(public_path() . '/Hmsi/cv', $filecv);
         $foto->move(public_path() . '/Hmsi/foto', $filefoto);
 
-        return redirect('anggota');
+        return redirect('anggota')->with('success', 'Anggota berhhasil ditambah');;
     }
 
     /**
@@ -177,19 +177,15 @@ class AnggotaController extends Controller
         $divisi = DB::table('divisi')
         ->get(['id', 'nama_divisi']);
 
+        $jenis_kelamin=DB::table('anggota')
+        ->distinct()
+        ->get(['jenis_kelamin']);
+
         $anggota = DB::table('anggota')
         ->where('id', '=', $id)
-        ->get([
-            'id','nim', 'nama', 
-            'angkatan', 'jabatan', 
-            'jenis_kelamin', 'alamat','tempat_lahir', 
-            'tgl_lahir', 'email','no_hp', 
-            'foto', 'cv', 'no_himpunan',
-            'tahun_jabatan', 'jenis_keanggotaan'
-        ]);
-        // $anggota = Anggota::findorfail($id);
+        ->get();
         
-        return view('Anggota.EditAnggota', compact('anggota','divisi'));
+        return view('Anggota.EditAnggota', compact('anggota','divisi','jenis_kelamin'));
     }
 
     /**
@@ -211,40 +207,66 @@ class AnggotaController extends Controller
             $foto = $agt->foto;
             $cv = $agt->cv;
         }
-        unlink(public_path('Hmsi/foto/' . $foto));
-        unlink(public_path('Hmsi/cv/' . $cv));
 
-        $cv = $request->cv;
-        $foto = $request->foto;
-        $filecv = $cv->getClientOriginalName();
-        $filefoto = $foto->getClientOriginalName();
+        $old_image_name_foto= $request->hidden_image_foto;
+        $old_image_name_cv = $request->hidden_image_cv;
 
-        $update = DB::table('anggota')
-        ->where('id', '=', $id)
-        ->update([
-            'id_divisi' => $request->id_divisi,
-            'no_himpunan' => $request->no_himpunan,
-            'nama' => $request->nama,
-            'jabatan' => $request->jabatan,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tgl_lahir' => $request->tgl_lahir,
-            'email'  => $request->email,
-            'no_hp' => $request->no_hp,
-            'angkatan' => $request->angkatan,
-            'foto' => $filefoto,
-            'cv' => $filecv,
-            'tahun_jabatan' => $request->tahun_jabatan,
-            'jenis_keanggotaan' => $request->jenis_keanggotaan,
-            'nim' => $request->nim
-        ]);
+        if($foto != '' or $cv != ''){
+            $newcv = $request->cv;
+            $newfoto = $request->foto;
+            $filecv = $newcv->getClientOriginalName();
+            $filefoto = $newfoto->getClientOriginalName();
+    
+            $update = DB::table('anggota')
+            ->where('id', '=', $id)
+            ->update([
+                'id_divisi' => $request->id_divisi,
+                'no_himpunan' => $request->no_himpunan,
+                'nama' => $request->nama,
+                'jabatan' => $request->jabatan,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'alamat' => $request->alamat,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
+                'email'  => $request->email,
+                'no_hp' => $request->no_hp,
+                'angkatan' => $request->angkatan,
+                'foto' => $filefoto,
+                'cv' => $filecv,
+                'tahun_jabatan' => $request->tahun_jabatan,
+                'jenis_keanggotaan' => $request->jenis_keanggotaan,
+                'nim' => $request->nim
+            ]);
+            unlink(public_path('Hmsi/foto/' . $foto));
+            unlink(public_path('Hmsi/cv/' . $cv));
+            
+            $newcv->move(public_path() . '/Hmsi/cv', $filecv);
+            $newfoto->move(public_path() . '/Hmsi/foto', $filefoto);
 
-        $cv->move(public_path() . '/Hmsi/cv', $filecv);
-        $foto->move(public_path() . '/Hmsi/foto', $filefoto);
-        // $data_anggota = Anggota::findorfail($id);
-        // $data_anggota->update($request->all());
-        return redirect('anggota');
+        } else {
+            $update = DB::table('anggota')
+                ->where('id', '=', $id)
+                ->update([
+                    'id_divisi' => $request->id_divisi,
+                    'no_himpunan' => $request->no_himpunan,
+                    'nama' => $request->nama,
+                    'jabatan' => $request->jabatan,
+                    'jenis_kelamin' => $request->jenis_kelamin,
+                    'alamat' => $request->alamat,
+                    'tempat_lahir' => $request->tempat_lahir,
+                    'tgl_lahir' => $request->tgl_lahir,
+                    'email'  => $request->email,
+                    'no_hp' => $request->no_hp,
+                    'angkatan' => $request->angkatan,
+                    'foto' => $old_image_name_foto,
+                    'cv' => $old_image_name_cv,
+                    'tahun_jabatan' => $request->tahun_jabatan,
+                    'jenis_keanggotaan' => $request->jenis_keanggotaan,
+                    'nim' => $request->nim
+                ]);
+        }
+
+        return redirect('anggota')->with('success', 'Data Anggota berhasil diedit!');
     }
 
     /**
@@ -255,9 +277,23 @@ class AnggotaController extends Controller
      */
     public function destroy($id)
     {
+        $dtAnggota = DB::table('anggota')
+        ->where('id', '=', $id)
+        ->get([
+            'foto', 'cv', 'id'
+        ]);
+
+        foreach ($dtAnggota as $agt) {
+            $foto = $agt->foto;
+            $cv = $agt->cv;
+        }
+        unlink(public_path('Hmsi/foto/'.$foto));
+        unlink(public_path('Hmsi/cv/'.$cv));
+
         $anggota = Anggota::findorfail($id);
         $anggota->delete();
-        return redirect('anggota');
+
+        return redirect('anggota')->with('success', 'Data Anggota berhasil dihapus!');;
     }
 
 

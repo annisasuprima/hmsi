@@ -9,6 +9,7 @@ use App\Http\Controllers\Peserta_orController;
 use App\Http\Controllers\AbsensiController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,8 +73,9 @@ Route::group(['middleware'=>['auth:user,anggota']], function(){
     Route::get('/edit-rapat/{id}', [RapatController::class, 'edit'])->name('edit-rapat');
     Route::post('/update-rapat/{id}', [RapatController::class, 'update'])->name('update-rapat');
 
-    //PENGURUS ABSENSI
+    //PENGURUS ABSENSI 
     Route::get('/pengurus', [AbsensiController::class, 'index'])->name('pengurus');
+    Route::get('/presensi', [AbsensiController::class, 'listabsen'])->name('presensi');
     Route::get('/absensi/{id}', [AbsensiController::class, 'show'])->name('absensi/{id}');
     Route::get('/detail/{id}', [AbsensiController::class, 'detail'])->name('detail-rapat');
     Route::post('/save-absen', [AbsensiController::class, 'store'])->name('save-absen');

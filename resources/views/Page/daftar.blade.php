@@ -30,8 +30,8 @@
                     <div class="select-list">
                         <select name="jenis_kelamin">
                             <option disabled selected>-Jenis Kelamin-</option>
-                            <option value="laki-laki">Laki-Laki</option>
-                            <option value="perempuan">Perempuan</option>
+                            <option value="Laki-laki">Laki-Laki</option>
+                            <option value="Perempuan">Perempuan</option>
                         </select>
                     </div>
                     <input type="text" name="alamat" id="alamat" placeholder="Alamat" required />
@@ -86,11 +86,11 @@
                         </tr>
                         <tr>
                             <td><input type="text" placeholder="Upload Foto" readonly required /></td>
-                            <td><input type="file" name="foto" id="foto" required /></td>
+                            <td><input type="file" name="foto" id="foto" required accept="image/*" /></td>
                         </tr>
                         <tr>
                             <td><input type="text" placeholder="Upload cv" readonly required /></td>
-                            <td><input type="file" name="cv" id="cv" required /></td>
+                            <td><input type="file" name="cv" id="cv" required accept="image/*" /></td>
                         </tr>
                     </table>
                 </div>

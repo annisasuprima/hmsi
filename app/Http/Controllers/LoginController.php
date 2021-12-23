@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -16,6 +17,7 @@ class LoginController extends Controller
             return redirect('/profil');
         }
 
+        Alert::error('Error', 'Username dan Password tidak sesuai');
         return redirect ('/login');
     }
 

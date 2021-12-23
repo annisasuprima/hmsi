@@ -153,14 +153,7 @@ class Peserta_orController extends Controller
             'nilai'=> $nilai
         ]);
 
-        $peserta = DB::table('peserta_or')
-        ->where('id', '=', $id)
-        ->get([
-            'id', 'nim', 'email', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tgl_lahir',
-            'no_hp', 'angkatan', 'alamat', 'divis1', 'alasan1', 'divis2', 'alasan2', 'foto', 'cv',
-            'nilai', 'status_or','no_himpunan','created_at'
-        ]);
-        return view('OpRec.DetailPeserta', compact('peserta'))->with('success', 'Nilai Berhasil diinputkan!');       
+        return back()->with('success', 'Nilai Berhasil diinputkan!');
     }
 
     public function tolak(Request $request, $id)
@@ -173,7 +166,7 @@ class Peserta_orController extends Controller
         ->update([
             'status_or' => $status
         ]);
-        return redirect('lihat-peserta')->with('success', 'Peserta berhasil DITOLAK!');
+        return back()->with('success', 'Peserta berhasil DITOLAK!');
     }
     /**
      * Remove the specified resource from storage.

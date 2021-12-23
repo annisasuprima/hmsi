@@ -26,14 +26,14 @@
                 </thead>
                 <tbody>
                     <?php $no = 1; ?>
-                    @foreach($dtrapat as $tampil)
+                    @foreach($absen as $tampil)
                     <tr>
                         <td>{{$no++}}</td>
                         <td>{{\Carbon\Carbon::createFromFormat('Y-m-d',$tampil->tanggal)->format('d-m-Y')}}</td>
                         <td>{{$tampil->nama_divisi}}</td>
                         <td>{{$tampil->topik}}</td>
                         <td>
-                            <a href="{{url('detail',$tampil->id_rapat)}}" class="btn btn-warning btn-rounded btn-sm m-b-5 m-l-5">Detail</a>
+                            <a href="{{url('absensi',$tampil->id_rapat)}}" class="btn btn-primary btn-rounded btn-sm m-b-5 m-l-5">Absensi</a>
                         </td>
                     </tr>
                     @endforeach

@@ -25,7 +25,7 @@
                     <input type="password" name="password" id="password" placeholder="Password" required />
                 </div>
                 <div class="form-submit">
-                    <input type="submit" name="submit"  class="submit" value="Login" />
+                    <input type="submit" name="submit" class="submit" value="Login" />
                     <a href="{{route('home')}}">Back to Home</a>
                 </div>
             </form>
@@ -35,6 +35,7 @@
     <!-- JS -->
     <script src="{{asset('Regist/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('Regist/js/main.js')}}"></script>
+    @include('sweetalert::alert')
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>

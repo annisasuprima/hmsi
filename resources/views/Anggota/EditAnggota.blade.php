@@ -23,10 +23,10 @@
                         <label>Pilih Divisi</label>
                     </td>
                     <td>
-                        <select class="form-control" name="id_divisi">
-                            <option disabled selected>-Divisi-</option>
+                        <select class="form-control" name="id_divisi" required>
+                            <option disabled>-Divisi-</option>
                             @foreach ($divisi as $dt)
-                            <option value="{{ $dt->id }}">{{$dt->nama_divisi}}</option>
+                            <option value="{{ $dt->id }}" {{$dt->id==$agt->id_divisi ? 'selected' : ''}}>{{$dt->nama_divisi}}</option>
                             @endforeach
                         </select>
                     </td>
@@ -36,7 +36,7 @@
                         <label>Nama</label>
                     </td>
                     <td>
-                        <input type="text" name="nama" placeholder="Input Nama" value="{{$agt->nama}}" class="form-control input-default ">
+                        <input type="text" name="nama" placeholder="Input Nama" value="{{$agt->nama}}" class="form-control input-default" required>
                     </td>
                 </tr>
                 <tr>
@@ -44,7 +44,7 @@
                         <label>Nim</label>
                     </td>
                     <td>
-                        <input type="text" name="nim" placeholder="Input Nim" value="{{$agt->nim}}" class="form-control input-default ">
+                        <input type="text" name="nim" placeholder="Input Nim" value="{{$agt->nim}}" class="form-control input-default" required>
                     </td>
                 </tr>
                 <tr>
@@ -52,7 +52,7 @@
                         <label>Nomor Himpunan</label>
                     </td>
                     <td>
-                        <input type="text" name="no_himpunan" placeholder="Input No.Himpunan" value="{{$agt->no_himpunan}}" class="form-control input-default ">
+                        <input type="text" name="no_himpunan" placeholder="Input No.Himpunan" value="{{$agt->no_himpunan}}" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -60,7 +60,7 @@
                         <label>Angkatan</label>
                     </td>
                     <td>
-                        <input type="text" name="angkatan" placeholder="Input Angkatan (2***)" value="{{$agt->angkatan}}" class="form-control input-default ">
+                        <input type="text" name="angkatan" placeholder="Input Angkatan (2***)" value="{{$agt->angkatan}}" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -68,8 +68,8 @@
                         <label>Jabatan</label>
                     </td>
                     <td>
-                        <select class="form-control" name="jabatan">
-                            <option disabled>-Pilih Jabatan-</option>
+                        <select class="form-control" name="jabatan" required>
+                            <option disabled selected>-Pilih Jabatan-</option>
                             <option value="Ketua Hima">Ketua Hima</option>
                             <option value="Wakil Ketua Hima">Wakil Ketua Hima</option>
                             <option value="Bendahara Umum">Bendahara Umum</option>
@@ -85,8 +85,8 @@
                         <label>Jenis Keanggotaan</label>
                     </td>
                     <td>
-                        <select class="form-control" name="jenis_keanggotaan">
-                            <option disabled>-Pilih Keanggotaan-</option>
+                        <select class="form-control" name="jenis_keanggotaan" required>
+                            <option disabled selected>-Pilih Keanggotaan-</option>
                             <option value="Anggota Biasa">Anggota Biasa</option>
                             <option value="Anggota Luar Biasa">Anggota Luar Biasa</option>
                         </select>
@@ -97,10 +97,13 @@
                         <label>Jenis Kelamin</label>
                     </td>
                     <td>
-                        <select class="form-control" name="jenis_kelamin">
+                        <select class="form-control" name="jenis_kelamin" required>
                             <option disabled>-Pilih-</option>
-                            <option value="Laki-laki">Laki-Laki</option>
-                            <option value="Perempuan">Perempuan</option>
+                            @foreach ($jenis_kelamin as $jk)
+                            <option value="{{ $jk->jenis_kelamin }}" {{$jk->jenis_kelamin==$agt->jenis_kelamin ? 'selected' : ''}}>{{ $jk->jenis_kelamin }}</option>
+                            @endforeach
+                            <!-- <option value="Laki-laki" >Laki-Laki</option>
+                            <option value="Perempuan" >Perempuan</option> -->
                         </select>
                     </td>
                 </tr>
@@ -109,7 +112,7 @@
                         <label>Alamat</label>
                     </td>
                     <td>
-                        <input type="text" name="alamat" placeholder="Input Alamat" value="{{$agt->alamat}}" class="form-control input-default ">
+                        <input type="text" name="alamat" placeholder="Input Alamat" value="{{$agt->alamat}}" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -117,7 +120,7 @@
                         <label>Tempat Lahir</label>
                     </td>
                     <td>
-                        <input type="text" name="tempat_lahir" placeholder="Input Tempat Lahir" value="{{$agt->tempat_lahir}}" class="form-control input-default ">
+                        <input type="text" name="tempat_lahir" placeholder="Input Tempat Lahir" value="{{$agt->tempat_lahir}}" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -125,7 +128,7 @@
                         <label>Tanggal Lahir</label>
                     </td>
                     <td>
-                        <input type="date" name="tgl_lahir" value="{{$agt->tgl_lahir}}" class="form-control input-default ">
+                        <input type="date" name="tgl_lahir" value="{{$agt->tgl_lahir}}" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -133,7 +136,7 @@
                         <label>E-mail</label>
                     </td>
                     <td>
-                        <input type="text" name="email" placeholder="Input e-mail" value="{{$agt->email}}" class="form-control input-default ">
+                        <input type="text" name="email" placeholder="Input e-mail" value="{{$agt->email}}" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -141,7 +144,7 @@
                         <label>Nomor Hp</label>
                     </td>
                     <td>
-                        <input type="text" name="no_hp" placeholder="Input No.Handphone (WA)" value="{{$agt->no_hp}}" class="form-control input-default ">
+                        <input type="text" name="no_hp" placeholder="Input No.Handphone (WA)" value="{{$agt->no_hp}}" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -149,7 +152,9 @@
                         <label>Upload Foto</label>
                     </td>
                     <td>
-                        <input type="file" name="foto" placeholder="Input Foto" value="{{$agt->foto}}" class="form-control input-default ">
+                        <img src="{{asset('Hmsi/foto/'. $agt->foto)}}" width="200px" />
+                        <input type="file" name="foto" placeholder="Input Foto" value="{{$agt->foto}}" class="form-control input-default " accept="image/*">
+                        <input type="hidden" id="hidden_image" name="hidden_image_foto" value="{{$agt->foto}}">
                     </td>
                 </tr>
                 <tr>
@@ -157,7 +162,9 @@
                         <label>Upload CV</label>
                     </td>
                     <td>
-                        <input type="file" name="cv" value="{{$agt->cv}}" class="form-control input-default ">
+                        <img src="{{asset('Hmsi/cv/'. $agt->cv)}}" width="200px" />
+                        <input type="file" name="cv" value="{{$agt->cv}}" class="form-control input-default " accept="image/*">
+                        <input type="hidden" id="hidden_image" name="hidden_image_cv" value="{{$agt->cv}}">
                     </td>
                 </tr>
                 <?php

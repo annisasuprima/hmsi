@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Divisi;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DivisiController extends Controller
 {
@@ -42,14 +43,15 @@ class DivisiController extends Controller
         $jml = count(collect($div));
 
         if($jml > 0){
-            print("sudah ada kodenya");
+            Alert::error('Error', 'Kode Divisi Sudah Ada');
+            return back();
         } else {
             Divisi::create([
                 'kode_divisi' => $request->kode_divisi,
                 'nama_divisi' => $request->nama_divisi,
                 'ket_divisi'  => $request->ket_divisi
             ]);
-            return redirect('divisi');
+            return redirect('divisi')->with('success', 'Data berhasil ditambah!');
         }
     }
 
@@ -100,6 +102,6 @@ class DivisiController extends Controller
     {
         $rapat = Divisi::findorfail($id);
         $rapat->delete();
-        return back();
+        return back()->with('success', 'Data berhasil dihapus!');
     }
 }

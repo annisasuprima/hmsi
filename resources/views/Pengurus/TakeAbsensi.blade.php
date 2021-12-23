@@ -6,7 +6,7 @@
 @section('container')
 <div class="card-title">
     <a href="{{url('pengurus')}}"><i class="ti-arrow-left"></i> Back</a><br><br>
-    <h4>Form Penambahan Anggota</h4>
+    <h4>Form Absensi</h4>
 </div>
 <div class="card-body">
     <br>

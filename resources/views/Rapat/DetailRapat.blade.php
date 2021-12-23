@@ -51,4 +51,5 @@
         {!! $dt->hasil !!}
     </div>
 </div>
+@include('sweetalert::alert')
 @endsection

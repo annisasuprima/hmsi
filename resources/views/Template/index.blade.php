@@ -90,8 +90,11 @@
                             <li><a href="/riwayat-kas">Riwayat</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{route('pengurus')}}"><i class="ti-pencil-alt2"></i> Notulensi</a>
+                    <li><a class="sidebar-sub-toggle"><i class="ti-pencil-alt2"></i> Notulensi <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <ul>
+                            <li><a href="{{route('pengurus')}}">List Notulensi</a></li>
+                            <li><a href="/presensi">Take Absensi</a></li>
+                        </ul>
                     </li>
                     @endif
                     <li><a href="{{route('logout')}}"><i class="ti-power-off"></i> Logout</a></li>

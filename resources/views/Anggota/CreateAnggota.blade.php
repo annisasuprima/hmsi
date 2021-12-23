@@ -18,7 +18,7 @@
                         <label>Pilih Divisi</label>
                     </td>
                     <td>
-                        <select class="form-control" name="id_divisi">
+                        <select class="form-control" name="id_divisi" required>
                             <option disabled selected>-Divisi-</option>
                             @foreach ($divisi as $dt)
                             <option value="{{ $dt->id }}">{{$dt->nama_divisi}}</option>
@@ -31,7 +31,7 @@
                         <label>Nama</label>
                     </td>
                     <td>
-                        <input type="text" name="nama" placeholder="Input Nama" class="form-control input-default ">
+                        <input type="text" name="nama" placeholder="Input Nama" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -39,7 +39,7 @@
                         <label>Nim</label>
                     </td>
                     <td>
-                        <input type="text" name="nim" placeholder="Input Nim" class="form-control input-default ">
+                        <input type="text" name="nim" placeholder="Input Nim" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -47,7 +47,7 @@
                         <label>Nomor Himpunan</label>
                     </td>
                     <td>
-                        <input type="text" name="no_himpunan" placeholder="Input No.Himpunan" class="form-control input-default ">
+                        <input type="text" name="no_himpunan" maxlength="10" placeholder="Input No.Himpunan" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -55,7 +55,7 @@
                         <label>Angkatan</label>
                     </td>
                     <td>
-                        <input type="text" maxlength="4" name="angkatan" placeholder="Input Angkatan (2***)" class="form-control input-default ">
+                        <input type="text" maxlength="4" name="angkatan" placeholder="Input Angkatan (2***)" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -63,7 +63,7 @@
                         <label>Jabatan</label>
                     </td>
                     <td>
-                        <select class="form-control" name="jabatan">
+                        <select class="form-control" name="jabatan" required>
                             <option disabled selected>-Pilih Jabatan-</option>
                             <option value="Ketua Hima">Ketua Hima</option>
                             <option value="Wakil Ketua Hima">Wakil Ketua Hima</option>
@@ -80,7 +80,7 @@
                         <label>Jenis Kelamin</label>
                     </td>
                     <td>
-                        <select class="form-control" name="jenis_kelamin">
+                        <select class="form-control" name="jenis_kelamin" required>
                             <option disabled selected>-Pilih-</option>
                             <option value="Laki-laki">Laki-Laki</option>
                             <option value="Perempuan">Perempuan</option>
@@ -92,7 +92,7 @@
                         <label>Alamat</label>
                     </td>
                     <td>
-                        <input type="text" name="alamat" placeholder="Input Alamat" class="form-control input-default ">
+                        <input type="text" name="alamat" placeholder="Input Alamat" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -100,7 +100,7 @@
                         <label>Tempat Lahir</label>
                     </td>
                     <td>
-                        <input type="text" name="tempat_lahir" placeholder="Input Tempat Lahir" class="form-control input-default ">
+                        <input type="text" name="tempat_lahir" placeholder="Input Tempat Lahir" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -108,7 +108,7 @@
                         <label>Tanggal Lahir</label>
                     </td>
                     <td>
-                        <input type="date" name="tgl_lahir" class="form-control input-default ">
+                        <input type="date" name="tgl_lahir" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -116,7 +116,7 @@
                         <label>E-mail</label>
                     </td>
                     <td>
-                        <input type="text" name="email" placeholder="Input e-mail" class="form-control input-default ">
+                        <input type="email" name="email" placeholder="Input e-mail" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -124,7 +124,7 @@
                         <label>Nomor Hp</label>
                     </td>
                     <td>
-                        <input type="text" maxlength="12" name="no_hp" placeholder="Input No.Handphone (WA)" class="form-control input-default ">
+                        <input type="text" maxlength="12" name="no_hp" placeholder="Input No.Handphone (WA)" class="form-control input-default " required>
                     </td>
                 </tr>
                 <tr>
@@ -132,7 +132,7 @@
                         <label>Upload Foto</label>
                     </td>
                     <td>
-                        <input type="file" name="foto" placeholder="Input Foto" class="form-control input-default ">
+                        <input type="file" name="foto" placeholder="Input Foto" class="form-control input-default " accept="image/*" required>
                     </td>
                 </tr>
                 <tr>
@@ -140,7 +140,7 @@
                         <label>Upload CV</label>
                     </td>
                     <td>
-                        <input type="file" name="cv" class="form-control input-default ">
+                        <input type="file" name="cv" class="form-control input-default " accept="image/*" required>
                     </td>
                 </tr>
                 <?php

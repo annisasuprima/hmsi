@@ -25,10 +25,10 @@
                     <label>Divisi</label>
                 </td>
                 <td>
-                    <select class="form-control" name="id_divisi">
-                        <option disabled selected>-Pilih Divisi-</option>
-                        @foreach ($divisi as $dv)
-                        <option value="{{ $dv->id }}">{{$dv->nama_divisi}}</option>
+                    <select class="form-control" name="id_divisi" required>
+                        <option disabled>-Divisi-</option>
+                        @foreach ($divisi as $div)
+                        <option value="{{ $div->id }}" {{$div->id==$dt->id_divisi ? 'selected' : ''}}>{{$div->nama_divisi}}</option>
                         @endforeach
                     </select>
                 </td>

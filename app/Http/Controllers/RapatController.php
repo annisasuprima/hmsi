@@ -98,7 +98,7 @@ class RapatController extends Controller
         ->rightJoin('divisi', 'divisi.id', '=', 'rapat.id_divisi')
         ->where('rapat.id', '=', $id)
         ->get([
-            'divisi.id', 'divisi.nama_divisi', 'rapat.tanggal',
+            'divisi.id AS id_divisi', 'divisi.nama_divisi', 'rapat.tanggal',
             'rapat.waktu_mulai', 'rapat.waktu_selesai', 'rapat.topik',
             'rapat.hasil', 'rapat.id  AS id_rapat'
         ]);
@@ -118,7 +118,7 @@ class RapatController extends Controller
     {
         $rapat = Rapat::findorfail($id);
         $rapat->update($request->all());
-        return redirect('rapat');
+        return redirect('rapat')->with('success', 'Rapat berhasil diedit!');
     }
 
     /**
@@ -131,6 +131,6 @@ class RapatController extends Controller
     {
         $rapat = Rapat::findorfail($id);
         $rapat->delete();
-        return redirect('rapat');
+        return redirect('rapat')->with('success', 'Rapat berhasil dihapus!');
     }
 }
