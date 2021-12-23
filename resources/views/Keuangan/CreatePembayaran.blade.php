@@ -18,12 +18,10 @@
                         <label>No Himpunan</label>
                     </td>
                     <td>
-                        <select class="form-control" name="id_anggota">
-                            <option disabled selected>-No Himpunan-</option>
-                            @foreach ($anggota as $dt)
-                            <option value="{{ $dt->id }}">{{$dt->no_himpunan}}</option>
-                            @endforeach
-                        </select>
+                        @foreach ($anggota as $dt)
+                        <input type="text" name="no_himpunan" class="form-control input-default" value="{{$dt->no_himpunan}}">
+                        <input type="hidden" name="id_anggota" class="form-control input-default" value="{{$dt->id}}">
+                        @endforeach
                     </td>
                 </tr>
                 <tr>

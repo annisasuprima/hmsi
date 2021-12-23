@@ -30,7 +30,6 @@ class AbsensiController extends Controller
 
         $dtrapat = DB::table('rapat')
         ->where('id_divisi','=',$dt_divisi)
-        ->orWhere('id_divisi','=','7')
         ->join('divisi', 'divisi.id', '=', 'rapat.id_divisi')
         ->get([
             'divisi.id', 'divisi.nama_divisi', 'rapat.tanggal',
@@ -114,7 +113,7 @@ class AbsensiController extends Controller
             'id_rapat' => $request->id_rapat,
             'status_kehadiran' => $request->status_kehadiran
         ]);
-        return redirect('pengurus')->with('success', 'Presensi berhasil disimpan!');;
+        return redirect('presensi')->with('success', 'Presensi berhasil disimpan!');;
     }
 
     /**

@@ -97,7 +97,8 @@ class KeuanganController extends Controller
     public function create2()
     {
         $anggota = DB::table('anggota')
-        ->get(['id', 'no_himpunan']);
+        ->where('id', '=', Auth::guard('anggota')->user()->id)
+        ->get();
 
         $kategori = DB::table('kat_keuangan')
                     ->get();

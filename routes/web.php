@@ -99,5 +99,4 @@ Route::group(['middleware'=>['auth:user,anggota']], function(){
     Route::get('/riwayat-kas', [App\Http\Controllers\KeuanganController::class, 'show_riwayat']);
     Route::get('/form-bayar', [App\Http\Controllers\KeuanganController::class, 'create2']);
     Route::post('/form-bayar', [App\Http\Controllers\KeuanganController::class, 'store2']);
-    
 });
