@@ -157,6 +157,18 @@
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i>
+                                    </div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Divisi</div>
+                                        <div class="stat-digit">{{$jml_div}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card">
+                                <div class="stat-widget-one">
                                     <div class="stat-icon dib"><i class="ti-user color-success border-success"></i>
                                     </div>
                                     <div class="stat-content dib">

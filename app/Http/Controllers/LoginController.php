@@ -64,11 +64,18 @@ class LoginController extends Controller
         $pengurus = DB::table('anggota')->get();
         $jml_agt = count(collect($pengurus));
 
-        $peserta_or = DB::table('peserta_or')->get();
-        $jml_ps = count(collect($peserta_or));
+        $divisi = DB::table('divisi')->get();
+        $jml_div = count(collect($divisi));
+
+        $status = "lulus";
+        $status2 = "Tidak lulus";
+        $lulus = DB::table('peserta_or')
+        ->where('status_or', '=', '')
+        ->get();
+        $jml_ps = count(collect($lulus));
 
         $rapat = DB::table('rapat')->get();
         $jml_rapat = count(collect($rapat));
-        return view('dashboard',compact('jml_agt','jml_ps','jml_rapat'));
+        return view('dashboard',compact('jml_agt','jml_ps','jml_rapat','jml_div'));
     }
 }

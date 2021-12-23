@@ -18,7 +18,7 @@
                         <label>Pilih Divisi</label>
                     </td>
                     <td>
-                        <select class="form-control" name="id_divisi" required>
+                        <select class="form-control @error('id_divisi') is-invalid @enderror" name="id_divisi" required>
                             <option disabled selected>-Divisi-</option>
                             @foreach ($divisi as $dt)
                             <option value="{{ $dt->id }}">{{$dt->nama_divisi}}</option>
@@ -31,7 +31,7 @@
                         <label>Nama</label>
                     </td>
                     <td>
-                        <input type="text" name="nama" placeholder="Input Nama" class="form-control input-default " required>
+                        <input type="text" name="nama" placeholder="Input Nama" class="form-control input-default @error('nama') is-invalid @enderror " required>
                     </td>
                 </tr>
                 <tr>
@@ -39,7 +39,7 @@
                         <label>Nim</label>
                     </td>
                     <td>
-                        <input type="text" name="nim" placeholder="Input Nim" class="form-control input-default " required>
+                        <input type="text" name="nim" placeholder="Input Nim" class="form-control @error('nim') is-invalid @enderror " value="{{@old('nim')}}" required>
                     </td>
                 </tr>
                 <tr>
@@ -152,4 +152,5 @@
         </form>
     </div>
 </div>
+@include('sweetalert::alert')
 @endsection

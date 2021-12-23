@@ -7,6 +7,7 @@ use App\Models\Anggota;
 use App\Models\Peserta_or;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AnggotaController extends Controller
 {
@@ -110,38 +111,71 @@ class AnggotaController extends Controller
 
     public function save(Request $request){
 
-        $cv = $request->cv;
-        $foto = $request->foto;
-        $filecv = $cv->getClientOriginalName();
-        $filefoto = $foto->getClientOriginalName();
+        // $validation = $request->validate(
+        //     [
+        //         'no_hp' => 'required|numeric',
+        //         'angkatan' => 'required|numeric',
+        //         'nim' => 'required|numeric'
+        //     ],
+        //     [
+        //         'no_hp.numeric' => 'Harus berupa angka (NIM)',
+        //         'angkatan.numeric' => 'Harus berupa angka',
+        //         'nim.numeric' => 'Harus berupa angka'
+        //     ]
+        // );
 
-        $keanggotaan = "Anggota Biasa";
-        $password = "12345";
+        $nim = $request->nim;
+        $nim = DB::table('anggota')->where('nim', '=', $nim)->get();
+        $nim = count(collect($nim));
 
-        Anggota::create([
-            'id_divisi' => $request->id_divisi,
-            'no_himpunan' => $request->no_himpunan,
-            'nama' => $request->nama,
-            'password' => bcrypt($password),
-            'jabatan' => $request->jabatan,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tgl_lahir' => $request->tgl_lahir,
-            'email'  => $request->email,
-            'no_hp' => $request->no_hp,
-            'angkatan' => $request->angkatan,
-            'foto' => $filefoto,
-            'cv' => $filecv,
-            'tahun_jabatan' => $request->tahun_jabatan,
-            'jenis_keanggotaan' => $keanggotaan,
-            'nim' => $request->nim
-        ]);
+        $no_himpunan = $request->no_himpunan;
+        $no_himpunan = DB::table('anggota')->where('no_himpunan', '=', $no_himpunan)->get();
+        $no_himpunan = count(collect($no_himpunan));
 
-        $cv->move(public_path() . '/Hmsi/cv', $filecv);
-        $foto->move(public_path() . '/Hmsi/foto', $filefoto);
+        $jml_nim = count(collect($nim));
+        $jml_no_himpunan = count(collect($no_himpunan));
 
-        return redirect('anggota')->with('success', 'Anggota berhhasil ditambah');;
+        if($jml_nim>0 ){
+            Alert::error('Error', 'Nim sudah ada');
+            return back();
+        } else if($jml_no_himpunan > 0){
+            Alert::error('Error', 'Nomor Himpunan sudah ada');
+            return back();
+        } else {
+            $cv = $request->cv;
+            $foto = $request->foto;
+            $filecv = $cv->getClientOriginalName();
+            $filefoto = $foto->getClientOriginalName();
+    
+            $keanggotaan = "Anggota Biasa";
+            $password = "12345";
+    
+            Anggota::create([
+                'id_divisi' => $request->id_divisi,
+                'no_himpunan' => $request->no_himpunan,
+                'nama' => $request->nama,
+                'password' => bcrypt($password),
+                'jabatan' => $request->jabatan,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'alamat' => $request->alamat,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
+                'email'  => $request->email,
+                'no_hp' => $request->no_hp,
+                'angkatan' => $request->angkatan,
+                'foto' => $filefoto,
+                'cv' => $filecv,
+                'tahun_jabatan' => $request->tahun_jabatan,
+                'jenis_keanggotaan' => $keanggotaan,
+                'nim' => $request->nim
+            ]);
+    
+            $cv->move(public_path() . '/Hmsi/cv', $filecv);
+            $foto->move(public_path() . '/Hmsi/foto', $filefoto);
+    
+            return redirect('anggota')->with('success', 'Anggota berhhasil ditambah');
+        }
+
     }
 
     /**
@@ -277,18 +311,18 @@ class AnggotaController extends Controller
      */
     public function destroy($id)
     {
-        $dtAnggota = DB::table('anggota')
-        ->where('id', '=', $id)
-        ->get([
-            'foto', 'cv', 'id'
-        ]);
+        // $dtAnggota = DB::table('anggota')
+        // ->where('id', '=', $id)
+        // ->get([
+        //     'foto', 'cv', 'id'
+        // ]);
 
-        foreach ($dtAnggota as $agt) {
-            $foto = $agt->foto;
-            $cv = $agt->cv;
-        }
-        unlink(public_path('Hmsi/foto/'.$foto));
-        unlink(public_path('Hmsi/cv/'.$cv));
+        // foreach ($dtAnggota as $agt) {
+        //     $foto = $agt->foto;
+        //     $cv = $agt->cv;
+        // }
+        // unlink(public_path('Hmsi/foto/'.$foto));
+        // unlink(public_path('Hmsi/cv/'.$cv));
 
         $anggota = Anggota::findorfail($id);
         $anggota->delete();
