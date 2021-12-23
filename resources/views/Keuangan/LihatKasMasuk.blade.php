@@ -14,14 +14,6 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <div class="float-left">
-            <div class="input-group rounded">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <span class="input-group-text border-0" id="search-addon">
-                    <i class="fas fa-search"></i>
-                </span>
-            </div>
-        </div>
         <div class="float-right">
             <a href="{{route('create-kas-masuk')}}" class="color-success">
                 <button type="button" class="btn btn-success btn-outline m-b-10 m-l-5">+ Entry</button>
