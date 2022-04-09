@@ -75,9 +75,10 @@
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="/kas-masuk">Kas Masuk</a></li>
-                            <li><a href="/kas-keluar">Kas Keluar</a></li>
-                            <li><a href="/laporan-kas">Laporan Kas</a></li>
+                            <li><a href="{{route('kas-masuk')}}">Kas Masuk</a></li>
+                            <li><a href="{{route('kas-keluar')}}">Kas Keluar</a></li>
+                            <li><a href="{{route('laporan-kas')}}">Laporan Kas</a></li>
+                            <li><a href="{{route('kat-keuangan')}}">Kategori Keuangan</a></li>
                         </ul>
                     </li>
                     @elseif(Str::length(Auth::guard('anggota')->user()) > 0)
@@ -86,14 +87,15 @@
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="/form-bayar">Form Pembayaran</a></li>
-                            <li><a href="/riwayat-kas">Riwayat</a></li>
+                            <li><a href="{{route('form-lihat')}}">Form Pembayaran</a></li>
+                            <li><a href="{{route('riwayat-kas')}}">Riwayat</a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-pencil-alt2"></i> Notulensi <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="{{route('pengurus')}}">List Notulensi</a></li>
-                            <li><a href="/presensi">Take Absensi</a></li>
+                            <li><a href="{{route('presensi')}}">Take Absen</a></li>
+                            <!-- <li><a href="{{route('absensi')}}">Take Absensi</a></li> -->
                         </ul>
                     </li>
                     @endif
@@ -170,7 +172,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="footer">
-                                <p>2018 © Admin Board. - <a href="#">example.com</a></p>
+                            <p>2022 © HMSI. </p>
                             </div>
                         </div>
                     </div>

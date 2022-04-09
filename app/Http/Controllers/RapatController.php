@@ -38,12 +38,6 @@ class RapatController extends Controller
         return view('Rapat.CreateRapat', compact('divisi'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         Rapat::create([
@@ -57,12 +51,7 @@ class RapatController extends Controller
         return redirect('rapat')->with('success', 'Notulensi berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Rapat  $rapat
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $detailrapat = DB::table('rapat')
@@ -86,12 +75,6 @@ class RapatController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Rapat  $rapat
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $rapat = DB::table('rapat')
@@ -107,13 +90,6 @@ class RapatController extends Controller
         return view ('Rapat.EditRapat',compact('rapat','divisi'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rapat  $rapat
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $rapat = Rapat::findorfail($id);
@@ -121,12 +97,6 @@ class RapatController extends Controller
         return redirect('rapat')->with('success', 'Rapat berhasil diedit!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Rapat  $rapat
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $rapat = Rapat::findorfail($id);

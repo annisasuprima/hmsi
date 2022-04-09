@@ -10,7 +10,7 @@
 <div class="card-body">
     <br>
     <div class="basic-form">
-        <form action="{{route('create-kas-keluar')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('save-kas-keluar')}}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             <table cellpadding="7">
             <tr>
@@ -60,7 +60,9 @@
                         <label>Bukti Pembayaran</label>
                     </td>
                     <td>
-                        <input type="file" name="foto" placeholder="Input Foto" class="form-control input-default ">
+                    <input type="file" name="bukti" class="form-control input-default " accept="image/*" required> 
+                       
+                        <!-- <input type="file" name="foto" placeholder="Input Foto" class="form-control input-default "> -->
                     </td>
                 </tr>
                 <tr>

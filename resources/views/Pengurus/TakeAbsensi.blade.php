@@ -12,7 +12,10 @@
     <br>
     <div class="table-responsive">
         <form action="{{route('save-absen')}}" method="POST">
+       
             {{csrf_field()}}
+  
+    
             <table cellpadding="7">
                 @foreach ($dtrapat as $dt)
                 <tr>

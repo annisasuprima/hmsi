@@ -24,7 +24,6 @@
                     <th>No</th>
                     <th>Kode Divisi</th>
                     <th>Nama Divisi</th>
-                    <th>Jumlah Anggota</th>
                     <th>Opsi</th>
                 </tr>
             </thead>
@@ -35,7 +34,6 @@
                     <td>{{$no++}}</td>
                     <td>{{$tampil->kode_divisi}}</td>
                     <td>{{$tampil->nama_divisi}}</td>
-                    <td>-</td>
                     <td>
                         <a href="#" class="btn btn-warning btn-sm m-b-10 m-l-5" data-toggle="modal" data-target="#detail-{{$tampil->id}}"><i class="ti-eye"></i></a>
                         <a href="{{url('edit-divisi',$tampil->id)}}" class="btn btn-success btn-sm m-b-10 m-l-5"><i class="ti-pencil"></i></a>

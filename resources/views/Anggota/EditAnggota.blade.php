@@ -4,6 +4,7 @@
 @section('sapaan','Edit Data Anggota')
 @section('submenu','Edit Data Anggota')
 @section('container')
+
 <div class="row">
     <a href="{{url('anggota')}}"><i class="ti-arrow-left"></i> Back</a><br>
 </div>
@@ -69,7 +70,7 @@
                     </td>
                     <td>
                         <select class="form-control" name="jabatan" required>
-                            <option disabled selected>-Pilih Jabatan-</option>
+                            <option selected value="{{$agt->jabatan}}">{{$agt->jabatan}}</option>
                             <option value="Ketua Hima">Ketua Hima</option>
                             <option value="Wakil Ketua Hima">Wakil Ketua Hima</option>
                             <option value="Bendahara Umum">Bendahara Umum</option>
@@ -86,7 +87,7 @@
                     </td>
                     <td>
                         <select class="form-control" name="jenis_keanggotaan" required>
-                            <option disabled selected>-Pilih Keanggotaan-</option>
+                            <option selected value="{{$agt->jenis_keanggotaan}}">{{$agt->jenis_keanggotaan}}</option>
                             <option value="Anggota Biasa">Anggota Biasa</option>
                             <option value="Anggota Luar Biasa">Anggota Luar Biasa</option>
                         </select>
@@ -152,7 +153,7 @@
                         <label>Upload Foto</label>
                     </td>
                     <td>
-                        <img src="{{asset('Hmsi/foto/'. $agt->foto)}}" width="200px" />
+                        <img src="{{($agt->foto)}}" width="200px" />
                         <input type="file" name="foto" placeholder="Input Foto" value="{{$agt->foto}}" class="form-control input-default " accept="image/*">
                         <input type="hidden" id="hidden_image" name="hidden_image_foto" value="{{$agt->foto}}">
                     </td>
@@ -162,7 +163,7 @@
                         <label>Upload CV</label>
                     </td>
                     <td>
-                        <img src="{{asset('Hmsi/cv/'. $agt->cv)}}" width="200px" />
+                        <img src="{{$agt->cv}}" width="200px" />
                         <input type="file" name="cv" value="{{$agt->cv}}" class="form-control input-default " accept="image/*">
                         <input type="hidden" id="hidden_image" name="hidden_image_cv" value="{{$agt->cv}}">
                     </td>

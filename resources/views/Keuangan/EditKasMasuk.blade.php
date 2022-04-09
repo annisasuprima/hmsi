@@ -11,7 +11,9 @@
     <br>
     <div class="basic-form">
         @foreach ($keuangan as $n)
-        <form action="/update-kas-masuk/{{$n->id}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('update-kas-masuk',[$n->id])}}" method="POST" enctype="multipart/form-data">
+
+        @method('PUT')
             {{csrf_field()}}
             <table cellpadding="7">
                 <tr>
@@ -53,8 +55,12 @@
                         <label>Bukti Pembayaran</label>
                     </td>
                     <td>
-                        <input type="text" name="bukti" value="{{$n->bukti_pembayaran}}"class="form-control input-default ">
+                        <img src="{{($n->bukti_pembayaran)}}" width="200px" />
+                        <input type="file" name="bukti_pembayaran" placeholder="Input Foto" value="{{$n->bukti_pembayaran}}" class="form-control input-default " accept="image/*">
+                        <input type="hidden" id="hidden_image" name="hidden_image_foto" value="{{$n->bukti_pembayaran}}">
                     </td>
+
+                 
                 </tr>
                 <tr>
                     <td>
@@ -70,9 +76,9 @@
                     </td>
                     <td>
                         <select class="form-control" name="status">
-                            <option disabled selected>-Pilih Status-</option>
-                            <option value="Konfirm">Terkonfirmasi</option>
-                            <option value="Tolak">Ditolak</option>
+                            <option selected  value="{{$n->status_konfirmasi}}">{{$n->status_konfirmasi}}</option>
+                            <option value="Konfirm">Konfirm</option>
+                            <option value="Tolak">Tolak</option>
                         </select>
                 </tr>
             </table><br>

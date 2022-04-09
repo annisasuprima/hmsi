@@ -17,7 +17,7 @@ class AddNimFieldToAnggotaTable extends Migration
             $table->string('nim', 10);
             $table->dropColumn('id_pesertaor');
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.

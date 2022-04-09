@@ -17,6 +17,13 @@ class DivisiController extends Controller
     public function index()
     {
         $dtDivisi = Divisi::all();
+        // $dtDivisi = DB::table('anggota')
+        // ->join ('divisi','divisi.id','=','anggota.id_divisi')
+        // ->groupBy('anggota.id_divisi')
+        // ->get([
+        //     'count (anggota.id) AS jumlah_anggota','divisi.kode_divisi',
+        //     'divisi.nama_divisi','divisi.ket_divisi'
+        // ]);
         return view('Divisi.ReadDivisi',compact('dtDivisi'));
     }
 
@@ -30,12 +37,6 @@ class DivisiController extends Controller
         return view('Divisi.CreateDivisi');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $kode_divisi = $request->kode_divisi;
@@ -55,16 +56,6 @@ class DivisiController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -78,13 +69,6 @@ class DivisiController extends Controller
         return view('Divisi.EditDivisi', compact('divisi'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $div = Divisi::findorfail($id);
@@ -92,12 +76,7 @@ class DivisiController extends Controller
         return redirect('divisi')->with('success', 'Data berhasil diedit!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $rapat = Divisi::findorfail($id);

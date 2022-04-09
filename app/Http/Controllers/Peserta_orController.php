@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class Peserta_orController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $status = "lulus";
@@ -55,29 +50,16 @@ class Peserta_orController extends Controller
         return view('OpRec.LaporanPeserta', compact('laporan'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         // dd($request->all());
         $cv = $request->cv;
         $foto = $request->foto;
-        $filecv = $cv->getClientOriginalName();
-        $filefoto = $foto->getClientOriginalName();
+        // $filecv = $cv->getClientOriginalName();
+        // $filefoto = $foto->getClientOriginalName();
+
+        $filefoto= cloudinary()->upload($request->file('foto')->getRealPath())->getSecurePath();
+        $filecv= cloudinary()->upload($request->file('cv')->getRealPath())->getSecurePath();
 
         Peserta_or::create([
             'nim' => $request->nim,
@@ -98,19 +80,13 @@ class Peserta_orController extends Controller
             'cv' => $filecv,
             
         ]);
-        $cv->move(public_path().'/Hmsi/cv',$filecv);
-        $foto->move(public_path() . '/Hmsi/foto', $filefoto);
+        // $cv->move(public_path().'/Hmsi/cv',$filecv);
+        // $foto->move(public_path() . '/Hmsi/foto', $filefoto);
         
         return back()->with('success', 'Anda sudah berhasil mendaftar');
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Peserta_or  $peserta_or
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $peserta = DB::table('peserta_or')
@@ -124,24 +100,6 @@ class Peserta_orController extends Controller
         return view('OpRec.DetailPeserta', compact('peserta'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Peserta_or  $peserta_or
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Peserta_or $peserta_or)
-    {
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Peserta_or  $peserta_or
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         // dd($request->all());
@@ -167,15 +125,5 @@ class Peserta_orController extends Controller
             'status_or' => $status
         ]);
         return back()->with('success', 'Peserta berhasil DITOLAK!');
-    }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Peserta_or  $peserta_or
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Peserta_or $peserta_or)
-    {
-        //
     }
 }

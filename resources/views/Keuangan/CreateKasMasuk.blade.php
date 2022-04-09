@@ -4,13 +4,14 @@
 @section('sapaan','Pembayaran Kas')
 @section('submenu','Form Pembayaran Kas')
 @section('container')
+<!-- <a href="/kas-masuk"><h5><- BACK</h5></a> <br> -->
 <div class="card-title">
     <h4>Form Pembayaran Kas</h4>
 </div>
 <div class="card-body">
     <br>
     <div class="basic-form">
-        <form action="{{route('create-kas-masuk')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('save-kas-masuk')}}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             <table cellpadding="7">
                 <tr>
@@ -60,7 +61,8 @@
                         <label>Bukti Pembayaran</label>
                     </td>
                     <td>
-                        <input type="text" name="bukti" placeholder="Input Bukti" class="form-control input-default ">
+                        <input type="file" name="bukti_pembayaran" class="form-control input-default " accept="image/*" required> 
+                       
                     </td>
                 </tr>
                 <tr>

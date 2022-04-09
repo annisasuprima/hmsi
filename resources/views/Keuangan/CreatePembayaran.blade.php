@@ -10,7 +10,7 @@
 <div class="card-body">
     <br>
     <div class="basic-form">
-        <form action="/form-bayar" method="POST" enctype="multipart/form-data">
+        <form action="{{route('form-bayar')}}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             <table cellpadding="7">
                 <tr>

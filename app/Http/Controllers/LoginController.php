@@ -16,7 +16,6 @@ class LoginController extends Controller
         } else if (Auth::guard('anggota')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('/profil');
         }
-
         Alert::error('Error', 'Username dan Password tidak sesuai');
         return redirect ('/login');
     }
@@ -46,6 +45,7 @@ class LoginController extends Controller
             $pd[] = $data->id;
         }
 
+        
         $listdiv = DB::table('divisi')
         ->whereNotIn('id',$pd)
         ->get([
@@ -67,10 +67,9 @@ class LoginController extends Controller
         $divisi = DB::table('divisi')->get();
         $jml_div = count(collect($divisi));
 
-        $status = "lulus";
-        $status2 = "Tidak lulus";
+        $status = null;
         $lulus = DB::table('peserta_or')
-        ->where('status_or', '=', '')
+        ->where('status_or', '=', $status)
         ->get();
         $jml_ps = count(collect($lulus));
 

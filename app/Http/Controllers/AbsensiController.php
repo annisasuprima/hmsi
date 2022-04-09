@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AbsensiController extends Controller
 {
@@ -87,25 +88,9 @@ class AbsensiController extends Controller
             ]);
         }
 
-        return view('Pengurus.ListAbsen', compact('absen',));
+        return view('Pengurus.ListAbsen', compact('absen', ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         Absensi::create([
@@ -116,26 +101,19 @@ class AbsensiController extends Controller
         return redirect('presensi')->with('success', 'Presensi berhasil disimpan!');;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Absensi  $absensi
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
+    public function show($id)
     {
-        // dd($request->all());
         $dtrapat = DB::table('rapat')
-        ->where('id','=',$request->id)
+        ->where('id','=',$id)
         ->get([ 
             'rapat.tanggal','rapat.topik','rapat.id  AS id_rapat'
         ]);
-
         $dtanggota = DB::table('anggota')
         ->where('id','=', Auth::guard('anggota')->user()->id)
         ->get([
             'id','no_himpunan'
         ]);
+        
         return view('Pengurus.TakeAbsensi',compact('dtrapat','dtanggota'));
     }
 
@@ -159,37 +137,48 @@ class AbsensiController extends Controller
         ]);
         return view('Pengurus.DetailNotulen', compact('detailrapat','kehadiran'));
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Absensi  $absensi
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Absensi $absensi)
+
+    public function formabsen(Request $request)
     {
-        //
+
+        $anggota = DB::table('anggota')
+        ->where('id', '=', Auth::guard('anggota')->user()->id)
+        ->get(
+            'id_divisi',
+        );
+        foreach ($anggota as $dtAnggota) {
+            $id_anggota = Auth::guard('anggota')->user()->id;
+            $id_divisi = $dtAnggota->id_divisi;
+        }
+
+
+        // dd($request->all());
+        $dtrapat = DB::table('rapat')
+        ->where('id_divisi', '=', Auth::guard('anggota')->user()->id_divisi)
+        ->get([ 
+            'rapat.tanggal','rapat.topik','rapat.id  AS id_rapat'
+        ]);
+
+        $dtanggota = DB::table('anggota')
+        ->where('id','=', Auth::guard('anggota')->user()->id)
+        ->get([
+            'id','no_himpunan'
+        ]);
+
+        $current = Carbon::now();
+
+
+        return view('Pengurus.TakeAbsen',compact('dtrapat','dtanggota','current'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Absensi  $absensi
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Absensi $absensi)
+    public function simpanabsen(Request $request)
     {
-        //
+        Absensi::create([
+            'id_anggota' => $request->id_anggota,
+            'id_rapat' => $request->id_rapat,
+            'status_kehadiran' => $request->status_kehadiran
+        ]);
+        return redirect('presensi')->with('success', 'Presensi berhasil disimpan!');;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Absensi  $absensi
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Absensi $absensi)
-    {
-        //
-    }
 }

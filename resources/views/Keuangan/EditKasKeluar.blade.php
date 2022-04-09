@@ -11,7 +11,7 @@
     <br>
     <div class="basic-form">
         @foreach ($keuangan as $n)
-        <form action="/update-kas-keluar/{{$n->id}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('update-kas-keluar',[$n->id])}}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             <table cellpadding="7">
                 <tr>

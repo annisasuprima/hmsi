@@ -123,18 +123,19 @@ class AnggotaController extends Controller
         //         'nim.numeric' => 'Harus berupa angka'
         //     ]
         // );
-
+        
         $nim = $request->nim;
-        $nim = DB::table('anggota')->where('nim', '=', $nim)->get();
-        $nim = count(collect($nim));
+        $nim_q = DB::table('anggota')->where('nim', '=', $nim)->get();
+        $nim = count(collect($nim_q));
 
         $no_himpunan = $request->no_himpunan;
-        $no_himpunan = DB::table('anggota')->where('no_himpunan', '=', $no_himpunan)->get();
-        $no_himpunan = count(collect($no_himpunan));
+        $no_himpunan_q = DB::table('anggota')->where('no_himpunan', '=', $no_himpunan)->get();
+        $no_himpunan = count(collect($no_himpunan_q));
 
-        $jml_nim = count(collect($nim));
-        $jml_no_himpunan = count(collect($no_himpunan));
+        $jml_nim = count(collect($nim_q));
+        $jml_no_himpunan = count(collect($no_himpunan_q));
 
+    
         if($jml_nim>0 ){
             Alert::error('Error', 'Nim sudah ada');
             return back();
@@ -144,11 +145,14 @@ class AnggotaController extends Controller
         } else {
             $cv = $request->cv;
             $foto = $request->foto;
-            $filecv = $cv->getClientOriginalName();
-            $filefoto = $foto->getClientOriginalName();
+            // $filecv = $cv->getClientOriginalName();
+            // $filefoto = $foto->getClientOriginalName();
     
             $keanggotaan = "Anggota Biasa";
             $password = "12345";
+            
+            $filefoto= cloudinary()->upload($request->file('foto')->getRealPath())->getSecurePath();
+            $filecv= cloudinary()->upload($request->file('cv')->getRealPath())->getSecurePath();
     
             Anggota::create([
                 'id_divisi' => $request->id_divisi,
@@ -170,10 +174,11 @@ class AnggotaController extends Controller
                 'nim' => $request->nim
             ]);
     
-            $cv->move(public_path() . '/Hmsi/cv', $filecv);
-            $foto->move(public_path() . '/Hmsi/foto', $filefoto);
-    
-            return redirect('anggota')->with('success', 'Anggota berhhasil ditambah');
+            // $cv->move(public_path() . '/Hmsi/cv', $filecv);
+            // $foto->move(public_path() . '/Hmsi/foto', $filefoto);
+           
+         
+            return redirect('anggota')->with('success', 'Anggota berhasil ditambah');
         }
 
     }
@@ -237,23 +242,20 @@ class AnggotaController extends Controller
             'foto', 'cv', 'id'
         ]);
 
+
         foreach ($dtAnggota as $agt) {
             $foto = $agt->foto;
             $cv = $agt->cv;
         }
 
-        $old_image_name_foto= $request->hidden_image_foto;
-        $old_image_name_cv = $request->hidden_image_cv;
+        // $old_image_name_foto= $request->hidden_image_foto;
+        // $old_image_name_cv = $request->hidden_image_cv;
 
-        if($foto != '' or $cv != ''){
+        if($request->foto or $request->cv){
+          
             $newcv = $request->cv;
             $newfoto = $request->foto;
-            $filecv = $newcv->getClientOriginalName();
-            $filefoto = $newfoto->getClientOriginalName();
-    
-            $update = DB::table('anggota')
-            ->where('id', '=', $id)
-            ->update([
+            $updated = [
                 'id_divisi' => $request->id_divisi,
                 'no_himpunan' => $request->no_himpunan,
                 'nama' => $request->nama,
@@ -265,18 +267,50 @@ class AnggotaController extends Controller
                 'email'  => $request->email,
                 'no_hp' => $request->no_hp,
                 'angkatan' => $request->angkatan,
-                'foto' => $filefoto,
-                'cv' => $filecv,
                 'tahun_jabatan' => $request->tahun_jabatan,
                 'jenis_keanggotaan' => $request->jenis_keanggotaan,
                 'nim' => $request->nim
-            ]);
-            unlink(public_path('Hmsi/foto/' . $foto));
-            unlink(public_path('Hmsi/cv/' . $cv));
-            
-            $newcv->move(public_path() . '/Hmsi/cv', $filecv);
-            $newfoto->move(public_path() . '/Hmsi/foto', $filefoto);
+            ];
 
+            if ($request->foto) {
+             
+                $filefoto= cloudinary()->upload($request->file('foto')->getRealPath())->getSecurePath();
+              
+                $updated['foto'] = $filefoto;
+
+                
+            }
+            
+            if ($request->cv) {
+                $filecv= cloudinary()->upload($request->file('cv')->getRealPath())->getSecurePath();
+        
+                $updated['cv'] = $filecv;
+            }
+
+
+            $update = DB::table('anggota')
+            ->where('id', '=', $id)
+            ->update($updated);
+
+            // if ($request->foto) {
+          
+                
+            // unlink(public_path('Hmsi/foto/' . $foto));
+            // $newfoto->move(public_path() . '/Hmsi/foto', $filefoto);
+
+                
+            // }
+            
+            // if ($request->cv) {
+                
+            // unlink(public_path('Hmsi/cv/' . $cv));
+            
+            // $newcv->move(public_path() . '/Hmsi/cv', $filecv);
+            // }
+
+
+            
+         
         } else {
             $update = DB::table('anggota')
                 ->where('id', '=', $id)
@@ -292,8 +326,6 @@ class AnggotaController extends Controller
                     'email'  => $request->email,
                     'no_hp' => $request->no_hp,
                     'angkatan' => $request->angkatan,
-                    'foto' => $old_image_name_foto,
-                    'cv' => $old_image_name_cv,
                     'tahun_jabatan' => $request->tahun_jabatan,
                     'jenis_keanggotaan' => $request->jenis_keanggotaan,
                     'nim' => $request->nim

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome :v </title>
+    <title>Welcome</title>
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
     <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
@@ -67,6 +67,7 @@
                         <ul>
                             <li><a href="{{route('rapat')}}">List Notulensi</a></li>
                             <li><a href="{{route('create-rapat')}}">Tambah Notulensi</a></li>
+                          
                         </ul>
                     </li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-money"></i> Keuangan <span class="sidebar-collapse-icon ti-angle-down"></span></a>
@@ -74,6 +75,7 @@
                             <li><a href="/kas-masuk">Kas Masuk</a></li>
                             <li><a href="/kas-keluar">Kas Keluar</a></li>
                             <li><a href="/laporan-kas">Laporan Kas</a></li>
+                            
                         </ul>
                     </li>
                     @elseif(Str::length(Auth::guard('anggota')->user()) > 0)
@@ -204,7 +206,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <!-- <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-title">
                                     <h4>Task</h4>
@@ -262,7 +264,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- /# column -->
                         <div class="col-lg-4">
                             <div class="card">
@@ -363,7 +365,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="footer">
-                                <p>2018 © Admin Board. - <a href="#">example.com</a></p>
+                                <p>2022 © HMSI. </p>
                             </div>
                         </div>
                     </div>

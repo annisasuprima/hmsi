@@ -199,7 +199,7 @@
                         </div>
                     </li>
                 </ul>
-                <a href="{{route('daftar')}}" class="btn-learn-more">Daftar</a>
+                <a href="{{route('daftar')}}" class="btn btn-warning btn-rounded m-b-10 m-l-5" style="color:white;background-color: #fc7c1f;">Daftar</a>
             </div>
         </section><!-- End Recruitment Section -->
 
@@ -212,14 +212,14 @@
             <p>Website resmi HMSI Unand</p>
             <a href="http://hmsi.si.fti.unand.ac.id/">HMSI Unand</a>
             <div class="copyright">
-                &copy; Copyright <strong><span>Selecao</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>HMSI</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/selecao-bootstrap-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                <!-- Designed by <a href="#">BootstrapMade</a> -->
             </div>
         </div>
     </footer><!-- End Footer -->

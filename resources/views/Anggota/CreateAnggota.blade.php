@@ -39,7 +39,7 @@
                         <label>Nim</label>
                     </td>
                     <td>
-                        <input type="text" name="nim" placeholder="Input Nim" class="form-control @error('nim') is-invalid @enderror " value="{{@old('nim')}}" required>
+                        <input type="text" name="nim" placeholder="Input Nim" class="form-control @error('nim') is-invalid @enderror " required>
                     </td>
                 </tr>
                 <tr>
